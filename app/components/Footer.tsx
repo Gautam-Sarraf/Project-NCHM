@@ -39,9 +39,9 @@ export default function Footer() {
           >
             <Link href="/" className="flex items-center gap-3 mb-4 group">
             <img src="/images/logo.jpeg" alt="NCHM Logo" className="w-11 h-11 rounded-full object-cover" />
-              <span className="font-serif text-lg tracking-wide text-white">Nepal College of Hotel Management</span>
+              <span className="font-serif text-lg tracking-wide text-[#F5F7FA]">Nepal College of Hotel Management</span>
             </Link>
-            <p className="text-white/50 text-sm leading-relaxed">
+            <p className="text-[#F5F7FA]/50 text-sm leading-relaxed">
               Shaping future hotel industry leaders since 2005. A premier institution committed to
               excellence in hospitality and hotel management education.
             </p>
@@ -52,7 +52,7 @@ export default function Footer() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h4 className="font-serif text-sm font-semibold text-white uppercase tracking-wider mb-4">
+            <h4 className="font-serif text-sm font-semibold text-[#F5F7FA] uppercase tracking-wider mb-4">
               Quick Links
             </h4>
             <nav className="space-y-3">
@@ -60,7 +60,7 @@ export default function Footer() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="block text-sm text-white/50 hover:text-[#D4A533] transition-colors duration-300"
+                  className="block text-sm text-[#F5F7FA]/50 hover:text-[#D4A533] transition-colors duration-300"
                 >
                   {link.name}
                 </Link>
@@ -73,19 +73,19 @@ export default function Footer() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h4 className="font-serif text-sm font-semibold text-white uppercase tracking-wider mb-4">
+            <h4 className="font-serif text-sm font-semibold text-[#F5F7FA] uppercase tracking-wider mb-4">
               Contact
             </h4>
             <div className="space-y-3">
-              <div className="flex items-start gap-3 text-sm text-white/50">
+              <div className="flex items-start gap-3 text-sm text-[#F5F7FA]/50">
                 <MapPin size={16} className="text-[#D4A533] flex-shrink-0 mt-0.5" />
                 <span>Kathmandu, Nepal</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-white/50">
+              <div className="flex items-center gap-3 text-sm text-[#F5F7FA]/50">
                 <Phone size={16} className="text-[#D4A533] flex-shrink-0" />
                 <span>+977 1-XXXXXXX</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-white/50">
+              <div className="flex items-center gap-3 text-sm text-[#F5F7FA]/50">
                 <Mail size={16} className="text-[#D4A533] flex-shrink-0" />
                 <span>info@nchm.edu.np</span>
               </div>
@@ -97,7 +97,7 @@ export default function Footer() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <h4 className="font-serif text-sm font-semibold text-white uppercase tracking-wider mb-4">
+            <h4 className="font-serif text-sm font-semibold text-[#F5F7FA] uppercase tracking-wider mb-4">
               Follow Us
             </h4>
             <div className="space-y-3">
@@ -105,7 +105,7 @@ export default function Footer() {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="flex items-center gap-2 text-sm text-white/50 hover:text-[#D4A533] transition-colors duration-300"
+                  className="flex items-center gap-2 text-sm text-[#F5F7FA]/50 hover:text-[#D4A533] transition-colors duration-300"
                 >
                   <ExternalLink size={14} />
                   {link.name}
@@ -116,14 +116,14 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-[#D4A533]/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-white/30">
+          <p className="text-xs text-[#F5F7FA]/30">
             2025 Nepal College of Hotel Management (NCHM). All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-xs text-white/30 hover:text-[#D4A533] transition-colors">
+            <a href="#" className="text-xs text-[#F5F7FA]/30 hover:text-[#D4A533] transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="text-xs text-white/30 hover:text-[#D4A533] transition-colors">
+            <a href="#" className="text-xs text-[#F5F7FA]/30 hover:text-[#D4A533] transition-colors">
               Terms of Service
             </a>
           </div>

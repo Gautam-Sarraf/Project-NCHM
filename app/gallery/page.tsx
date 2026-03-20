@@ -52,7 +52,7 @@ export default function GalleryPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white text-balance"
+            className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-text-light text-balance"
           >
             Photo{" "}
             <span className="bg-gradient-to-r from-[#D4A533] to-[#E8C86A] bg-clip-text text-transparent">Gallery</span>
@@ -78,7 +78,7 @@ export default function GalleryPage() {
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   active === cat
                     ? "bg-gradient-to-r from-[#D4A533] to-[#E8C86A] text-[#0B1F3B]"
-                    : "bg-white/5 border border-white/10 text-white/50 hover:text-white hover:border-white/25"
+                    : "bg-text-light/5 border border-text-light/10 text-text-light/50 hover:text-text-light hover:border-text-light/25"
                 }`}
               >
                 {cat}
@@ -112,14 +112,14 @@ export default function GalleryPage() {
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   {/* Overlay */}
-                  <div className="absolute inset-0 bg-[#0B1F3B]/0 group-hover:bg-[#0B1F3B]/60 transition-all duration-500 flex flex-col items-center justify-center">
+                  <div className="absolute inset-0 bg-background/0 group-hover:bg-background/60 transition-all duration-500 flex flex-col items-center justify-center">
                     <motion.span
                       initial={false}
-                      className="text-white text-sm font-medium tracking-wide opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-3 group-hover:translate-y-0"
+                      className="text-text-light text-sm font-medium tracking-wide opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-3 group-hover:translate-y-0"
                     >
                       {image.category}
                     </motion.span>
-                    <span className="text-white/50 text-xs mt-1 opacity-0 group-hover:opacity-100 transition-all duration-300 delay-75 translate-y-3 group-hover:translate-y-0">
+                    <span className="text-text-light/50 text-xs mt-1 opacity-0 group-hover:opacity-100 transition-all duration-300 delay-75 translate-y-3 group-hover:translate-y-0">
                       Click to view
                     </span>
                   </div>
@@ -139,7 +139,7 @@ export default function GalleryPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-[#0B1F3B]/95 backdrop-blur-md flex items-center justify-center p-6"
+            className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-md flex items-center justify-center p-6"
             onClick={closeModal}
           >
             <motion.div
@@ -157,29 +157,29 @@ export default function GalleryPage() {
                 height={800}
                 className="w-full h-auto object-cover rounded-2xl"
               />
-              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-[#0B1F3B] to-transparent rounded-b-2xl">
-                <p className="text-white text-sm font-medium">{filtered[selected].category}</p>
-                <p className="text-white/50 text-xs mt-1">{filtered[selected].alt}</p>
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background to-transparent rounded-b-2xl">
+                <p className="text-text-light text-sm font-medium">{filtered[selected].category}</p>
+                <p className="text-text-light/50 text-xs mt-1">{filtered[selected].alt}</p>
               </div>
 
               {/* Navigation */}
               <button
                 onClick={goPrev}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#0B1F3B]/80 border border-[#D4A533]/20 flex items-center justify-center text-white hover:bg-[#D4A533]/20 transition-colors"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 border border-[#D4A533]/20 flex items-center justify-center text-text-light hover:bg-[#D4A533]/20 transition-colors"
                 aria-label="Previous image"
               >
                 <ChevronLeft size={20} />
               </button>
               <button
                 onClick={goNext}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#0B1F3B]/80 border border-[#D4A533]/20 flex items-center justify-center text-white hover:bg-[#D4A533]/20 transition-colors"
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 border border-[#D4A533]/20 flex items-center justify-center text-text-light hover:bg-[#D4A533]/20 transition-colors"
                 aria-label="Next image"
               >
                 <ChevronRight size={20} />
               </button>
               <button
                 onClick={closeModal}
-                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-[#0B1F3B]/80 border border-[#D4A533]/20 flex items-center justify-center text-white hover:bg-[#D4A533]/20 transition-colors"
+                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-background/80 border border-[#D4A533]/20 flex items-center justify-center text-text-light hover:bg-[#D4A533]/20 transition-colors"
                 aria-label="Close preview"
               >
                 <X size={18} />

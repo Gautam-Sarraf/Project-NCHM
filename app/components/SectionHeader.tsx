@@ -30,14 +30,14 @@ export default function SectionHeader({ label, title, highlight, description }: 
       >
         {label}
       </motion.span>
-      <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white text-balance">
+      <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-text-light text-balance">
         {title}{" "}
         <span className="bg-gradient-to-r from-[#D4A533] to-[#E8C86A] bg-clip-text text-transparent">
           {highlight}
         </span>
       </h2>
       {description && (
-        <p className="mt-5 text-white/50 max-w-xl mx-auto leading-relaxed">
+        <p className="mt-5 text-text-light/50 max-w-xl mx-auto leading-relaxed">
           {description}
         </p>
       )}

@@ -123,7 +123,7 @@ export default function HomePage() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image src="/images/campus.jpg" alt="" fill className="object-cover opacity-15" priority />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0B1F3B] via-[#0B1F3B]/90 to-[#0B1F3B]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
         </div>
 
         <motion.div
@@ -135,7 +135,7 @@ export default function HomePage() {
         <motion.div
           animate={{ rotate: -360 }}
           transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-1/4 left-[5%] w-48 h-48 border border-white/5 rounded-full hidden lg:block"
+          className="absolute bottom-1/4 left-[5%] w-48 h-48 border border-text-light/5 rounded-full hidden lg:block"
           aria-hidden="true"
         />
 
@@ -153,7 +153,7 @@ export default function HomePage() {
 
           <motion.h1
             variants={fadeUp}
-            className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-balance text-white"
+            className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-balance text-text-light"
           >
             Nepal College of{" "}
             <motion.span
@@ -167,7 +167,7 @@ export default function HomePage() {
 
           <motion.p
             variants={fadeUp}
-            className="mt-6 text-lg md:text-xl text-white/50 max-w-2xl mx-auto leading-relaxed text-pretty"
+            className="mt-6 text-lg md:text-xl text-text-light/50 max-w-2xl mx-auto leading-relaxed text-pretty"
           >
             Shaping Future Hotel Industry Leaders with World-Class Education, Global Partnerships, and Practical Training
           </motion.p>
@@ -183,7 +183,7 @@ export default function HomePage() {
             </Link>
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl border border-white/20 text-white font-semibold text-sm tracking-wide transition-all duration-300 hover:bg-white/5 hover:border-white/40 w-full sm:w-auto justify-center"
+              className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl border border-text-light/20 text-text-light font-semibold text-sm tracking-wide transition-all duration-300 hover:bg-text-light/5 hover:border-text-light/40 w-full sm:w-auto justify-center"
             >
               Apply Now
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
@@ -204,20 +204,20 @@ export default function HomePage() {
                 >
                   <Icon size={20} className="mx-auto mb-2 text-[#D4A533] opacity-70 group-hover:opacity-100 transition-opacity" />
                   <div className="text-2xl md:text-3xl font-bold text-[#D4A533]">{stat.value}</div>
-                  <div className="mt-1 text-xs text-white/40">{stat.label}</div>
+                  <div className="mt-1 text-xs text-text-light/40">{stat.label}</div>
                 </motion.div>
               )
             })}
           </motion.div>
         </motion.div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0B1F3B] to-transparent z-10" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
         >
-          <div className="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
+          <div className="w-6 h-10 rounded-full border-2 border-text-light/20 flex justify-center pt-2">
             <motion.div
               animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -240,7 +240,7 @@ export default function HomePage() {
             <span className="inline-block px-4 py-1.5 rounded-full border border-[#D4A533]/20 bg-[#D4A533]/5 text-[#D4A533] text-xs tracking-[0.2em] uppercase">
               Who We Are
             </span>
-            <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white text-balance">
+            <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-text-light text-balance">
               About <span className="bg-gradient-to-r from-[#D4A533] to-[#E8C86A] bg-clip-text text-transparent">Our College</span>
             </h2>
           </motion.div>
@@ -258,8 +258,8 @@ export default function HomePage() {
                     <Eye size={22} className="text-[#0B1F3B]" />
                   </div>
                   <div>
-                    <h3 className="font-serif text-xl font-semibold text-white mb-2">Our Vision</h3>
-                    <p className="text-white/50 leading-relaxed text-sm">
+                    <h3 className="font-serif text-xl font-semibold text-text-light mb-2">Our Vision</h3>
+                    <p className="text-text-light/50 leading-relaxed text-sm">
                       To be the premier institution in hotel management education in Nepal, recognized globally for producing industry-ready professionals.
                     </p>
                   </div>
@@ -272,8 +272,8 @@ export default function HomePage() {
                     <Target size={22} className="text-[#0B1F3B]" />
                   </div>
                   <div>
-                    <h3 className="font-serif text-xl font-semibold text-white mb-2">Our Mission</h3>
-                    <p className="text-white/50 leading-relaxed text-sm">
+                    <h3 className="font-serif text-xl font-semibold text-text-light mb-2">Our Mission</h3>
+                    <p className="text-text-light/50 leading-relaxed text-sm">
                       Dedicated to providing world-class hotel management education through hands-on training, industry partnerships, and a modern curriculum.
                     </p>
                   </div>
@@ -289,7 +289,7 @@ export default function HomePage() {
             >
               <div className="relative glass-card rounded-2xl overflow-hidden gold-glow">
                 <Image src="/images/10.jpeg" alt="NCHM campus" width={600} height={450} className="w-full h-auto object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F3B]/70 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/70 to-transparent" />
               </div>
               <motion.div
                 animate={{ y: [-10, 10, -10] }}
@@ -297,7 +297,7 @@ export default function HomePage() {
                 className="absolute -bottom-5 -left-5 glass-card-white rounded-xl p-4 gold-glow"
               >
                 <div className="text-2xl font-bold text-[#D4A533]">20+</div>
-                <div className="text-xs text-white/50">Years of Excellence</div>
+                <div className="text-xs text-text-light/50">Years of Excellence</div>
               </motion.div>
             </motion.div>
           </div>
@@ -307,7 +307,7 @@ export default function HomePage() {
       </section>
 
       {/* ========== HIGHLIGHTS SECTION ========== */}
-      <section className="relative py-24 bg-white/5">
+      <section className="relative py-24 bg-text-light/5">
         <div className="mx-auto max-w-7xl px-6">
           <SectionHeader 
             label="Why NCHM" 
@@ -352,8 +352,8 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#D4A533] to-[#E8C86A] flex items-center justify-center mb-6">
                     <Icon size={24} className="text-[#0B1F3B]" />
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-3">{item.title}</h3>
-                  <p className="text-white/40 text-sm leading-relaxed">{item.desc}</p>
+                  <h3 className="text-lg font-bold text-text-light mb-3">{item.title}</h3>
+                  <p className="text-text-light/40 text-sm leading-relaxed">{item.desc}</p>
                 </motion.div>
               )
             })}
@@ -376,10 +376,10 @@ export default function HomePage() {
             <span className="inline-block px-4 py-1.5 rounded-full border border-[#D4A533]/20 bg-[#D4A533]/5 text-[#D4A533] text-xs tracking-[0.2em] uppercase">
               Programs
             </span>
-            <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white text-balance">
+            <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-text-light text-balance">
               Our <span className="bg-gradient-to-r from-[#D4A533] to-[#E8C86A] bg-clip-text text-transparent">Courses</span>
             </h2>
-            <p className="mt-5 text-white/50 max-w-xl mx-auto leading-relaxed">
+            <p className="mt-5 text-text-light/50 max-w-xl mx-auto leading-relaxed">
               Industry-aligned programs designed to equip you with the skills to excel in global hotel management.
             </p>
           </motion.div>
@@ -404,7 +404,7 @@ export default function HomePage() {
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F3B] via-[#0B1F3B]/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
                     <div className="absolute bottom-3 left-3 flex items-center gap-2">
                       <span className="px-3 py-1 rounded-full bg-[#D4A533]/90 text-[#0B1F3B] text-[11px] font-semibold flex items-center gap-1">
                         <Clock size={11} />
@@ -417,9 +417,9 @@ export default function HomePage() {
                       <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#D4A533] to-[#E8C86A] flex items-center justify-center flex-shrink-0">
                         <Icon size={18} className="text-[#0B1F3B]" />
                       </div>
-                      <h3 className="font-serif text-lg font-semibold text-white leading-snug">{course.title}</h3>
+                      <h3 className="font-serif text-lg font-semibold text-text-light leading-snug">{course.title}</h3>
                     </div>
-                    <p className="text-white/40 text-sm leading-relaxed">{course.description}</p>
+                    <p className="text-text-light/40 text-sm leading-relaxed">{course.description}</p>
                   </div>
                 </motion.div>
               )
@@ -445,10 +445,10 @@ export default function HomePage() {
             <span className="inline-block px-4 py-1.5 rounded-full border border-[#D4A533]/20 bg-[#D4A533]/5 text-[#D4A533] text-xs tracking-[0.2em] uppercase">
               Our Team
             </span>
-            <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white text-balance">
+            <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-text-light text-balance">
               Distinguished <span className="bg-gradient-to-r from-[#D4A533] to-[#E8C86A] bg-clip-text text-transparent">Faculty</span>
             </h2>
-            <p className="mt-5 text-white/50 max-w-xl mx-auto leading-relaxed">
+            <p className="mt-5 text-text-light/50 max-w-xl mx-auto leading-relaxed">
               Learn from industry veterans and academic leaders dedicated to shaping your career.
             </p>
           </motion.div>
@@ -471,17 +471,17 @@ export default function HomePage() {
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F3B]/80 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
                 </div>
                 <div className="p-4 -mt-8 relative z-10">
-                  <h3 className="font-serif text-sm font-semibold text-white">{member.name}</h3>
+                  <h3 className="font-serif text-sm font-semibold text-text-light">{member.name}</h3>
                   <p className="text-[#D4A533] text-[11px] tracking-wider mt-1 uppercase">{member.designation}</p>
                   <div className="mt-3 flex items-center justify-center gap-2">
                     {[Linkedin, Twitter, Mail].map((Icon, idx) => (
                       <motion.span
                         key={idx}
                         whileHover={{ scale: 1.2, y: -2 }}
-                        className="w-7 h-7 rounded-full border border-white/10 flex items-center justify-center text-white/30 hover:text-[#D4A533] hover:border-[#D4A533]/30 transition-all duration-300 cursor-pointer"
+                        className="w-7 h-7 rounded-full border border-text-light/10 flex items-center justify-center text-text-light/30 hover:text-[#D4A533] hover:border-[#D4A533]/30 transition-all duration-300 cursor-pointer"
                       >
                         <Icon size={12} />
                       </motion.span>
@@ -511,7 +511,7 @@ export default function HomePage() {
             <span className="inline-block px-4 py-1.5 rounded-full border border-[#D4A533]/20 bg-[#D4A533]/5 text-[#D4A533] text-xs tracking-[0.2em] uppercase">
               Campus Life
             </span>
-            <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white text-balance">
+            <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-text-light text-balance">
               Photo <span className="bg-gradient-to-r from-[#D4A533] to-[#E8C86A] bg-clip-text text-transparent">Gallery</span>
             </h2>
           </motion.div>
@@ -532,8 +532,8 @@ export default function HomePage() {
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-[#0B1F3B]/0 group-hover:bg-[#0B1F3B]/60 transition-all duration-500 flex flex-col items-center justify-center">
-                  <span className="text-white text-sm font-medium tracking-wide opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-3 group-hover:translate-y-0">
+                <div className="absolute inset-0 bg-background/0 group-hover:bg-background/60 transition-all duration-500 flex flex-col items-center justify-center">
+                  <span className="text-text-light text-sm font-medium tracking-wide opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-3 group-hover:translate-y-0">
                     {image.category}
                   </span>
                 </div>
@@ -561,10 +561,10 @@ export default function HomePage() {
             <span className="inline-block px-4 py-1.5 rounded-full border border-[#D4A533]/20 bg-[#D4A533]/5 text-[#D4A533] text-xs tracking-[0.2em] uppercase">
               Get in Touch
             </span>
-            <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white text-balance">
+            <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-text-light text-balance">
               Contact <span className="bg-gradient-to-r from-[#D4A533] to-[#E8C86A] bg-clip-text text-transparent">Us</span>
             </h2>
-            <p className="mt-5 text-white/50 max-w-xl mx-auto leading-relaxed">
+            <p className="mt-5 text-text-light/50 max-w-xl mx-auto leading-relaxed">
               Have questions about our programs? Reach out and our admissions team will be happy to assist.
             </p>
           </motion.div>
@@ -591,7 +591,7 @@ export default function HomePage() {
                     <Icon size={18} className="text-[#0B1F3B]" />
                   </div>
                   <p className="text-[#D4A533] text-xs tracking-wider uppercase mb-1">{item.label}</p>
-                  <p className="text-white/55 text-sm leading-relaxed">{item.value}</p>
+                  <p className="text-text-light/55 text-sm leading-relaxed">{item.value}</p>
                 </motion.div>
               )
             })}

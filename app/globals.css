@@ -31,6 +31,48 @@
   --text-light: #F5F7FA;
 }
 
+.light-mode {
+  --background: #FFFFFF;
+  --foreground: #0B1F3B;
+  --card: rgba(11, 31, 59, 0.05);
+  --card-foreground: #0B1F3B;
+  --popover: #FFFFFF;
+  --popover-foreground: #0B1F3B;
+  --secondary: rgba(11, 31, 59, 0.05);
+  --secondary-foreground: #0B1F3B;
+  --muted: #F5F7FA;
+  --muted-foreground: #64748B;
+  --border: rgba(11, 31, 59, 0.1);
+  --input: rgba(11, 31, 59, 0.1);
+  --text-light: #0B1F3B;
+}
+
+.light-mode .glass-card {
+  background: rgba(11, 31, 59, 0.03);
+  border: 1px solid rgba(11, 31, 59, 0.08);
+}
+
+.light-mode .glass-card-white {
+  background: rgba(11, 31, 59, 0.04);
+  border: 1px solid rgba(11, 31, 59, 0.12);
+}
+
+.light-mode .gold-glow {
+  box-shadow: 0 4px 20px rgba(212, 165, 51, 0.15);
+}
+
+.light-mode .gold-glow-hover:hover {
+  box-shadow: 0 8px 30px rgba(212, 165, 51, 0.25);
+}
+
+.light-mode .white-glow {
+  box-shadow: 0 4px 20px rgba(11, 31, 59, 0.05);
+}
+
+.light-mode .white-glow-hover:hover {
+  box-shadow: 0 8px 30px rgba(11, 31, 59, 0.08);
+}
+
 @theme inline {
   --font-sans: 'Inter', sans-serif;
   --font-serif: 'Playfair Display', serif;
@@ -136,7 +178,7 @@ html {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0B1F3B;
+  background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(212, 165, 51, 0.3);

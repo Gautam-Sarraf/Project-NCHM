@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { Sun, Moon } from "lucide-react"
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -30,6 +31,26 @@ export default function Navbar() {
     setMobileOpen(false)
   }, [pathname])
 
+  const [isLightMode, setIsLightMode] = useState(false)
+
+  useEffect(() => {
+    if (document.documentElement.classList.contains("light-mode")) {
+      setIsLightMode(true)
+    }
+  }, [])
+
+  const toggleTheme = () => {
+    if (isLightMode) {
+      document.documentElement.classList.remove("light-mode")
+      localStorage.setItem("theme", "dark")
+      setIsLightMode(false)
+    } else {
+      document.documentElement.classList.add("light-mode")
+      localStorage.setItem("theme", "light")
+      setIsLightMode(true)
+    }
+  }
+
   return (
     <>
       <motion.nav
@@ -38,7 +59,7 @@ export default function Navbar() {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-[#0B1F3B]/95 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
+            ? "bg-background/95 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
             : "bg-transparent"
         }`}
       >
@@ -51,7 +72,7 @@ export default function Navbar() {
               className="w-11 h-11 rounded-full object-cover"
             />
             <div className="hidden sm:block">
-              <span className="font-serif text-lg tracking-wide text-white block leading-tight">
+              <span className="font-serif text-lg tracking-wide text-foreground block leading-tight">
                 Nepal College
               </span>
               <span className="text-[10px] tracking-[0.2em] text-[#D4A533] uppercase">
@@ -71,7 +92,7 @@ export default function Navbar() {
                   className={`relative px-4 py-2 text-sm tracking-wide transition-colors duration-300 rounded-lg ${
                     isActive
                       ? "text-[#D4A533]"
-                      : "text-white/70 hover:text-white hover:bg-white/5"
+                      : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
                   }`}
                 >
                   {link.name}
@@ -92,7 +113,14 @@ export default function Navbar() {
           </div>
 
           {/* CTA */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-4">
+            <button
+              onClick={toggleTheme}
+              className="p-2.5 rounded-full bg-foreground/5 text-foreground hover:bg-foreground/10 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {isLightMode ? <Moon size={18} /> : <Sun size={18} />}
+            </button>
             <Link
               href="/contact"
               className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-[#D4A533] to-[#E8C86A] text-[#0B1F3B] font-semibold text-sm tracking-wide transition-all duration-300 hover:shadow-[0_0_25px_rgba(212,165,51,0.4)] hover:scale-105"
@@ -101,34 +129,43 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Animated Hamburger */}
-          <motion.button
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => setMobileOpen(!mobileOpen)}
-                  className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white/5"
-                  aria-label={mobileOpen ? "Close menu" : "Open menu"}
-                >
-                  {/* Top line */}
-                  <motion.span
-                    animate={mobileOpen ? { rotate: 45 } : { rotate: 0, y: -6 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute w-6 h-[2px] bg-white"
-                  />
+          <div className="flex md:hidden items-center gap-3">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full bg-foreground/5 text-foreground hover:bg-foreground/10 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {isLightMode ? <Moon size={18} /> : <Sun size={18} />}
+            </button>
+            {/* Animated Hamburger */}
+                  <motion.button
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => setMobileOpen(!mobileOpen)}
+                    className="relative w-10 h-10 flex items-center justify-center rounded-lg hover:bg-foreground/5"
+                    aria-label={mobileOpen ? "Close menu" : "Open menu"}
+                  >
+                    {/* Top line */}
+                    <motion.span
+                      animate={mobileOpen ? { rotate: 45 } : { rotate: 0, y: -6 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute w-6 h-[2px] bg-foreground"
+                    />
 
-                  {/* Middle line */}
-                  <motion.span
-                    animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute w-6 h-[2px] bg-white"
-                  />
+                    {/* Middle line */}
+                    <motion.span
+                      animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute w-6 h-[2px] bg-foreground"
+                    />
 
-                  {/* Bottom line */}
-                  <motion.span
-                    animate={mobileOpen ? { rotate: -45 } : { rotate: 0, y: 6 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute w-6 h-[2px] bg-white"
-                  />
-                </motion.button>
+                    {/* Bottom line */}
+                    <motion.span
+                      animate={mobileOpen ? { rotate: -45 } : { rotate: 0, y: 6 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute w-6 h-[2px] bg-foreground"
+                    />
+                  </motion.button>
+          </div>
         </div>
 
         {/* Gold bottom border */}
@@ -143,7 +180,7 @@ export default function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed inset-y-0 right-0 w-80 z-50 bg-[#0B1F3B]/98 backdrop-blur-2xl border-l border-[#D4A533]/15 flex flex-col pt-24 px-8 gap-2 md:hidden"
+            className="fixed inset-y-0 right-0 w-80 z-50 bg-background/98 backdrop-blur-2xl border-l border-[#D4A533]/15 flex flex-col pt-24 px-8 gap-2 md:hidden"
           >
             {navLinks.map((link, i) => {
               const isActive = pathname === link.href
@@ -159,7 +196,7 @@ export default function Navbar() {
                     className={`block py-3 px-4 rounded-lg text-lg tracking-wide transition-all duration-300 ${
                       isActive
                         ? "text-[#D4A533] bg-[#D4A533]/10"
-                        : "text-white/70 hover:text-white hover:bg-white/5"
+                        : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
                     }`}
                   >
                     {link.name}

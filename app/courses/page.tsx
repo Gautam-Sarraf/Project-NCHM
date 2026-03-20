@@ -42,7 +42,7 @@ export default function CoursesPage() {
       <section className="relative py-16 md:py-24 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image src="/images/classroom.jpg" alt="" fill className="object-cover opacity-10" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0B1F3B] via-[#0B1F3B]/95 to-[#0B1F3B]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
         </div>
         <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
           <motion.span
@@ -56,7 +56,7 @@ export default function CoursesPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white text-balance"
+            className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-text-light text-balance"
           >
             Our{" "}
             <span className="bg-gradient-to-r from-[#D4A533] to-[#E8C86A] bg-clip-text text-transparent">
@@ -67,7 +67,7 @@ export default function CoursesPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-5 text-white/50 max-w-2xl mx-auto leading-relaxed"
+            className="mt-5 text-text-light/50 max-w-2xl mx-auto leading-relaxed"
           >
             Industry-aligned programs designed to equip you with the skills and knowledge to excel in the global hotel industry.
           </motion.p>
@@ -103,7 +103,7 @@ export default function CoursesPage() {
                       height={400}
                       className="w-full h-auto object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F3B]/70 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/70 to-transparent" />
                     <div className="absolute bottom-4 left-4 flex items-center gap-2">
                       <div className="px-3 py-1 rounded-full bg-[#D4A533]/90 text-[#0B1F3B] text-xs font-semibold flex items-center gap-1">
                         <Clock size={12} />
@@ -119,10 +119,10 @@ export default function CoursesPage() {
                     <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#D4A533] to-[#E8C86A] flex items-center justify-center">
                       <Icon size={26} className="text-[#0B1F3B]" />
                     </div>
-                    <h3 className="font-serif text-2xl md:text-3xl font-bold text-white">{course.title}</h3>
+                    <h3 className="font-serif text-2xl md:text-3xl font-bold text-text-light">{course.title}</h3>
                   </div>
 
-                  <p className="text-white/50 leading-relaxed">{course.description}</p>
+                  <p className="text-text-light/50 leading-relaxed">{course.description}</p>
 
                   {/* Stats row */}
                   <div className="flex gap-6">
@@ -131,27 +131,27 @@ export default function CoursesPage() {
                         <Users size={14} />
                         <span className="font-bold text-sm">{course.highlights.students}</span>
                       </div>
-                      <span className="text-[10px] text-white/30">Students</span>
+                      <span className="text-[10px] text-text-light/30">Students</span>
                     </div>
                     <div className="text-center">
                       <div className="flex items-center gap-1 text-[#D4A533]">
                         <Star size={14} />
                         <span className="font-bold text-sm">{course.highlights.rating}</span>
                       </div>
-                      <span className="text-[10px] text-white/30">Rating</span>
+                      <span className="text-[10px] text-text-light/30">Rating</span>
                     </div>
                     <div className="text-center">
                       <div className="flex items-center gap-1 text-[#D4A533]">
                         <Award size={14} />
                         <span className="font-bold text-sm">{course.highlights.placements}</span>
                       </div>
-                      <span className="text-[10px] text-white/30">Placement</span>
+                      <span className="text-[10px] text-text-light/30">Placement</span>
                     </div>
                   </div>
 
                   {/* Modules */}
                   <div>
-                    <h4 className="text-sm font-semibold text-white/70 mb-3 uppercase tracking-wider">Key Modules</h4>
+                    <h4 className="text-sm font-semibold text-text-light/70 mb-3 uppercase tracking-wider">Key Modules</h4>
                     <div className="flex flex-wrap gap-2">
                       {course.modules.map((mod, mi) => (
                         <motion.span
@@ -160,7 +160,7 @@ export default function CoursesPage() {
                           whileInView={{ opacity: 1, scale: 1 }}
                           viewport={{ once: true }}
                           transition={{ delay: mi * 0.05 }}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-white/60 text-xs"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-text-light/5 border border-text-light/10 text-text-light/60 text-xs"
                         >
                           <CheckCircle size={12} className="text-[#D4A533]" />
                           {mod}

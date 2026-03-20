@@ -36,7 +36,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="font-sans antialiased bg-[#0B1F3B] text-[#F5F7FA]">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                if (localStorage.theme === 'light') {
+                  document.documentElement.classList.add('light-mode');
+                }
+              } catch (_) {}
+            `,
+          }}
+        />
+      </head>
+      <body className="font-sans antialiased bg-background text-foreground transition-colors duration-300">
         <ScrollProgress />
         <BubbleBackground />
         <Navbar />
