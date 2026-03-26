@@ -3,23 +3,22 @@
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import Image from "next/image"
-import { Target, Eye, CheckCircle, Sparkles } from "lucide-react"
+import { Target, Eye, CheckCircle, Sparkles, MapPin, Users, BookOpen } from "lucide-react"
 import SectionHeader from "../components/SectionHeader"
+import { siteData } from "@/lib/site-data"
 
 const values = [
-  { title: "Excellence", desc: "Setting the highest standards in hospitality education and training." },
-  { title: "Innovation", desc: "Embracing modern technology and forward-thinking approaches to learning." },
-  { title: "Integrity", desc: "Building trust through transparency, ethics, and professional conduct." },
-  { title: "Leadership", desc: "Nurturing confident leaders who inspire and drive the industry forward." },
+  { title: "Practical Learning", desc: "Students build confidence through hands-on hospitality training." },
+  { title: "Student Support", desc: "Faculty stay approachable and involved throughout the learning journey." },
+  { title: "Professional Discipline", desc: "We promote responsibility, service standards, and workplace readiness." },
+  { title: "Local Leadership", desc: "We are proud to grow hotel management education in Birgunj." },
 ]
 
 const milestones = [
-  { year: "2005", event: "Nepal College of Hotel Management (NCHM) founded with 50 students" },
-  { year: "2010", event: "First batch achieves 100% placement in top hotels" },
-  { year: "2015", event: "International partnerships established with global hotel chains" },
-  { year: "2018", event: "Advanced Hotel Management Diploma program launched" },
-  { year: "2020", event: "Barista Certification added to vocational track" },
-  { year: "2024", event: "5000+ alumni milestone reached in the hospitality sector" },
+  { year: "01", event: siteData.distinction },
+  { year: "02", event: `Campus located at ${siteData.address}` },
+  { year: "03", event: "BHM-focused faculty mentoring students in hospitality learning" },
+  { year: "04", event: "Programs designed around practical exposure and industry readiness" },
 ]
 
 export default function AboutPage() {
@@ -62,7 +61,7 @@ export default function AboutPage() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-5 text-text-light/50 max-w-2xl mx-auto leading-relaxed"
           >
-            Founded in 2005, NCHM has consistently set benchmarks in hotel management education with state-of-the-art facilities and a faculty of industry veterans in Nepal.
+            {siteData.shortName} is building practical hospitality education in Birgunj with committed faculty, focused student support, and a learning environment grounded in hotel operations.
           </motion.p>
         </div>
       </section>
@@ -88,7 +87,7 @@ export default function AboutPage() {
                   <div>
                     <h3 className="font-serif text-xl font-semibold text-text-light mb-3">Our Vision</h3>
                     <p className="text-text-light/50 leading-relaxed">
-                      To be the premier institution in Nepal for hotel management education, recognized globally for producing industry-ready professionals who embody excellence.
+                      To be the most trusted place in Birgunj for students who want to begin a strong career in hotel management.
                     </p>
                   </div>
                 </div>
@@ -105,7 +104,7 @@ export default function AboutPage() {
                   <div>
                     <h3 className="font-serif text-xl font-semibold text-text-light mb-3">Our Mission</h3>
                     <p className="text-text-light/50 leading-relaxed">
-                      We are dedicated to providing world-class hotel management education through hands-on training, global industry partnerships, and a modern curriculum.
+                      We provide practical hospitality learning, supportive guidance, and a disciplined environment that prepares students for professional service roles.
                     </p>
                   </div>
                 </div>
@@ -133,8 +132,8 @@ export default function AboutPage() {
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -bottom-5 -left-5 glass-card-white rounded-xl p-4 gold-glow"
               >
-                <div className="text-2xl font-bold text-[#D4A533]">20+</div>
-                <div className="text-xs text-text-light/50">Years of Excellence</div>
+                <div className="text-2xl font-bold text-[#D4A533]">1st</div>
+                <div className="text-xs text-text-light/50">In Birgunj</div>
               </motion.div>
               <motion.div
                 animate={{ y: [10, -10, 10] }}
@@ -142,9 +141,30 @@ export default function AboutPage() {
                 className="absolute -top-4 -right-4 glass-card-white rounded-xl p-4 gold-glow"
               >
                 <Sparkles size={20} className="text-[#D4A533] mb-1" />
-                <div className="text-xs text-text-light/50">Award Winning</div>
+                <div className="text-xs text-text-light/50">Practical Focus</div>
               </motion.div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-8">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              { icon: MapPin, title: "Address", value: siteData.address },
+              { icon: Users, title: "Faculty Team", value: siteData.faculty.map((member) => member.name).join(", ") },
+              { icon: BookOpen, title: "Identity", value: siteData.distinction },
+            ].map((item) => {
+              const Icon = item.icon
+              return (
+                <div key={item.title} className="glass-card-white rounded-2xl p-6 gold-glow-hover transition-all duration-500">
+                  <Icon size={18} className="text-[#D4A533] mb-4" />
+                  <h3 className="font-serif text-lg font-semibold text-text-light">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-text-light/55">{item.value}</p>
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>

@@ -3,38 +3,13 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Linkedin, Twitter, Mail } from "lucide-react"
-import SectionHeader from "../components/SectionHeader"
+import { siteData } from "@/lib/site-data"
 
-const faculty = [
-  {
-    name: "Prof. Briz Sarraf",
-    designation: "Dean & Professor of Hospitality",
-    bio: "Over 25 years of experience in international hotel management. Former GM of Ritz-Carlton and hospitality consultant for leading global brands.",
-    image: "/images/fac.jpeg",
-    specialties: ["Hotel Management", "Leadership", "Strategic Planning"],
-  },
-  // {
-  //   name: "Prof. Sarah Mitchell",
-  //   designation: "Head of Food & Beverage Studies",
-  //   bio: "Internationally trained culinary expert with a passion for sustainable gastronomy. Published author and recipient of multiple hospitality awards.",
-  //   image: "/images/faculty-2.jpg",
-  //   specialties: ["Sustainable Gastronomy", "F&B Operations", "Culinary Arts"],
-  // },
-  // {
-  //   name: "Chef Marco Rossi",
-  //   designation: "Culinary Arts Instructor",
-  //   bio: "Award-winning chef with experience in Michelin-starred restaurants. Specializes in European and fusion cuisines with a focus on technique mastery.",
-  //   image: "/images/faculty-3.jpg",
-  //   specialties: ["European Cuisine", "Fusion Cooking", "Kitchen Management"],
-  // },
-  // {
-  //   name: "Dr. Eleanor Price",
-  //   designation: "Senior Lecturer in Tourism Management",
-  //   bio: "PhD in Tourism Studies from Cornell University. Researcher in sustainable tourism and hospitality innovation with 15+ years in academia.",
-  //   image: "/images/faculty-4.jpg",
-  //   specialties: ["Tourism Studies", "Sustainability", "Research"],
-  // },
-]
+const faculty = siteData.faculty.map((member) => ({
+  ...member,
+  bio: `${member.name} supports students at ${siteData.shortName} with a focus on practical hospitality learning and steady classroom guidance.`,
+  specialties: ["Hotel Management", "Student Mentoring", "Practical Learning"],
+}))
 
 const staggerContainer = {
   hidden: {},
@@ -74,7 +49,7 @@ export default function FacultyPage() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-5 text-text-light/50 max-w-2xl mx-auto leading-relaxed"
           >
-            Learn from industry veterans and academic leaders dedicated to shaping your career in the international hotel industry.
+            Meet the faculty team guiding students at Nepal College of Hotel Management in Birgunj.
           </motion.p>
         </div>
       </section>

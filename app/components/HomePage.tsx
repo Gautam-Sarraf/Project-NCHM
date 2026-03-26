@@ -25,11 +25,12 @@ import {
 import Link from "next/link"
 import Image from "next/image"
 import SectionHeader from "./SectionHeader"
+import { contactCards, siteData } from "@/lib/site-data"
 
 const stats = [
-  { value: "100%", label: "Placement Rate", icon: Award },
-  { value: "5000+", label: "Successful Alumni", icon: GraduationCap },
-  { value: "50+", label: "Global Partners", icon: Handshake },
+  { value: "1st", label: "Hotel Mgmt College in Birgunj", icon: Award },
+  { value: "5+", label: "Faculty Members", icon: GraduationCap },
+  { value: "BHM", label: "Faculty-Led Learning", icon: Handshake },
   { value: "100%", label: "Practical Based", icon: Users },
 ]
 
@@ -57,12 +58,7 @@ const courses = [
   },
 ]
 
-const faculty = [
-  { name: "Prof. Briz Sarraf ", designation: "Dean & Professor", image: "/images/fac.jpeg" },
-  { name: "Prof. Sarah Mitchell", designation: "Head of F&B Studies", image: "/images/fac.jpeg" },
-  { name: "Chef Marco Rossi", designation: "Culinary Arts Instructor", image: "/images/fac.jpeg" },
-  { name: "Dr. Eleanor Price", designation: "Senior Lecturer", image: "/images/fac.jpeg" },
-]
+const faculty = siteData.faculty.slice(0, 4)
 
 const galleryImages = [
   { src: "/images/5.jpeg", alt: "Teaching demonstration", category: "Training" },
@@ -147,7 +143,7 @@ export default function HomePage() {
         >
           <motion.div variants={fadeUp}>
             <span className="inline-block mb-6 px-5 py-2 rounded-full border border-[#D4A533]/25 bg-[#D4A533]/5 text-[#D4A533] text-sm tracking-[0.2em] uppercase">
-              Est. 2005
+              Birgunj, Nepal
             </span>
           </motion.div>
 
@@ -169,7 +165,7 @@ export default function HomePage() {
             variants={fadeUp}
             className="mt-6 text-lg md:text-xl text-text-light/50 max-w-2xl mx-auto leading-relaxed text-pretty"
           >
-            Shaping Future Hotel Industry Leaders with World-Class Education, Global Partnerships, and Practical Training
+            {siteData.distinction} with hands-on learning, committed faculty, and a strong foundation in hospitality education.
           </motion.p>
 
           <motion.div variants={fadeUp} className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -260,7 +256,7 @@ export default function HomePage() {
                   <div>
                     <h3 className="font-serif text-xl font-semibold text-text-light mb-2">Our Vision</h3>
                     <p className="text-text-light/50 leading-relaxed text-sm">
-                      To be the premier institution in hotel management education in Nepal, recognized globally for producing industry-ready professionals.
+                      To help aspiring hospitality students in Birgunj build confident, career-ready skills through practical and accessible hotel management education.
                     </p>
                   </div>
                 </div>
@@ -274,7 +270,7 @@ export default function HomePage() {
                   <div>
                     <h3 className="font-serif text-xl font-semibold text-text-light mb-2">Our Mission</h3>
                     <p className="text-text-light/50 leading-relaxed text-sm">
-                      Dedicated to providing world-class hotel management education through hands-on training, industry partnerships, and a modern curriculum.
+                      To deliver practical training, supportive mentorship, and an industry-focused learning environment for future hotel professionals.
                     </p>
                   </div>
                 </div>
@@ -313,29 +309,29 @@ export default function HomePage() {
             label="Why NCHM" 
             title="Our Key" 
             highlight="Highlights"
-            description="Setting new standards in hotel management education since 2005."
+            description="A focused hospitality campus for students who want practical learning in Birgunj."
           />
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { 
-                title: "100% Practical Training", 
-                desc: "Learn by doing in our state-of-the-art kitchen and mock hotel labs.",
+                title: "Practical Training", 
+                desc: "Learn hospitality skills through hands-on classes designed around real hotel operations.",
                 icon: Building 
               },
               { 
-                title: "International Internship", 
-                desc: "Opportunities to intern at top hotels in Dubai, Qatar, and Malaysia.",
+                title: "BHM Faculty Support", 
+                desc: "Study with dedicated BHM faculty members who guide students closely throughout the course.",
                 icon: Globe 
               },
               { 
-                title: "Industry Expert Faculty", 
-                desc: "Training led by veteran chefs and former hotel general managers.",
+                title: "Birgunj Location", 
+                desc: "Conveniently located inside Bright College, Birgunj-09, Nepal.",
                 icon: Users 
               },
               { 
-                title: "Guaranteed Placement", 
-                desc: "Our robust network ensures every graduate starts their career strong.",
+                title: "Pioneer in the City", 
+                desc: "Recognized as the first hotel management college in Birgunj.",
                 icon: Award 
               },
             ].map((item, i) => {
@@ -449,7 +445,7 @@ export default function HomePage() {
               Distinguished <span className="bg-gradient-to-r from-[#D4A533] to-[#E8C86A] bg-clip-text text-transparent">Faculty</span>
             </h2>
             <p className="mt-5 text-text-light/50 max-w-xl mx-auto leading-relaxed">
-              Learn from industry veterans and academic leaders dedicated to shaping your career.
+              Meet the faculty members supporting our hospitality students with BHM-focused learning.
             </p>
           </motion.div>
 
@@ -571,10 +567,10 @@ export default function HomePage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: MapPin, label: "Address", value: "Kathmandu, Nepal" },
-              { icon: Phone, label: "Phone", value: "+977 1-XXXXXXX" },
-              { icon: Mail, label: "Email", value: "info@nchm.edu.np" },
-              { icon: Clock, label: "Hours", value: "Sun-Fri: 9:00 AM - 5:00 PM" },
+              { icon: MapPin, ...contactCards[0] },
+              { icon: Phone, ...contactCards[1] },
+              { icon: Mail, ...contactCards[2] },
+              { icon: Clock, ...contactCards[3] },
             ].map((item, i) => {
               const Icon = item.icon
               return (

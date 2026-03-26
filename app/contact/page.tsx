@@ -2,38 +2,19 @@
 
 import { motion } from "framer-motion"
 import { useState, useCallback } from "react"
-import { Wallet, Send, CheckCircle, MapPin, Phone, Mail, Clock } from "lucide-react"
+import { Send, CheckCircle, MapPin, Phone, Mail, Clock, Search } from "lucide-react"
+import { contactCards, siteData } from "@/lib/site-data"
 
 const contactInfo = [
-  { icon: MapPin, label: "Address", value: "Kathmandu, Nepal" },
-  { icon: Phone, label: "Phone", value: "+977 1-XXXXXXX" },
-  { icon: Mail, label: "Email", value: "info@nchm.edu.np" },
-  { icon: Clock, label: "Hours", value: "Sun-Fri: 9:00 AM - 5:00 PM" },
+  { icon: MapPin, ...contactCards[0] },
+  { icon: Phone, ...contactCards[1] },
+  { icon: Mail, ...contactCards[2] },
+  { icon: Clock, ...contactCards[3] },
 ]
 
 export default function ContactPage() {
-  const [walletAddress, setWalletAddress] = useState("")
-  const [connecting, setConnecting] = useState(false)
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" })
   const [submitted, setSubmitted] = useState(false)
-
-  const connectWallet = useCallback(async () => {
-    if (typeof window === "undefined") return
-    const ethereum = (window as unknown as { ethereum?: { request: (args: { method: string }) => Promise<string[]> } }).ethereum
-    if (!ethereum) {
-      alert("Please install MetaMask or another Web3 wallet to connect.")
-      return
-    }
-    setConnecting(true)
-    try {
-      const accounts = await ethereum.request({ method: "eth_requestAccounts" })
-      if (accounts && accounts.length > 0) setWalletAddress(accounts[0])
-    } catch {
-      // rejected
-    } finally {
-      setConnecting(false)
-    }
-  }, [])
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
@@ -52,7 +33,7 @@ export default function ContactPage() {
   )
 
   const inputClasses =
-    "w-full px-4 py-3.5 rounded-xl bg-text-light/5 border border-text-light/10 text-text-light text-sm placeholder:text-text-light/25 focus:outline-none focus:border-[#D4A533]/40 focus:shadow-[0_0_20px_rgba(212,165,51,0.1)] transition-all duration-300"
+    "w-full px-4 py-3.5 rounded-xl bg-background/70 border border-text-light/10 text-text-light text-sm placeholder:text-text-light/25 focus:outline-none focus:border-[#D4A533]/40 focus:shadow-[0_0_20px_rgba(212,165,51,0.1)] transition-all duration-300"
 
   return (
     <main className="relative min-h-screen overflow-x-hidden pt-24">
@@ -81,7 +62,7 @@ export default function ContactPage() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-5 text-text-light/50 max-w-lg mx-auto leading-relaxed"
           >
-            Have questions about our programs? Reach out and our admissions team will be happy to assist.
+            Reach out for admissions, course information, and campus visits at Nepal College of Hotel Management.
           </motion.p>
         </div>
       </section>
@@ -121,19 +102,29 @@ export default function ContactPage() {
                 )
               })}
 
-              {/* Map placeholder */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
-                className="glass-card rounded-xl overflow-hidden h-48"
+                className="glass-card-white rounded-xl p-6 gold-glow-hover transition-all duration-300"
               >
-                <div className="w-full h-full bg-[#0F2A52] flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPin size={28} className="text-[#D4A533]/40 mx-auto mb-2" />
-                    <p className="text-text-light/30 text-sm">Interactive Map</p>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#D4A533] to-[#E8C86A]">
+                    <Search size={18} className="text-[#0B1F3B]" />
                   </div>
+                  <div>
+                    <p className="text-xs text-[#D4A533] tracking-wider uppercase">Search Us On</p>
+                    <p className="text-sm text-text-light/55">Official social presence</p>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  {siteData.socialSearches.map((item) => (
+                    <div key={item.platform} className="rounded-xl border border-text-light/10 bg-background/50 px-4 py-3">
+                      <p className="text-xs uppercase tracking-[0.18em] text-[#D4A533]">{item.platform}</p>
+                      <p className="mt-1 text-sm text-text-light/60">{item.handle}</p>
+                    </div>
+                  ))}
                 </div>
               </motion.div>
             </motion.div>
@@ -148,33 +139,11 @@ export default function ContactPage() {
             >
               <div className="glass-card-white rounded-2xl p-8 md:p-10 gold-glow">
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  {/* Wallet connect */}
-                  <div>
-                    {walletAddress ? (
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="flex items-center gap-3 p-3.5 rounded-xl bg-[#D4A533]/5 border border-[#D4A533]/15"
-                      >
-                        <CheckCircle size={18} className="text-[#D4A533] flex-shrink-0" />
-                        <div className="min-w-0">
-                          <p className="text-xs text-[#D4A533]">Wallet Connected</p>
-                          <p className="text-sm text-text-light/50 truncate">{walletAddress}</p>
-                        </div>
-                      </motion.div>
-                    ) : (
-                      <motion.button
-                        whileHover={{ scale: 1.01 }}
-                        whileTap={{ scale: 0.99 }}
-                        type="button"
-                        onClick={connectWallet}
-                        disabled={connecting}
-                        className="w-full flex items-center justify-center gap-3 py-3.5 px-6 rounded-xl border border-text-light/10 text-text-light/70 text-sm font-medium hover:bg-text-light/5 hover:border-[#D4A533]/20 transition-all duration-300 disabled:opacity-50"
-                      >
-                        <Wallet size={18} className="text-[#D4A533]" />
-                        {connecting ? "Connecting..." : "Connect Wallet (Optional)"}
-                      </motion.button>
-                    )}
+                  <div className="rounded-2xl border border-[#D4A533]/15 bg-[#D4A533]/6 px-5 py-4">
+                    <p className="text-xs uppercase tracking-[0.18em] text-[#D4A533]">Admissions Desk</p>
+                    <p className="mt-2 text-sm leading-relaxed text-text-light/60">
+                      Share your details and we will get back to you through {siteData.email} or {siteData.phones.join(", ")}.
+                    </p>
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-5">
@@ -190,7 +159,7 @@ export default function ContactPage() {
 
                   <div>
                     <label htmlFor="phone" className="block text-xs text-text-light/50 mb-2 uppercase tracking-wider">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" value={form.phone} onChange={handleChange} className={inputClasses} placeholder="+44 20 7946 0958" />
+                    <input type="tel" id="phone" name="phone" value={form.phone} onChange={handleChange} className={inputClasses} placeholder="98XXXXXXXX" />
                   </div>
 
                   <div>

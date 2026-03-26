@@ -2,41 +2,60 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { Award, Users, Globe, Building2, Briefcase, Star, CheckCircle, TrendingUp } from "lucide-react"
+import { Award, Users, Globe, Building2, Briefcase, Star, CheckCircle, TrendingUp, MapPin } from "lucide-react"
 import SectionHeader from "../components/SectionHeader"
+import { siteData } from "@/lib/site-data"
 
 const stats = [
-  { label: "Placement Rate", value: "100%", icon: TrendingUp },
-  { label: "Global Partners", value: "50+", icon: Globe },
-  { label: "Alumni Network", value: "5000+", icon: Users },
-  { label: "Average Salary", value: "Attractive", icon: Award },
+  { label: "Practical Focus", value: "Hands-On", icon: TrendingUp },
+  { label: "Local Advantage", value: "Birgunj", icon: Globe },
+  { label: "Faculty Support", value: "5+", icon: Users },
+  { label: "Career Readiness", value: "Ongoing", icon: Award },
 ]
 
 const partners = [
-  "Marriott International",
-  "Hyatt Hotels",
-  "Hilton Worldwide",
-  "Taj Hotels",
-  "InterContinental Hotels Group",
-  "Radisson Hotel Group",
-  "Shangri-La Hotels",
-  "The Ritz-Carlton",
+  "Hotel Operations Training",
+  "Front Office Skills",
+  "Food & Beverage Service",
+  "Housekeeping Standards",
+  "Guest Communication",
+  "Professional Grooming",
+  "Interview Preparation",
+  "Career Guidance",
 ]
 
 const successStories = [
   {
-    name: "Aman Shrestha",
-    position: "Operations Manager",
-    company: "Marriott Dubai",
+    name: "Aarav Sharma",
+    position: "Front Office Associate",
+    company: "Hotel Placeholder International",
+    location: "Kathmandu, Nepal",
     image: "/images/faculty-1.jpg",
-    quote: "NCHM's practical training gave me the confidence to lead in a global environment.",
+    quote: "My training at NCHM helped me feel more confident with guest communication, grooming, and hotel service basics.",
   },
   {
-    name: "Priya Thapa",
-    position: "Executive Chef",
-    company: "Hyatt Kathmandu",
+    name: "Sanjana Thapa",
+    position: "Guest Service Trainee",
+    company: "Grand Horizon Hotel",
+    location: "Pokhara, Nepal",
     image: "/images/faculty-2.jpg",
-    quote: "The faculty and labs at NCHM are truly world-class and industry-aligned.",
+    quote: "The practical classes and supportive faculty made it easier for me to adjust to a professional hospitality environment.",
+  },
+  {
+    name: "Ritesh Kumar",
+    position: "F&B Service Assistant",
+    company: "Royal Palm Resort",
+    location: "Biratnagar, Nepal",
+    image: "/images/faculty-3.jpg",
+    quote: "NCHM gave me a strong base in service standards and teamwork, which helped me begin my placement journey.",
+  },
+  {
+    name: "Nisha Gupta",
+    position: "Housekeeping Trainee",
+    company: "City View Suites",
+    location: "Chitwan, Nepal",
+    image: "/images/faculty-4.jpg",
+    quote: "The college prepared me with discipline, practical learning, and the confidence to work in a real hotel setup.",
   },
 ]
 
@@ -74,7 +93,7 @@ export default function PlacementsPage() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-5 text-text-light/50 max-w-2xl mx-auto leading-relaxed"
           >
-            Empowering our students with the skills and opportunities to excel in the world's most prestigious hotel chains and hospitality brands.
+            We focus on building the practical hospitality skills, confidence, and professional habits students need before stepping into the industry.
           </motion.p>
         </div>
       </section>
@@ -110,10 +129,10 @@ export default function PlacementsPage() {
       <section className="py-20 bg-text-light/5">
         <div className="mx-auto max-w-7xl px-6">
           <SectionHeader 
-            label="Industry Partners" 
-            title="Our Top" 
-            highlight="Recruiters"
-            description="Our students are placed in leading hotels across Nepal and internationally."
+            label="Career Preparation" 
+            title="What We" 
+            highlight="Build"
+            description="The placement journey starts with daily skill-building inside the classroom and training environment."
           />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {partners.map((partner, i) => (
@@ -138,30 +157,51 @@ export default function PlacementsPage() {
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-6">
           <SectionHeader 
-            label="Testimonials" 
-            title="Success" 
-            highlight="Stories"
+            label="Placed Students" 
+            title="Placement" 
+            highlight="Highlights"
           />
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-8">
             {successStories.map((story, i) => (
               <motion.div
                 key={story.name}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 30, scale: 0.96 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
-                className="glass-card-white rounded-2xl p-10 relative"
+                transition={{ duration: 0.55, delay: i * 0.08 }}
+                whileHover={{ y: -8, transition: { duration: 0.25 } }}
+                className="group glass-card-white rounded-2xl overflow-hidden gold-glow-hover transition-all duration-500"
               >
-                <div className="flex items-center gap-6 mb-8">
-                  <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-[#D4A533]/20">
-                    <Image src={story.image} alt={story.name} fill className="object-cover" />
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-bold text-text-light mb-1">{story.name}</h4>
-                    <p className="text-[#D4A533] text-sm">{story.position} at {story.company}</p>
+                <div className="relative aspect-[4/4.2] overflow-hidden">
+                  <Image
+                    src={story.image}
+                    alt={`Portrait of ${story.name}`}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/35 to-transparent" />
+                  <div className="absolute left-4 top-4 rounded-full border border-[#D4A533]/30 bg-background/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#D4A533]">
+                    Placed Student
                   </div>
                 </div>
-                <p className="text-text-light/50 leading-relaxed italic">"{story.quote}"</p>
-                <Star className="absolute top-6 right-6 text-[#D4A533]/20" size={40} />
+                <div className="relative z-10 -mt-10 p-5">
+                  <div className="rounded-2xl border border-text-light/10 bg-background/78 p-5 backdrop-blur-md">
+                    <h4 className="font-serif text-lg font-semibold text-text-light">{story.name}</h4>
+                    <p className="mt-1 text-xs uppercase tracking-[0.18em] text-[#D4A533]">{story.position}</p>
+                    <p className="mt-3 text-sm font-medium text-text-light/75">{story.company}</p>
+                    <div className="mt-2 flex items-center gap-2 text-xs text-text-light/45">
+                      <MapPin size={13} className="text-[#D4A533]" />
+                      <span>{story.location}</span>
+                    </div>
+                    <p className="mt-4 text-sm leading-relaxed italic text-text-light/55">"{story.quote}"</p>
+                    <div className="mt-4 flex items-center gap-2">
+                      <Star size={14} className="text-[#D4A533]" />
+                      <span className="text-[11px] uppercase tracking-[0.18em] text-text-light/40">
+                        Placeholder placement detail
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -182,11 +222,11 @@ export default function PlacementsPage() {
               </h2>
               <div className="space-y-4">
                 {[
-                  "Intensive 100% Practical-Based Training",
-                  "Soft Skills & Personality Development",
-                  "International Internship Opportunities",
-                  "Industry-Ready Skillsets",
-                  "Leadership & Management Foundation",
+                  `Learning environment at ${siteData.address}`,
+                  "Practical hospitality routines and service standards",
+                  "Soft skills and personality development",
+                  "Faculty-led mentoring and classroom discipline",
+                  siteData.distinction,
                 ].map((item, i) => (
                   <motion.div 
                     key={i}

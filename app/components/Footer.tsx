@@ -4,6 +4,7 @@ import Link from "next/link"
 import { MapPin, Phone, Mail, ExternalLink } from "lucide-react"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
+import { siteData } from "@/lib/site-data"
 
 const quickLinks = [
   { name: "Home", href: "/" },
@@ -15,10 +16,9 @@ const quickLinks = [
 ]
 
 const socialLinks = [
-  { name: "Facebook", href: "#" },
-  { name: "Instagram", href: "#" },
-  { name: "LinkedIn", href: "#" },
-  { name: "Twitter", href: "#" },
+  { name: "Facebook", href: "https://www.facebook.com/search/top?q=Nepal%20College%20of%20Hotel%20Management" },
+  { name: "Instagram", href: "https://www.instagram.com/" },
+  { name: "TikTok", href: "https://www.tiktok.com/" },
 ]
 
 export default function Footer() {
@@ -42,8 +42,7 @@ export default function Footer() {
               <span className="font-serif text-lg tracking-wide text-[#F5F7FA]">Nepal College of Hotel Management</span>
             </Link>
             <p className="text-[#F5F7FA]/50 text-sm leading-relaxed">
-              Shaping future hotel industry leaders since 2005. A premier institution committed to
-              excellence in hospitality and hotel management education.
+              {siteData.distinction}. Practical hospitality learning for students who want to grow in the hotel industry.
             </p>
           </motion.div>
 
@@ -79,15 +78,15 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-start gap-3 text-sm text-[#F5F7FA]/50">
                 <MapPin size={16} className="text-[#D4A533] flex-shrink-0 mt-0.5" />
-                <span>Kathmandu, Nepal</span>
+                <span>{siteData.address}</span>
               </div>
               <div className="flex items-center gap-3 text-sm text-[#F5F7FA]/50">
                 <Phone size={16} className="text-[#D4A533] flex-shrink-0" />
-                <span>+977 1-XXXXXXX</span>
+                <span>{siteData.phones.join(", ")}</span>
               </div>
               <div className="flex items-center gap-3 text-sm text-[#F5F7FA]/50">
                 <Mail size={16} className="text-[#D4A533] flex-shrink-0" />
-                <span>info@nchm.edu.np</span>
+                <span>{siteData.email}</span>
               </div>
             </div>
           </motion.div>
@@ -105,12 +104,17 @@ export default function Footer() {
                 <a
                   key={link.name}
                   href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
                   className="flex items-center gap-2 text-sm text-[#F5F7FA]/50 hover:text-[#D4A533] transition-colors duration-300"
                 >
                   <ExternalLink size={14} />
                   {link.name}
                 </a>
               ))}
+              <p className="pt-2 text-xs text-[#F5F7FA]/35">
+                Search Instagram for "{siteData.socialSearches[1].handle}" and TikTok for "{siteData.socialSearches[2].handle}".
+              </p>
             </div>
           </motion.div>
         </div>
