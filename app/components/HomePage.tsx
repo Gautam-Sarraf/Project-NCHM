@@ -285,7 +285,7 @@ export default function HomePage() {
             >
               <div className="relative glass-card rounded-2xl overflow-hidden gold-glow">
                 <Image src="/images/10.jpeg" alt="NCHM campus" width={600} height={450} className="w-full h-auto object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/70 to-transparent" />
+                <div className="image-overlay-soft absolute inset-0" />
               </div>
               <motion.div
                 animate={{ y: [-10, 10, -10] }}
@@ -400,7 +400,7 @@ export default function HomePage() {
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+                    <div className="image-overlay-medium absolute inset-0" />
                     <div className="absolute bottom-3 left-3 flex items-center gap-2">
                       <span className="px-3 py-1 rounded-full bg-[#D4A533]/90 text-[#0B1F3B] text-[11px] font-semibold flex items-center gap-1">
                         <Clock size={11} />
@@ -467,7 +467,7 @@ export default function HomePage() {
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                  <div className="image-overlay-soft absolute inset-0" />
                 </div>
                 <div className="p-4 -mt-8 relative z-10">
                   <h3 className="font-serif text-sm font-semibold text-text-light">{member.name}</h3>

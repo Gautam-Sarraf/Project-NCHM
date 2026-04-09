@@ -103,7 +103,7 @@ export default function CoursesPage() {
                       height={400}
                       className="w-full h-auto object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/70 to-transparent" />
+                    <div className="image-overlay-soft absolute inset-0" />
                     <div className="absolute bottom-4 left-4 flex items-center gap-2">
                       <div className="px-3 py-1 rounded-full bg-[#D4A533]/90 text-[#0B1F3B] text-xs font-semibold flex items-center gap-1">
                         <Clock size={12} />

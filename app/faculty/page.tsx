@@ -80,8 +80,8 @@ export default function FacultyPage() {
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background/30 md:block hidden" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent md:hidden" />
+                    <div className="image-overlay-side absolute inset-0 md:block hidden" />
+                    <div className="image-overlay-soft absolute inset-0 md:hidden" />
                   </div>
 
                   {/* Info */}

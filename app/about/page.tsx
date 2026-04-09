@@ -125,7 +125,7 @@ export default function AboutPage() {
                   height={450}
                   className="w-full h-auto object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/70 to-transparent" />
+                <div className="image-overlay-soft absolute inset-0" />
               </div>
               <motion.div
                 animate={{ y: [-10, 10, -10] }}

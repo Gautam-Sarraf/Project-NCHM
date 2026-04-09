@@ -170,7 +170,7 @@ export default function PlacementsPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.55, delay: i * 0.08 }}
                 whileHover={{ y: -8, transition: { duration: 0.25 } }}
-                className="group glass-card-white rounded-2xl overflow-hidden gold-glow-hover transition-all duration-500"
+                className="group glass-card-white placement-story-card rounded-2xl overflow-hidden gold-glow-hover transition-all duration-500"
               >
                 <div className="relative aspect-[4/4.2] overflow-hidden">
                   <Image
@@ -179,7 +179,7 @@ export default function PlacementsPage() {
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/35 to-transparent" />
+                  <div className="image-overlay-medium absolute inset-0" />
                   <div className="absolute left-4 top-4 rounded-full border border-[#D4A533]/30 bg-background/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#D4A533]">
                     Placed Student
                   </div>
@@ -248,7 +248,7 @@ export default function PlacementsPage() {
               className="relative aspect-video rounded-2xl overflow-hidden gold-glow"
             >
               <Image src="/images/gallery-1.jpg" alt="Training" fill className="object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+              <div className="image-overlay-soft absolute inset-0" />
             </motion.div>
           </div>
         </div>
