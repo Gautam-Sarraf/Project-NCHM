@@ -167,10 +167,10 @@ export default function HomePage() {
   return (
     <>
       {/* ========== HERO ========== */}
-      <section className="relative min-h-screen flex flex-col justify-between overflow-hidden pt-24 bg-[#13152d]">
+      <section className="relative min-h-screen flex flex-col justify-between overflow-hidden pt-24 bg-background text-foreground transition-colors duration-300">
         <div className="absolute inset-0 z-0">
           <Image src="/images/campus.jpg" alt="" fill className="object-cover opacity-20" priority />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#13152d]/90 via-[#13152d]/75 to-[#13152d]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/75 to-background transition-colors duration-300" />
         </div>
 
         {/* Decorative elements */}
@@ -183,7 +183,7 @@ export default function HomePage() {
         <motion.div
           animate={{ rotate: -360 }}
           transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-1/4 left-[5%] w-48 h-48 border border-[#FAF6F0]/5 rounded-full hidden lg:block"
+          className="absolute bottom-1/4 left-[5%] w-48 h-48 border border-foreground/5 rounded-full hidden lg:block"
           aria-hidden="true"
         />
 
@@ -203,7 +203,7 @@ export default function HomePage() {
 
             <motion.h1
               variants={fadeUp}
-              className="font-sans text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-white text-balance"
+              className="font-sans text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-foreground text-balance"
             >
               Nepal College of{" "}
               <motion.span
@@ -217,7 +217,7 @@ export default function HomePage() {
 
             <motion.p
               variants={fadeUp}
-              className="mt-6 text-lg md:text-xl text-[#FAF6F0]/70 max-w-2xl mx-auto leading-relaxed text-pretty font-medium"
+              className="mt-6 text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto leading-relaxed text-pretty font-medium"
             >
               {siteData.distinction} with hands-on learning, committed BHM faculty, and a solid foundation in professional hospitality.
             </motion.p>
@@ -233,7 +233,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-white text-white font-bold text-sm tracking-wide transition-all duration-300 hover:bg-white hover:text-[#13152d] w-full sm:w-auto justify-center"
+                className="group inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-foreground text-foreground font-bold text-sm tracking-wide transition-all duration-300 hover:bg-foreground hover:text-background w-full sm:w-auto justify-center"
               >
                 Apply Now
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
@@ -244,15 +244,15 @@ export default function HomePage() {
 
         {/* Scrolling Ticker Text */}
         <div className="relative z-10 w-full mt-auto">
-          <div className="ticker-wrap border-y border-[#dba328]/20 bg-[#13152d] py-6">
+          <div className="ticker-wrap border-y border-[#dba328]/20 bg-background py-6 transition-colors duration-300">
             <div className="ticker">
-              <div className="ticker-item font-sans font-extrabold text-2xl sm:text-3xl tracking-wider text-white">
+              <div className="ticker-item font-sans font-extrabold text-2xl sm:text-3xl tracking-wider text-foreground">
                 Nepal College of Hotel Management • <span className="ticker-item-outline">Practical Based</span> • Dedicated BHM Faculty • <span className="ticker-item-outline">First in Birgunj</span> •
               </div>
-              <div className="ticker-item font-sans font-extrabold text-2xl sm:text-3xl tracking-wider text-white">
+              <div className="ticker-item font-sans font-extrabold text-2xl sm:text-3xl tracking-wider text-foreground">
                 Nepal College of Hotel Management • <span className="ticker-item-outline">Practical Based</span> • Dedicated BHM Faculty • <span className="ticker-item-outline">First in Birgunj</span> •
               </div>
-              <div className="ticker-item font-sans font-extrabold text-2xl sm:text-3xl tracking-wider text-white">
+              <div className="ticker-item font-sans font-extrabold text-2xl sm:text-3xl tracking-wider text-foreground">
                 Nepal College of Hotel Management • <span className="ticker-item-outline">Practical Based</span> • Dedicated BHM Faculty • <span className="ticker-item-outline">First in Birgunj</span> •
               </div>
             </div>
@@ -543,29 +543,28 @@ export default function HomePage() {
                 })}
               </div>
             </motion.div>
-
           </div>
         </div>
       </section>
 
       {/* ========== NEWS / ANNOUNCEMENTS LIST ========== */}
-      <section className="relative py-24 bg-[#FAF6F0] text-[#13152d]">
+      <section className="relative py-24 bg-muted/30 text-foreground border-y border-border/20 transition-colors duration-300">
         <div className="mx-auto max-w-7xl px-6">
           
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
             <div>
-              <span className="border border-[#32365b]/30 bg-[#32365b]/5 text-[#32365b] px-4 py-1.5 rounded-full text-xs font-extrabold tracking-wider uppercase inline-block">
+              <span className="border border-foreground/20 bg-foreground/5 text-foreground px-4 py-1.5 rounded-full text-xs font-extrabold tracking-wider uppercase inline-block">
                 NEWS & INSIGHTS
               </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mt-4 leading-tight font-sans tracking-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground mt-4 leading-tight font-sans tracking-tight">
                 News about our NCHM university
               </h2>
             </div>
             
             <Link
               href="/courses"
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-[#32365b]/30 text-[#32365b] font-bold text-xs tracking-wider uppercase transition-all duration-300 hover:bg-[#32365b] hover:text-white"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-foreground/30 text-foreground font-bold text-xs tracking-wider uppercase transition-all duration-300 hover:bg-foreground hover:text-background"
             >
               MORE NEWS
               <ArrowRight size={14} />
@@ -573,31 +572,30 @@ export default function HomePage() {
           </div>
 
           {/* Vertical news list */}
-          <div className="border-t border-[#32365b]/20">
+          <div className="border-t border-border/30">
             {newsItems.map((news, idx) => (
               <Link
                 key={idx}
                 href={news.link}
-                className="group flex flex-col md:flex-row md:items-center justify-between py-6 px-4 border-b border-[#32365b]/10 transition-all duration-300 hover:bg-[#32365b] hover:text-white"
+                className="group flex flex-col md:flex-row md:items-center justify-between py-6 px-4 border-b border-border/30 transition-all duration-300 hover:bg-foreground/5 hover:text-foreground"
               >
                 <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-12 flex-grow">
-                  <div className="text-xs font-bold tracking-wider text-[#32365b]/60 group-hover:text-white/60 w-32 shrink-0">
+                  <div className="text-xs font-bold tracking-wider text-muted-foreground group-hover:text-foreground/75 w-32 shrink-0">
                     {news.date}
                   </div>
-                  <div className="text-lg font-bold group-hover:text-white transition-colors duration-200">
+                  <div className="text-lg font-bold text-foreground group-hover:text-foreground transition-colors duration-200">
                     {news.title}
                   </div>
                 </div>
 
                 <div className="mt-4 md:mt-0 flex shrink-0 justify-end">
-                  <div className="w-10 h-10 rounded-full border border-[#32365b]/20 group-hover:border-white/30 flex items-center justify-center text-[#32365b] group-hover:text-white transition-all group-hover:bg-[#dba328] group-hover:border-transparent">
+                  <div className="w-10 h-10 rounded-full border border-border text-foreground group-hover:bg-[#dba328] group-hover:text-background group-hover:border-transparent transition-all flex items-center justify-center">
                     <ArrowRight size={16} />
                   </div>
                 </div>
               </Link>
             ))}
           </div>
-
         </div>
       </section>
 

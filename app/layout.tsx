@@ -21,6 +21,10 @@ export const metadata: Metadata = {
     'diploma',
     'barista certification',
   ],
+  icons: {
+    icon: '/images/logo.jpeg',
+    apple: '/images/logo.jpeg',
+  },
 }
 
 export const viewport: Viewport = {
