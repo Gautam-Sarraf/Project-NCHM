@@ -44,7 +44,7 @@ export default function GalleryPage() {
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#D4A533]/20 bg-[#D4A533]/5 text-[#D4A533] text-xs tracking-[0.2em] uppercase"
+            className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#dba328]/20 bg-[#dba328]/5 text-[#dba328] text-xs tracking-[0.2em] uppercase"
           >
             Campus Life
           </motion.span>
@@ -55,7 +55,7 @@ export default function GalleryPage() {
             className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-text-light text-balance"
           >
             Photo{" "}
-            <span className="bg-gradient-to-r from-[#D4A533] to-[#E8C86A] bg-clip-text text-transparent">Gallery</span>
+            <span className="bg-gradient-to-r from-[#dba328] to-[#eebf56] bg-clip-text text-transparent">Gallery</span>
           </motion.h1>
         </div>
       </section>
@@ -77,7 +77,7 @@ export default function GalleryPage() {
                 onClick={() => setActive(cat)}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   active === cat
-                    ? "bg-gradient-to-r from-[#D4A533] to-[#E8C86A] text-[#0B1F3B]"
+                    ? "bg-gradient-to-r from-[#dba328] to-[#eebf56] text-[#13152d]"
                     : "bg-text-light/5 border border-text-light/10 text-text-light/50 hover:text-text-light hover:border-text-light/25"
                 }`}
               >
@@ -124,7 +124,7 @@ export default function GalleryPage() {
                     </span>
                   </div>
                   {/* Gold border on hover */}
-                  <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-[#D4A533]/40 transition-colors duration-500" />
+                  <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-[#dba328]/40 transition-colors duration-500" />
                 </motion.button>
               ))}
             </AnimatePresence>
@@ -165,21 +165,21 @@ export default function GalleryPage() {
               {/* Navigation */}
               <button
                 onClick={goPrev}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 border border-[#D4A533]/20 flex items-center justify-center text-text-light hover:bg-[#D4A533]/20 transition-colors"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 border border-[#dba328]/20 flex items-center justify-center text-text-light hover:bg-[#dba328]/20 transition-colors"
                 aria-label="Previous image"
               >
                 <ChevronLeft size={20} />
               </button>
               <button
                 onClick={goNext}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 border border-[#D4A533]/20 flex items-center justify-center text-text-light hover:bg-[#D4A533]/20 transition-colors"
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 border border-[#dba328]/20 flex items-center justify-center text-text-light hover:bg-[#dba328]/20 transition-colors"
                 aria-label="Next image"
               >
                 <ChevronRight size={20} />
               </button>
               <button
                 onClick={closeModal}
-                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-background/80 border border-[#D4A533]/20 flex items-center justify-center text-text-light hover:bg-[#D4A533]/20 transition-colors"
+                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-background/80 border border-[#dba328]/20 flex items-center justify-center text-text-light hover:bg-[#dba328]/20 transition-colors"
                 aria-label="Close preview"
               >
                 <X size={18} />

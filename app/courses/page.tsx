@@ -48,7 +48,7 @@ export default function CoursesPage() {
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#D4A533]/20 bg-[#D4A533]/5 text-[#D4A533] text-xs tracking-[0.2em] uppercase"
+            className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#dba328]/20 bg-[#dba328]/5 text-[#dba328] text-xs tracking-[0.2em] uppercase"
           >
             Programs
           </motion.span>
@@ -59,7 +59,7 @@ export default function CoursesPage() {
             className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-text-light text-balance"
           >
             Our{" "}
-            <span className="bg-gradient-to-r from-[#D4A533] to-[#E8C86A] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#dba328] to-[#eebf56] bg-clip-text text-transparent">
               Courses
             </span>
           </motion.h1>
@@ -105,7 +105,7 @@ export default function CoursesPage() {
                     />
                     <div className="image-overlay-soft absolute inset-0" />
                     <div className="absolute bottom-4 left-4 flex items-center gap-2">
-                      <div className="px-3 py-1 rounded-full bg-[#D4A533]/90 text-[#0B1F3B] text-xs font-semibold flex items-center gap-1">
+                      <div className="px-3 py-1 rounded-full bg-[#dba328]/90 text-[#13152d] text-xs font-semibold flex items-center gap-1">
                         <Clock size={12} />
                         {course.duration}
                       </div>
@@ -116,8 +116,8 @@ export default function CoursesPage() {
                 {/* Content */}
                 <div className={`space-y-6 ${isReversed ? "md:order-1" : ""}`} style={{ direction: "ltr" }}>
                   <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#D4A533] to-[#E8C86A] flex items-center justify-center">
-                      <Icon size={26} className="text-[#0B1F3B]" />
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#dba328] to-[#eebf56] flex items-center justify-center">
+                      <Icon size={26} className="text-[#13152d]" />
                     </div>
                     <h3 className="font-serif text-2xl md:text-3xl font-bold text-text-light">{course.title}</h3>
                   </div>
@@ -127,21 +127,21 @@ export default function CoursesPage() {
                   {/* Stats row */}
                   <div className="flex gap-6">
                     <div className="text-center">
-                      <div className="flex items-center gap-1 text-[#D4A533]">
+                      <div className="flex items-center gap-1 text-[#dba328]">
                         <Users size={14} />
                         <span className="font-bold text-sm">{course.highlights.students}</span>
                       </div>
                       <span className="text-[10px] text-text-light/30">Students</span>
                     </div>
                     <div className="text-center">
-                      <div className="flex items-center gap-1 text-[#D4A533]">
+                      <div className="flex items-center gap-1 text-[#dba328]">
                         <Star size={14} />
                         <span className="font-bold text-sm">{course.highlights.rating}</span>
                       </div>
                       <span className="text-[10px] text-text-light/30">Rating</span>
                     </div>
                     <div className="text-center">
-                      <div className="flex items-center gap-1 text-[#D4A533]">
+                      <div className="flex items-center gap-1 text-[#dba328]">
                         <Award size={14} />
                         <span className="font-bold text-sm">{course.highlights.placements}</span>
                       </div>
@@ -162,7 +162,7 @@ export default function CoursesPage() {
                           transition={{ delay: mi * 0.05 }}
                           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-text-light/5 border border-text-light/10 text-text-light/60 text-xs"
                         >
-                          <CheckCircle size={12} className="text-[#D4A533]" />
+                          <CheckCircle size={12} className="text-[#dba328]" />
                           {mod}
                         </motion.span>
                       ))}
@@ -171,7 +171,7 @@ export default function CoursesPage() {
 
                   <motion.button
                     whileHover={{ x: 4 }}
-                    className="inline-flex items-center gap-2 text-sm text-[#D4A533] hover:text-[#E8C86A] transition-colors font-medium"
+                    className="inline-flex items-center gap-2 text-sm text-[#dba328] hover:text-[#eebf56] transition-colors font-medium"
                   >
                     Enquire About This Course
                     <ArrowRight size={16} />

@@ -30,7 +30,7 @@ export default function FacultyPage() {
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#D4A533]/20 bg-[#D4A533]/5 text-[#D4A533] text-xs tracking-[0.2em] uppercase"
+            className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#dba328]/20 bg-[#dba328]/5 text-[#dba328] text-xs tracking-[0.2em] uppercase"
           >
             Our Team
           </motion.span>
@@ -41,7 +41,7 @@ export default function FacultyPage() {
             className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-text-light text-balance"
           >
             Distinguished{" "}
-            <span className="bg-gradient-to-r from-[#D4A533] to-[#E8C86A] bg-clip-text text-transparent">Faculty</span>
+            <span className="bg-gradient-to-r from-[#dba328] to-[#eebf56] bg-clip-text text-transparent">Faculty</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -87,13 +87,13 @@ export default function FacultyPage() {
                   {/* Info */}
                   <div className="p-6 flex-1">
                     <h3 className="font-serif text-xl font-semibold text-text-light">{member.name}</h3>
-                    <p className="text-[#D4A533] text-xs tracking-wider mt-1 uppercase">{member.designation}</p>
+                    <p className="text-[#dba328] text-xs tracking-wider mt-1 uppercase">{member.designation}</p>
                     <p className="mt-3 text-text-light/45 text-sm leading-relaxed">{member.bio}</p>
 
                     {/* Specialties */}
                     <div className="mt-4 flex flex-wrap gap-1.5">
                       {member.specialties.map((s) => (
-                        <span key={s} className="px-2.5 py-1 rounded-md bg-[#D4A533]/8 border border-[#D4A533]/15 text-[#D4A533] text-[10px] tracking-wide uppercase">
+                        <span key={s} className="px-2.5 py-1 rounded-md bg-[#dba328]/8 border border-[#dba328]/15 text-[#dba328] text-[10px] tracking-wide uppercase">
                           {s}
                         </span>
                       ))}
@@ -106,7 +106,7 @@ export default function FacultyPage() {
                           key={i}
                           whileHover={{ scale: 1.15, y: -2 }}
                           whileTap={{ scale: 0.9 }}
-                          className="w-8 h-8 rounded-full border border-text-light/10 flex items-center justify-center text-text-light/30 hover:text-[#D4A533] hover:border-[#D4A533]/30 transition-all duration-300"
+                          className="w-8 h-8 rounded-full border border-text-light/10 flex items-center justify-center text-text-light/30 hover:text-[#dba328] hover:border-[#dba328]/30 transition-all duration-300"
                           aria-label={`${member.name} social link`}
                         >
                           <Icon size={14} />

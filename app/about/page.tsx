@@ -40,7 +40,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#D4A533]/20 bg-[#D4A533]/5 text-[#D4A533] text-xs tracking-[0.2em] uppercase"
+            className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#dba328]/20 bg-[#dba328]/5 text-[#dba328] text-xs tracking-[0.2em] uppercase"
           >
             About Us
           </motion.span>
@@ -51,7 +51,7 @@ export default function AboutPage() {
             className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-text-light text-balance"
           >
             A Legacy of{" "}
-            <span className="bg-gradient-to-r from-[#D4A533] to-[#E8C86A] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#dba328] to-[#eebf56] bg-clip-text text-transparent">
               Hotel Excellence
             </span>
           </motion.h1>
@@ -81,8 +81,8 @@ export default function AboutPage() {
                 className="glass-card-white rounded-2xl p-7 gold-glow-hover transition-all duration-500"
               >
                 <div className="flex items-start gap-5">
-                  <div className="flex-shrink-0 w-13 h-13 rounded-xl bg-gradient-to-br from-[#D4A533] to-[#E8C86A] flex items-center justify-center">
-                    <Eye size={24} className="text-[#0B1F3B]" />
+                  <div className="flex-shrink-0 w-13 h-13 rounded-xl bg-gradient-to-br from-[#dba328] to-[#eebf56] flex items-center justify-center">
+                    <Eye size={24} className="text-[#13152d]" />
                   </div>
                   <div>
                     <h3 className="font-serif text-xl font-semibold text-text-light mb-3">Our Vision</h3>
@@ -98,8 +98,8 @@ export default function AboutPage() {
                 className="glass-card-white rounded-2xl p-7 gold-glow-hover transition-all duration-500"
               >
                 <div className="flex items-start gap-5">
-                  <div className="flex-shrink-0 w-13 h-13 rounded-xl bg-gradient-to-br from-[#D4A533] to-[#E8C86A] flex items-center justify-center">
-                    <Target size={24} className="text-[#0B1F3B]" />
+                  <div className="flex-shrink-0 w-13 h-13 rounded-xl bg-gradient-to-br from-[#dba328] to-[#eebf56] flex items-center justify-center">
+                    <Target size={24} className="text-[#13152d]" />
                   </div>
                   <div>
                     <h3 className="font-serif text-xl font-semibold text-text-light mb-3">Our Mission</h3>
@@ -132,7 +132,7 @@ export default function AboutPage() {
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -bottom-5 -left-5 glass-card-white rounded-xl p-4 gold-glow"
               >
-                <div className="text-2xl font-bold text-[#D4A533]">1st</div>
+                <div className="text-2xl font-bold text-[#dba328]">1st</div>
                 <div className="text-xs text-text-light/50">In Birgunj</div>
               </motion.div>
               <motion.div
@@ -140,7 +140,7 @@ export default function AboutPage() {
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -top-4 -right-4 glass-card-white rounded-xl p-4 gold-glow"
               >
-                <Sparkles size={20} className="text-[#D4A533] mb-1" />
+                <Sparkles size={20} className="text-[#dba328] mb-1" />
                 <div className="text-xs text-text-light/50">Practical Focus</div>
               </motion.div>
             </motion.div>
@@ -159,7 +159,7 @@ export default function AboutPage() {
               const Icon = item.icon
               return (
                 <div key={item.title} className="glass-card-white rounded-2xl p-6 gold-glow-hover transition-all duration-500">
-                  <Icon size={18} className="text-[#D4A533] mb-4" />
+                  <Icon size={18} className="text-[#dba328] mb-4" />
                   <h3 className="font-serif text-lg font-semibold text-text-light">{item.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-text-light/55">{item.value}</p>
                 </div>
@@ -184,7 +184,7 @@ export default function AboutPage() {
                 whileHover={{ y: -6, transition: { duration: 0.25 } }}
                 className="glass-card-white rounded-2xl p-7 gold-glow-hover transition-all duration-500"
               >
-                <CheckCircle size={20} className="text-[#D4A533] mb-4" />
+                <CheckCircle size={20} className="text-[#dba328] mb-4" />
                 <h3 className="font-serif text-lg font-semibold text-text-light mb-2">{val.title}</h3>
                 <p className="text-text-light/40 text-sm leading-relaxed">{val.desc}</p>
               </motion.div>
@@ -199,7 +199,7 @@ export default function AboutPage() {
           <SectionHeader label="Our Journey" title="Key" highlight="Milestones" />
           <div className="relative">
             {/* Line */}
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#D4A533]/40 via-[#D4A533]/20 to-transparent" />
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#dba328]/40 via-[#dba328]/20 to-transparent" />
 
             {milestones.map((m, i) => (
               <motion.div
@@ -212,10 +212,10 @@ export default function AboutPage() {
                 }`}
               >
                 {/* Dot */}
-                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#D4A533] shadow-[0_0_10px_rgba(212,165,51,0.4)] z-10" />
+                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#dba328] shadow-sm z-10" />
 
                 <div className={`ml-12 md:ml-0 md:w-1/2 ${i % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
-                  <span className="text-[#D4A533] font-bold text-sm">{m.year}</span>
+                  <span className="text-[#dba328] font-bold text-sm">{m.year}</span>
                   <p className="text-text-light/60 text-sm mt-1">{m.event}</p>
                 </div>
               </motion.div>

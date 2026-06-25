@@ -72,10 +72,10 @@ export default function Navbar() {
               className="w-11 h-11 rounded-full object-cover"
             />
             <div className="hidden sm:block">
-              <span className="font-serif text-lg tracking-wide text-foreground block leading-tight">
+              <span className="font-sans font-bold text-lg tracking-wide text-foreground block leading-tight">
                 Nepal College
               </span>
-              <span className="text-[10px] tracking-[0.2em] text-[#D4A533] uppercase">
+              <span className="text-[10px] tracking-[0.2em] text-[#dba328] uppercase font-semibold">
                 Hotel Management
               </span>
             </div>
@@ -89,9 +89,9 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`relative px-4 py-2 text-sm tracking-wide transition-colors duration-300 rounded-lg ${
+                  className={`relative px-4 py-2 text-sm tracking-wide transition-colors duration-300 rounded-full ${
                     isActive
-                      ? "text-[#D4A533]"
+                      ? "text-[#dba328] font-semibold"
                       : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
                   }`}
                 >
@@ -99,7 +99,7 @@ export default function Navbar() {
                   {isActive && (
                     <motion.div
                       layoutId="navIndicator"
-                      className="absolute -bottom-1 left-2 right-2 h-0.5 rounded-full bg-gradient-to-r from-[#D4A533] to-[#E8C86A]"
+                      className="absolute -bottom-1 left-2 right-2 h-0.5 rounded-full bg-gradient-to-r from-[#dba328] to-[#eebf56]"
                       transition={{
                         type: "spring",
                         stiffness: 400,
@@ -123,7 +123,7 @@ export default function Navbar() {
             </button>
             <Link
               href="/contact"
-              className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-[#D4A533] to-[#E8C86A] text-[#0B1F3B] font-semibold text-sm tracking-wide transition-all duration-300 hover:shadow-[0_0_25px_rgba(212,165,51,0.4)] hover:scale-105"
+              className="px-6 py-2.5 rounded-full bg-gradient-to-r from-[#dba328] to-[#eebf56] text-[#13152d] font-semibold text-sm tracking-wide transition-all duration-300 hover:shadow-[0_0_25px_rgba(219,163,40,0.4)] hover:scale-105"
             >
               Apply Now
             </Link>
@@ -169,7 +169,7 @@ export default function Navbar() {
         </div>
 
         {/* Gold bottom border */}
-        <div className="h-px bg-gradient-to-r from-transparent via-[#D4A533]/30 to-transparent" />
+        <div className="h-px bg-gradient-to-r from-transparent via-[#dba328]/30 to-transparent" />
       </motion.nav>
 
       {/* Mobile Menu */}
@@ -180,7 +180,7 @@ export default function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed inset-y-0 right-0 w-80 z-50 bg-background/98 backdrop-blur-2xl border-l border-[#D4A533]/15 flex flex-col pt-24 px-8 gap-2 md:hidden"
+            className="fixed inset-y-0 right-0 w-80 z-50 bg-background/98 backdrop-blur-2xl border-l border-[#dba328]/15 flex flex-col pt-24 px-8 gap-2 md:hidden"
           >
             {navLinks.map((link, i) => {
               const isActive = pathname === link.href
@@ -193,9 +193,9 @@ export default function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className={`block py-3 px-4 rounded-lg text-lg tracking-wide transition-all duration-300 ${
+                    className={`block py-3 px-4 rounded-full text-lg tracking-wide transition-all duration-300 ${
                       isActive
-                        ? "text-[#D4A533] bg-[#D4A533]/10"
+                        ? "text-[#dba328] bg-[#dba328]/10 font-semibold"
                         : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
                     }`}
                   >
@@ -213,7 +213,7 @@ export default function Navbar() {
             >
               <Link
                 href="/contact"
-                className="block w-full py-3 rounded-lg bg-gradient-to-r from-[#D4A533] to-[#E8C86A] text-[#0B1F3B] font-semibold text-center text-sm tracking-wide"
+                className="block w-full py-3 rounded-full bg-gradient-to-r from-[#dba328] to-[#eebf56] text-[#13152d] font-semibold text-center text-sm tracking-wide"
               >
                 Apply Now
               </Link>

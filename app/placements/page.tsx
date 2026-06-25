@@ -72,7 +72,7 @@ export default function PlacementsPage() {
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#D4A533]/20 bg-[#D4A533]/5 text-[#D4A533] text-xs tracking-[0.2em] uppercase"
+            className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#dba328]/20 bg-[#dba328]/5 text-[#dba328] text-xs tracking-[0.2em] uppercase"
           >
             Career Success
           </motion.span>
@@ -83,7 +83,7 @@ export default function PlacementsPage() {
             className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-text-light text-balance"
           >
             Global{" "}
-            <span className="bg-gradient-to-r from-[#D4A533] to-[#E8C86A] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#dba328] to-[#eebf56] bg-clip-text text-transparent">
               Placements
             </span>
           </motion.h1>
@@ -113,8 +113,8 @@ export default function PlacementsPage() {
                   transition={{ delay: i * 0.1 }}
                   className="glass-card-white rounded-2xl p-8 text-center gold-glow-hover transition-all duration-500"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#D4A533] to-[#E8C86A] flex items-center justify-center mx-auto mb-4">
-                    <Icon size={24} className="text-[#0B1F3B]" />
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#dba328] to-[#eebf56] flex items-center justify-center mx-auto mb-4">
+                    <Icon size={24} className="text-[#13152d]" />
                   </div>
                   <div className="text-3xl font-bold text-text-light mb-1">{stat.value}</div>
                   <div className="text-xs text-text-light/40 uppercase tracking-widest">{stat.label}</div>
@@ -142,7 +142,7 @@ export default function PlacementsPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="p-6 rounded-xl border border-text-light/10 bg-text-light/5 flex items-center justify-center text-center group hover:border-[#D4A533]/30 transition-all duration-300"
+                className="p-6 rounded-xl border border-text-light/10 bg-text-light/5 flex items-center justify-center text-center group hover:border-[#dba328]/30 transition-all duration-300"
               >
                 <span className="text-text-light/60 font-medium group-hover:text-text-light transition-colors">
                   {partner}
@@ -180,22 +180,22 @@ export default function PlacementsPage() {
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="image-overlay-medium absolute inset-0" />
-                  <div className="absolute left-4 top-4 rounded-full border border-[#D4A533]/30 bg-background/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#D4A533]">
+                  <div className="absolute left-4 top-4 rounded-full border border-[#dba328]/30 bg-background/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#dba328]">
                     Placed Student
                   </div>
                 </div>
                 <div className="relative z-10 -mt-10 p-5">
                   <div className="rounded-2xl border border-text-light/10 bg-background/78 p-5 backdrop-blur-md">
                     <h4 className="font-serif text-lg font-semibold text-text-light">{story.name}</h4>
-                    <p className="mt-1 text-xs uppercase tracking-[0.18em] text-[#D4A533]">{story.position}</p>
+                    <p className="mt-1 text-xs uppercase tracking-[0.18em] text-[#dba328]">{story.position}</p>
                     <p className="mt-3 text-sm font-medium text-text-light/75">{story.company}</p>
                     <div className="mt-2 flex items-center gap-2 text-xs text-text-light/45">
-                      <MapPin size={13} className="text-[#D4A533]" />
+                      <MapPin size={13} className="text-[#dba328]" />
                       <span>{story.location}</span>
                     </div>
                     <p className="mt-4 text-sm leading-relaxed italic text-text-light/55">"{story.quote}"</p>
                     <div className="mt-4 flex items-center gap-2">
-                      <Star size={14} className="text-[#D4A533]" />
+                      <Star size={14} className="text-[#dba328]" />
                       <span className="text-[11px] uppercase tracking-[0.18em] text-text-light/40">
                         Placeholder placement detail
                       </span>
@@ -209,7 +209,7 @@ export default function PlacementsPage() {
       </section>
 
       {/* Why We Lead */}
-      <section className="py-20 bg-[#D4A533]/5">
+      <section className="py-20 bg-[#dba328]/5">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -218,7 +218,7 @@ export default function PlacementsPage() {
               viewport={{ once: true }}
             >
               <h2 className="font-serif text-3xl md:text-4xl font-bold text-text-light mb-6">
-                Why Employers Choose <span className="text-[#D4A533]">NCHM Graduates</span>
+                Why Employers Choose <span className="text-[#dba328]">NCHM Graduates</span>
               </h2>
               <div className="space-y-4">
                 {[
@@ -235,7 +235,7 @@ export default function PlacementsPage() {
                     transition={{ delay: i * 0.1 }}
                     className="flex items-center gap-3"
                   >
-                    <CheckCircle className="text-[#D4A533]" size={18} />
+                    <CheckCircle className="text-[#dba328]" size={18} />
                     <span className="text-text-light/70">{item}</span>
                   </motion.div>
                 ))}

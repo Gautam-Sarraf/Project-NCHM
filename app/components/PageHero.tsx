@@ -13,7 +13,7 @@ export default function PageHero({ label, title, highlight, description }: PageH
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 page-hero overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-20 left-10 w-72 h-72 rounded-full bg-[#D4A533]/5 blur-[100px]" />
+      <div className="absolute top-20 left-10 w-72 h-72 rounded-full bg-[#dba328]/5 blur-[100px]" />
       <div className="absolute bottom-0 right-10 w-96 h-96 rounded-full bg-text-light/3 blur-[120px]" />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
@@ -21,7 +21,7 @@ export default function PageHero({ label, title, highlight, description }: PageH
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-block mb-4 px-5 py-2 rounded-full border border-[#D4A533]/30 bg-[#D4A533]/10 text-[#D4A533] text-sm tracking-widest uppercase"
+          className="inline-block mb-4 px-5 py-2 rounded-full border border-[#dba328]/30 bg-[#dba328]/10 text-[#dba328] text-sm tracking-widest uppercase"
         >
           {label}
         </motion.span>
@@ -33,7 +33,7 @@ export default function PageHero({ label, title, highlight, description }: PageH
           className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-balance text-[#F5F7FA]"
         >
           {title}{" "}
-          <span className="bg-gradient-to-r from-[#D4A533] to-[#E8C86A] bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-[#dba328] to-[#eebf56] bg-clip-text text-transparent">
             {highlight}
           </span>
         </motion.h1>
@@ -54,7 +54,7 @@ export default function PageHero({ label, title, highlight, description }: PageH
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-10 mx-auto w-24 h-0.5 bg-gradient-to-r from-transparent via-[#D4A533] to-transparent"
+          className="mt-10 mx-auto w-24 h-0.5 bg-gradient-to-r from-transparent via-[#dba328] to-transparent"
         />
       </div>
 

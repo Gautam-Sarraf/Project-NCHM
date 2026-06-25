@@ -33,7 +33,7 @@ export default function ContactPage() {
   )
 
   const inputClasses =
-    "w-full px-4 py-3.5 rounded-xl bg-background/70 border border-text-light/10 text-text-light text-sm placeholder:text-text-light/25 focus:outline-none focus:border-[#D4A533]/40 focus:shadow-[0_0_20px_rgba(212,165,51,0.1)] transition-all duration-300"
+    "w-full px-4 py-3.5 rounded-xl bg-background/70 border border-text-light/10 text-text-light text-sm placeholder:text-text-light/25 focus:outline-none focus:border-[#dba328]/40 focus:border border-[#dba328]/20 transition-all duration-300"
 
   return (
     <main className="relative min-h-screen overflow-x-hidden pt-24">
@@ -43,7 +43,7 @@ export default function ContactPage() {
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#D4A533]/20 bg-[#D4A533]/5 text-[#D4A533] text-xs tracking-[0.2em] uppercase"
+            className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#dba328]/20 bg-[#dba328]/5 text-[#dba328] text-xs tracking-[0.2em] uppercase"
           >
             Get in Touch
           </motion.span>
@@ -54,7 +54,7 @@ export default function ContactPage() {
             className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-text-light text-balance"
           >
             Contact{" "}
-            <span className="bg-gradient-to-r from-[#D4A533] to-[#E8C86A] bg-clip-text text-transparent">Us</span>
+            <span className="bg-gradient-to-r from-[#dba328] to-[#eebf56] bg-clip-text text-transparent">Us</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -91,11 +91,11 @@ export default function ContactPage() {
                     whileHover={{ x: 4 }}
                     className="glass-card-white rounded-xl p-5 flex items-start gap-4 gold-glow-hover transition-all duration-300"
                   >
-                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-[#D4A533] to-[#E8C86A] flex items-center justify-center">
-                      <Icon size={18} className="text-[#0B1F3B]" />
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-[#dba328] to-[#eebf56] flex items-center justify-center">
+                      <Icon size={18} className="text-[#13152d]" />
                     </div>
                     <div>
-                      <p className="text-xs text-[#D4A533] tracking-wider uppercase mb-1">{item.label}</p>
+                      <p className="text-xs text-[#dba328] tracking-wider uppercase mb-1">{item.label}</p>
                       <p className="text-text-light/60 text-sm leading-relaxed">{item.value}</p>
                     </div>
                   </motion.div>
@@ -110,18 +110,18 @@ export default function ContactPage() {
                 className="glass-card-white rounded-xl p-6 gold-glow-hover transition-all duration-300"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#D4A533] to-[#E8C86A]">
-                    <Search size={18} className="text-[#0B1F3B]" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#dba328] to-[#eebf56]">
+                    <Search size={18} className="text-[#13152d]" />
                   </div>
                   <div>
-                    <p className="text-xs text-[#D4A533] tracking-wider uppercase">Search Us On</p>
+                    <p className="text-xs text-[#dba328] tracking-wider uppercase">Search Us On</p>
                     <p className="text-sm text-text-light/55">Official social presence</p>
                   </div>
                 </div>
                 <div className="space-y-3">
                   {siteData.socialSearches.map((item) => (
                     <div key={item.platform} className="rounded-xl border border-text-light/10 bg-background/50 px-4 py-3">
-                      <p className="text-xs uppercase tracking-[0.18em] text-[#D4A533]">{item.platform}</p>
+                      <p className="text-xs uppercase tracking-[0.18em] text-[#dba328]">{item.platform}</p>
                       <p className="mt-1 text-sm text-text-light/60">{item.handle}</p>
                     </div>
                   ))}
@@ -139,8 +139,8 @@ export default function ContactPage() {
             >
               <div className="glass-card-white rounded-2xl p-8 md:p-10 gold-glow">
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="rounded-2xl border border-[#D4A533]/15 bg-[#D4A533]/6 px-5 py-4">
-                    <p className="text-xs uppercase tracking-[0.18em] text-[#D4A533]">Admissions Desk</p>
+                  <div className="rounded-2xl border border-[#dba328]/15 bg-[#dba328]/6 px-5 py-4">
+                    <p className="text-xs uppercase tracking-[0.18em] text-[#dba328]">Admissions Desk</p>
                     <p className="mt-2 text-sm leading-relaxed text-text-light/60">
                       Share your details and we will get back to you through {siteData.email} or {siteData.phones.join(", ")}.
                     </p>
@@ -171,7 +171,7 @@ export default function ContactPage() {
                     whileHover={{ scale: 1.01, boxShadow: "0 0 35px rgba(212, 165, 51, 0.3)" }}
                     whileTap={{ scale: 0.99 }}
                     type="submit"
-                    className="group w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-gradient-to-r from-[#D4A533] to-[#E8C86A] text-[#0B1F3B] font-semibold text-sm tracking-wide transition-all duration-300"
+                    className="group w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-gradient-to-r from-[#dba328] to-[#eebf56] text-[#13152d] font-semibold text-sm tracking-wide transition-all duration-300"
                   >
                     {submitted ? (
                       <>

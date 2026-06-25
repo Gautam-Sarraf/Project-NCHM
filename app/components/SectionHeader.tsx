@@ -26,13 +26,13 @@ export default function SectionHeader({ label, title, highlight, description }: 
         initial={{ opacity: 0, scale: 0.9 }}
         animate={isInView ? { opacity: 1, scale: 1 } : {}}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="inline-block px-4 py-1.5 rounded-full border border-[#D4A533]/20 bg-[#D4A533]/5 text-[#D4A533] text-xs tracking-[0.2em] uppercase"
+        className="inline-block px-4 py-1.5 rounded-full border border-[#dba328]/20 bg-[#dba328]/5 text-[#dba328] text-xs tracking-[0.2em] uppercase"
       >
         {label}
       </motion.span>
       <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-text-light text-balance">
         {title}{" "}
-        <span className="bg-gradient-to-r from-[#D4A533] to-[#E8C86A] bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-[#dba328] to-[#eebf56] bg-clip-text text-transparent">
           {highlight}
         </span>
       </h2>
