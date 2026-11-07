@@ -1,765 +1,1105 @@
 "use client"
 
-import { motion, AnimatePresence, useInView } from "framer-motion"
-import { useRef, useState } from "react"
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import Link from "next/link"
+import Image from "next/image"
 import {
   ArrowRight,
   BookOpen,
   GraduationCap,
   Users,
   Award,
-  Handshake,
-  Eye,
-  Target,
+  Sparkles,
+  Clock,
+  CheckCircle2,
   Building,
   Coffee,
-  Clock,
+  Utensils,
+  ChevronRight,
   MapPin,
   Phone,
   Mail,
-  Linkedin,
-  Twitter,
-  ChevronRight,
-  Globe,
+  Star,
+  Quote,
+  ShieldCheck,
+  Calendar,
+  Layers,
+  ArrowUpRight,
   Plus,
   Minus,
-  Sparkles,
 } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
-import SectionHeader from "./SectionHeader"
-import { contactCards, siteData } from "@/lib/site-data"
+import { siteData } from "@/lib/site-data"
 
+// Core Institutional Stats
 const stats = [
-  { value: "1st", label: "Hotel Mgmt College in Birgunj", icon: Award },
-  { value: "5+", label: "Faculty Members", icon: GraduationCap },
-  { value: "BHM", label: "Faculty-Led Learning", icon: Handshake },
-  { value: "100%", label: "Practical Based", icon: Users },
+  { value: "1st", label: "Hotel Mgmt College in Birgunj", detail: "Pioneer since establishment" },
+  { value: "100%", label: "Practical Learning", detail: "Hands-on hotel operations" },
+  { value: "5+", label: "BHM Faculty Experts", detail: "Dedicated personal mentorship" },
+  { value: "3+", label: "Industry Programs", detail: "Diploma & barista certifications" },
 ]
 
-const courses = [
+// Actual Academic Programs
+const programs = [
   {
     title: "Diploma in Hotel Management",
-    duration: "15 months",
-    description: "Comprehensive program covering front office, F&B service, housekeeping, and hotel operation fundamentals.",
+    duration: "15 Months",
+    type: "Comprehensive Diploma",
+    description:
+      "A complete foundational program covering front office operations, professional food & beverage service, housekeeping management, and hotel operational systems.",
+    image: "/images/3.jpeg",
     icon: Building,
-    image: "/images/2.jpeg",
-  },
-  {
-    title: "Advanced Diploma in Hotel Management",
-    duration: "21 months",
-    description: "In-depth study of revenue management, strategic planning, culinary arts, and international luxury hotel standards.",
-    icon: Award,
-    image: "/images/8.jpeg",
-  },
-  {
-    title: "Barista Certification",
-    duration: "1 month",
-    description: "Intensive certification covering espresso preparation, latte art, brewing techniques, and cafe management.",
-    icon: Coffee,
-    image: "/images/6.jpeg",
-  },
-]
-
-const faculty = siteData.faculty.slice(0, 4)
-
-const galleryImages = [
-  { src: "/images/5.jpeg", alt: "Teaching demonstration", category: "Training" },
-  { src: "/images/6.jpeg", alt: "Teaching demonstration", category: "Training" },
-  { src: "/images/7.jpeg", alt: "Teaching demonstration", category: "Training" },
-  { src: "/images/8.jpeg", alt: "Teaching demonstration", category: "Training" },
-  { src: "/images/9.jpeg", alt: "Teaching demonstration", category: "Training" },
-  { src: "/images/10.jpeg", alt: "Teaching demonstration", category: "Training" },
-]
-
-const faqs = [
-  {
-    question: "Does NCHM assist with job placement?",
-    answer: "Yes, NCHM has an active placement network that connects graduates with leading national and international hotels, ensuring a smooth path to careers.",
-  },
-  {
-    question: "Is the training practical-based?",
-    answer: "Absolutely. 100% of our core hotel management curriculum is practical-based, featuring hands-on training in state-of-the-art kitchens and mock hotel layouts.",
-  },
-  {
-    question: "What courses does NCHM offer?",
-    answer: "We offer a 15-month Diploma in Hotel Management, a 21-month Advanced Diploma in Hotel Management, and a 1-month intensive Barista Certification program.",
-  },
-  {
-    question: "Where is the college located?",
-    answer: "The campus is conveniently situated inside Bright College premises, Birgunj-09, Nepal.",
-  },
-]
-
-const newsItems = [
-  {
-    date: "JUNE 25, 2026",
-    title: "New barista certification batch registration opens for next semester",
+    features: [
+      "Front Office & Guest Services",
+      "Food & Beverage Service Training",
+      "Housekeeping & Hygiene Standards",
+      "Hotel Operations Fundamentals",
+    ],
     link: "/courses",
   },
   {
-    date: "JUNE 18, 2026",
-    title: "NCHM signs international training partnership with premium resort group",
-    link: "/about",
+    title: "Advanced Diploma in Hotel Management",
+    duration: "21 Months",
+    type: "Professional Diploma",
+    description:
+      "Advanced hospitality leadership training focusing on culinary arts, revenue management, guest experience design, and international hotel standard operating procedures.",
+    image: "/images/8.jpeg",
+    icon: Award,
+    features: [
+      "Culinary Arts & Kitchen Production",
+      "Hospitality Revenue Management",
+      "Strategic Hotel Administration",
+      "Industry Placement Assistance",
+    ],
+    link: "/courses",
   },
   {
-    date: "JUNE 10, 2026",
-    title: "Practical food preparation highlight class held at training kitchens",
-    link: "/gallery",
-  },
-  {
-    date: "MAY 28, 2026",
-    title: "Alumni meet outlines placement tracks in Gulf and European markets",
-    link: "/placements",
-  },
-  {
-    date: "MAY 15, 2026",
-    title: "BHM course overview session led by distinguished faculty panel",
-    link: "/faculty",
+    title: "Professional Barista Certification",
+    duration: "1 Month",
+    type: "Specialized Certificate",
+    description:
+      "Intensive, practical certification covering espresso extraction, milk frothing & latte art, bean profiles, sensory cupping, and modern cafe operational skills.",
+    image: "/images/2.jpeg",
+    icon: Coffee,
+    features: [
+      "Espresso Machine Calibration",
+      "Latte Art & Milk Texturing",
+      "Specialty Bean Sourcing & Brewing",
+      "Commercial Cafe Workflow",
+    ],
+    link: "/courses",
   },
 ]
 
-const staggerContainer = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
-}
+// Core Facilities
+const facilities = [
+  {
+    name: "Practical Training Kitchens",
+    category: "Culinary Lab",
+    description:
+      "Fully fitted commercial kitchen stations where students master food production, knife skills, food safety, and multi-course culinary preparation.",
+    image: "/images/kitchen-lab.jpg",
+    specs: ["Commercial burners & ovens", "Individual chef workstations", "HACCP hygiene standards"],
+  },
+  {
+    name: "Food & Beverage Service Lab",
+    category: "Service Training",
+    description:
+      "Mock restaurant and dining setup designed for students to practice fine dining etiquette, banquet service, table setting, and guest interaction.",
+    image: "/images/7.jpeg",
+    specs: ["Restaurant table setups", "Beverage service counter", "Customer etiquette coaching"],
+  },
+  {
+    name: "Professional Barista & Coffee Bar",
+    category: "Specialty Beverages",
+    description:
+      "Equipped with commercial espresso machines, grinders, and brewing gear for intensive hands-on coffee craftsmanship and latte art.",
+    image: "/images/6.jpeg",
+    specs: ["Commercial espresso machines", "Precision grinders & tampers", "Latte art pitchers & tools"],
+  },
+  {
+    name: "Modern Interactive Classrooms",
+    category: "Academic Facilities",
+    description:
+      "Spacious, well-ventilated learning spaces with audiovisual equipment for hospitality management theory, case studies, and presentations.",
+    image: "/images/classroom.jpg",
+    specs: ["Air-conditioned lecture rooms", "Multimedia presentations", "Ergonomic seating"],
+  },
+]
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
-  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
-}
+// Why Choose NCHM
+const institutionalStrengths = [
+  {
+    title: "100% Practical Hospitality Training",
+    description:
+      "Our curriculum is centered on genuine hotel lab sessions, ensuring every student acquires the real-world skills demanded by leading hospitality employers.",
+    icon: Utensils,
+  },
+  {
+    title: "Distinguished BHM Faculty Mentorship",
+    description:
+      "Learn directly from experienced hotel management educators who provide close, personalized mentorship from day one until graduation.",
+    icon: GraduationCap,
+  },
+  {
+    title: "Birgunj's First & Pioneer Institution",
+    description:
+      "Proudly established as the pioneer college of hotel management in Birgunj, conveniently located inside Bright College premises.",
+    icon: Award,
+  },
+  {
+    title: "Industry Placements & Career Readiness",
+    description:
+      "Strong hotel network connecting students to internship tracks and job opportunities in top hotels across Nepal and abroad.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Comprehensive Lab Infrastructure",
+    description:
+      "Hands-on practice in commercial-grade kitchens, mock restaurant dining halls, and dedicated barista coffee workstations.",
+    icon: Building,
+  },
+  {
+    title: "Professional Grooming & Discipline",
+    description:
+      "Instilling international hospitality ethics, punctuality, communication skills, and personal grooming that set our graduates apart.",
+    icon: Users,
+  },
+]
 
-function SectionDivider() {
-  return (
-    <div className="flex items-center justify-center py-4">
-      <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#dba328]/30" />
-      <div className="mx-3 w-1.5 h-1.5 rounded-full bg-[#dba328]/40" />
-      <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#dba328]/30" />
-    </div>
-  )
-}
+// Verified Student Placements
+const testimonials = [
+  {
+    name: "Aarav Sharma",
+    position: "Front Office Associate",
+    property: "Hotel Placeholder International",
+    location: "Kathmandu, Nepal",
+    image: "/images/faculty-1.jpg",
+    quote:
+      "My training at NCHM helped me feel completely confident with guest communication, professional grooming, and hotel operations. The practical classes made all the difference.",
+  },
+  {
+    name: "Sanjana Thapa",
+    position: "Guest Service Trainee",
+    property: "Grand Horizon Hotel",
+    location: "Pokhara, Nepal",
+    image: "/images/faculty-2.jpg",
+    quote:
+      "The practical kitchen and dining labs combined with supportive BHM faculty made it seamless for me to transition into a demanding hotel environment.",
+  },
+  {
+    name: "Ritesh Kumar",
+    position: "F&B Service Assistant",
+    property: "Royal Palm Resort",
+    location: "Biratnagar, Nepal",
+    image: "/images/faculty-3.jpg",
+    quote:
+      "NCHM gave me a rigorous foundation in service standards, teamwork, and coffee brewing. I stepped into my first job already knowing standard operating procedures.",
+  },
+]
 
-function SectionLink({ href, label }: { href: string; label: string }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: 0.3 }}
-      className="text-center mt-12"
-    >
-      <Link
-        href={href}
-        className="group inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-[#dba328]/25 bg-[#dba328]/5 text-[#dba328] font-medium text-sm tracking-wide transition-all duration-300 hover:bg-[#dba328]/10 hover:border-[#dba328]/40 hover:shadow-[0_0_30px_rgba(219,163,40,0.15)]"
-      >
-        {label}
-        <ChevronRight size={16} className="transition-transform group-hover:translate-x-1" />
-      </Link>
-    </motion.div>
-  )
-}
+// News & Announcements
+const announcements = [
+  {
+    date: "ADMISSIONS OPEN",
+    tag: "Enrollment",
+    title: "New Diploma & Barista Certification batch registrations are now open for upcoming intake",
+    desc: "Limited seats available for practical-based training batches. Inquire now at the campus office.",
+    link: "/contact",
+  },
+  {
+    date: "ACADEMIC UPDATE",
+    tag: "Curriculum",
+    title: "Advanced culinary & mock restaurant guest service workshops scheduled this semester",
+    desc: "Hands-on masterclasses covering international banqueting, fine dining setups, and HACCP standards.",
+    link: "/courses",
+  },
+  {
+    date: "CAMPUS LIFE",
+    tag: "Excursion",
+    title: "Hospitality study tour and resort exposure visit organized for senior batch students",
+    desc: "Students gained firsthand exposure to back-of-the-house and front-of-the-house luxury resort operations.",
+    link: "/gallery",
+  },
+]
+
+// FAQ Items
+const faqs = [
+  {
+    question: "Why should I choose Nepal College of Hotel Management (NCHM) in Birgunj?",
+    answer:
+      "NCHM is the first and pioneer hotel management college in Birgunj, conveniently located inside Bright College premises. We focus on 100% practical-based training in dedicated kitchen labs, mock restaurants, and coffee bars, guided by experienced BHM faculty members.",
+  },
+  {
+    question: "What courses and certifications are currently offered at NCHM?",
+    answer:
+      "We offer three premier programs: a 15-month Diploma in Hotel Management, a 21-month Advanced Diploma in Hotel Management, and a 1-month intensive Professional Barista Certification.",
+  },
+  {
+    question: "Is prior experience or a specific academic background required?",
+    answer:
+      "Our programs are designed for ambitious students completing high school (SEE / +2 or equivalent) who want to build a career in hotel management. No prior hotel experience is required; we teach all fundamental and advanced skills from the ground up.",
+  },
+  {
+    question: "Does NCHM assist students with internships and hotel placements?",
+    answer:
+      "Yes. We maintain active connections with leading hotels, resorts, and cafe chains in Kathmandu, Pokhara, Chitwan, and abroad, providing interview preparation, grooming, and placement guidance.",
+  },
+  {
+    question: "Where is the campus located and how can I visit?",
+    answer:
+      "Our campus is situated inside Bright College premises, Birgunj-09, Nepal. You can visit us Sunday through Friday between 9:00 AM and 5:00 PM, or call our admission advisors directly at 9845532370 / 9829232426.",
+  },
+]
 
 export default function HomePage() {
-  const aboutRef = useRef(null)
-  const aboutInView = useInView(aboutRef, { once: true, margin: "-80px" })
+  const [activeFacility, setActiveFacility] = useState(0)
   const [openFaq, setOpenFaq] = useState<number | null>(0)
 
   return (
-    <>
-      {/* ========== HERO ========== */}
-      <section className="relative min-h-screen flex flex-col justify-between overflow-hidden pt-24 bg-background text-foreground transition-colors duration-300">
-        <div className="absolute inset-0 z-0">
-          <Image src="/images/campus.jpg" alt="" fill className="object-cover opacity-20" priority />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/75 to-background transition-colors duration-300" />
-        </div>
+    <div className="bg-[#F8F7F3] text-[#555B6E]">
+      {/* =========================================================================
+          HERO SECTION: Contemporary Campus Editorial Composition
+      ========================================================================= */}
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-b from-[#FFFFFF] via-[#F8F7F3] to-[#F1F2F5] border-b border-[#30345B]/8">
+        {/* Subtle Decorative Grid Pattern */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.035] bg-[radial-gradient(#30345B_1px,transparent_1px)] [background-size:28px_28px]" />
+        
+        {/* Ambient Gold/Navy Blobs */}
+        <div className="absolute top-20 right-10 w-[500px] h-[500px] rounded-full bg-[#DFA526]/8 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-20 left-10 w-[450px] h-[450px] rounded-full bg-[#30345B]/5 blur-3xl pointer-events-none" />
 
-        {/* Decorative elements */}
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/4 right-[10%] w-64 h-64 border border-[#dba328]/10 rounded-full hidden lg:block"
-          aria-hidden="true"
-        />
-        <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-1/4 left-[5%] w-48 h-48 border border-foreground/5 rounded-full hidden lg:block"
-          aria-hidden="true"
-        />
-
-        {/* Hero Content */}
-        <div className="flex-grow flex items-center justify-center relative z-10 px-6 py-12">
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
-            className="mx-auto max-w-5xl text-center"
-          >
-            <motion.div variants={fadeUp}>
-              <span className="inline-flex mb-6 px-5 py-2 rounded-full border border-[#dba328]/25 bg-[#dba328]/5 text-[#dba328] text-sm tracking-[0.2em] uppercase font-semibold">
-                Birgunj, Nepal
-              </span>
-            </motion.div>
-
-            <motion.h1
-              variants={fadeUp}
-              className="font-sans text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-foreground text-balance"
-            >
-              Nepal College of{" "}
-              <motion.span
-                className="bg-gradient-to-r from-[#dba328] via-[#eebf56] to-[#dba328] bg-clip-text text-transparent bg-[length:200%_auto]"
-                animate={{ backgroundPosition: ["0% center", "200% center"] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+        <div className="relative z-10 mx-auto max-w-7xl px-6">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            {/* Left Content (7 Cols) */}
+            <div className="lg:col-span-7 space-y-7 text-center lg:text-left">
+              {/* Institution Pill Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#DFA526]/12 border border-[#DFA526]/35 text-[#30345B] text-xs font-bold uppercase tracking-widest shadow-sm"
               >
-                Hotel Management
-              </motion.span>
-            </motion.h1>
+                <span className="w-2 h-2 rounded-full bg-[#DFA526] animate-pulse" />
+                Birgunj&apos;s Pioneer Hospitality College
+              </motion.div>
 
-            <motion.p
-              variants={fadeUp}
-              className="mt-6 text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto leading-relaxed text-pretty font-medium"
-            >
-              {siteData.distinction} with hands-on learning, committed BHM faculty, and a solid foundation in professional hospitality.
-            </motion.p>
-
-            <motion.div variants={fadeUp} className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/courses"
-                className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#dba328] to-[#eebf56] text-[#13152d] font-bold text-sm tracking-wide transition-all duration-300 hover:shadow-[0_0_35px_rgba(219,163,40,0.4)] hover:scale-[1.02] w-full sm:w-auto justify-center"
+              {/* Headline */}
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#1E2340] tracking-tight leading-[1.12]"
               >
-                <BookOpen size={18} />
-                Explore Courses
-                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-              </Link>
-              <Link
-                href="/contact"
-                className="group inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-foreground text-foreground font-bold text-sm tracking-wide transition-all duration-300 hover:bg-foreground hover:text-background w-full sm:w-auto justify-center"
-              >
-                Apply Now
-                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-
-        {/* Scrolling Ticker Text */}
-        <div className="relative z-10 w-full mt-auto">
-          <div className="ticker-wrap border-y border-[#dba328]/20 bg-background py-6 transition-colors duration-300">
-            <div className="ticker">
-              <div className="ticker-item font-sans font-extrabold text-2xl sm:text-3xl tracking-wider text-foreground">
-                Nepal College of Hotel Management • <span className="ticker-item-outline">Practical Based</span> • Dedicated BHM Faculty • <span className="ticker-item-outline">First in Birgunj</span> •
-              </div>
-              <div className="ticker-item font-sans font-extrabold text-2xl sm:text-3xl tracking-wider text-foreground">
-                Nepal College of Hotel Management • <span className="ticker-item-outline">Practical Based</span> • Dedicated BHM Faculty • <span className="ticker-item-outline">First in Birgunj</span> •
-              </div>
-              <div className="ticker-item font-sans font-extrabold text-2xl sm:text-3xl tracking-wider text-foreground">
-                Nepal College of Hotel Management • <span className="ticker-item-outline">Practical Based</span> • Dedicated BHM Faculty • <span className="ticker-item-outline">First in Birgunj</span> •
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========== SPLIT ABOUT & STATS ========== */}
-      <section ref={aboutRef} className="relative py-24 overflow-hidden bg-background">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid lg:grid-cols-12 gap-12 items-start">
-            
-            {/* Left Column: Dark Navy container with image and stats */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              animate={aboutInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="lg:col-span-6 bg-[#32365b] rounded-3xl p-8 border border-[#dba328]/15 shadow-xl flex flex-col justify-between"
-            >
-              <div>
-                <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-inner mb-8">
-                  <Image src="/images/10.jpeg" alt="NCHM students" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#13152d]/60 to-transparent" />
-                </div>
-                <h3 className="text-white text-2xl font-bold mb-4 font-sans">Empowering Future Hoteliers</h3>
-                <p className="text-[#FAF6F0]/70 text-sm leading-relaxed mb-8">
-                  We focus strictly on industry requirements. NCHM provides dynamic practical learning workspaces designed to replicate actual kitchen and hospitality environments.
-                </p>
-              </div>
-
-              {/* Stats row */}
-              <div className="grid grid-cols-2 gap-6 pt-6 border-t border-[#FAF6F0]/10">
-                <div>
-                  <div className="text-4xl font-extrabold text-[#dba328] font-sans">92%</div>
-                  <div className="h-0.5 bg-[#dba328]/35 w-full my-2" />
-                  <div className="text-xs text-[#FAF6F0]/60 font-medium">Graduates hold key positions in hotels.</div>
-                </div>
-                <div>
-                  <div className="text-4xl font-extrabold text-[#dba328] font-sans">100%</div>
-                  <div className="h-0.5 bg-[#dba328]/35 w-full my-2" />
-                  <div className="text-xs text-[#FAF6F0]/60 font-medium">Practical-focused training curriculum.</div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Right Column: Statement, portrait image, and ratings */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={aboutInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="lg:col-span-6 space-y-8 lg:pl-6"
-            >
-              <div className="space-y-4">
-                <span className="border border-[#dba328]/30 bg-[#dba328]/5 text-[#dba328] px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase inline-block">
-                  SINCE 2005
+                Shaping Tomorrow&apos;s{" "}
+                <span className="text-[#30345B]">Leaders in</span>{" "}
+                <span className="text-[#DFA526] relative inline-block">
+                  Hospitality.
+                  <span className="absolute -bottom-1.5 left-0 right-0 h-1 bg-[#DFA526]/30 rounded-full" />
                 </span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground leading-tight font-sans">
-                  When dreams align with the right chance, the possibilities become endless.
-                </h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  Founded as the pioneer hotel management college in Birgunj, NCHM inside Bright College premises is committed to offering qualitative, affordable, and fully-equipped study systems for ambitious local hospitality professionals.
-                </p>
+              </motion.h1>
+
+              {/* Supporting Text */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-base sm:text-lg md:text-xl text-[#555B6E] leading-relaxed max-w-2xl font-normal"
+              >
+                Discover your potential through professional hospitality education, practical learning and industry-focused training at Nepal College of Hotel Management.
+              </motion.p>
+
+              {/* CTAs */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+              >
+                <Link
+                  href="/courses"
+                  className="btn-navy !py-3.5 !px-8 text-sm font-bold shadow-md hover:shadow-lg w-full sm:w-auto text-center"
+                >
+                  <BookOpen size={17} className="text-[#DFA526]" />
+                  Explore Programs
+                  <ArrowRight size={16} />
+                </Link>
+                <Link
+                  href="/contact"
+                  className="btn-gold !py-3.5 !px-8 text-sm font-bold shadow-md hover:shadow-lg w-full sm:w-auto text-center"
+                >
+                  <GraduationCap size={18} />
+                  Apply for Admission
+                </Link>
+              </motion.div>
+
+              {/* Trust Indicators */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="pt-6 border-t border-[#30345B]/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-left"
+              >
+                {stats.map((s) => (
+                  <div key={s.label} className="space-y-1">
+                    <div className="font-heading text-2xl font-extrabold text-[#30345B]">
+                      {s.value}
+                    </div>
+                    <div className="text-xs font-bold text-[#1E2340] leading-tight">
+                      {s.label}
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Right Visual Composition (5 Cols) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="lg:col-span-5 relative"
+            >
+              {/* Main Editorial Image Frame */}
+              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
+                <Image
+                  src="/images/kitchen-lab.jpg"
+                  alt="Students training in practical hospitality kitchen lab at NCHM Birgunj"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#20233E]/80 via-transparent to-transparent" />
+
+                {/* Bottom Overlay Badge */}
+                <div className="absolute bottom-6 left-6 right-6 text-white p-5 rounded-2xl bg-[#30345B]/85 backdrop-blur-md border border-white/15">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-[#DFA526] text-[#20233E] flex items-center justify-center font-bold flex-shrink-0">
+                      <Utensils size={20} />
+                    </div>
+                    <div>
+                      <div className="font-heading font-bold text-sm text-white">
+                        Practical Culinary & Hotel Lab
+                      </div>
+                      <div className="text-xs text-[#DFA526] font-medium">
+                        100% Hands-On Kitchen Training
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="relative rounded-3xl overflow-hidden aspect-[16/10] shadow-lg border border-border/10">
+              {/* Floating Top Badge */}
+              <div className="absolute -top-4 -left-4 sm:-left-6 bg-white rounded-2xl p-4 shadow-xl border border-[#30345B]/8 flex items-center gap-3.5 z-20">
+                <div className="relative w-12 h-12 rounded-full overflow-hidden border border-[#DFA526] bg-white flex-shrink-0">
+                  <Image src="/images/logo.jpeg" alt="NCHM Official Crest" fill className="object-cover" />
+                </div>
+                <div>
+                  <div className="font-heading font-extrabold text-xs text-[#30345B] uppercase tracking-wider">
+                    Established 1st
+                  </div>
+                  <div className="text-xs font-semibold text-[#555B6E]">
+                    Hotel College in Birgunj
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating Secondary Thumbnail */}
+              <div className="absolute -bottom-6 -right-4 sm:-right-6 w-36 sm:w-44 aspect-square rounded-2xl overflow-hidden shadow-2xl border-4 border-white hidden sm:block z-20">
                 <Image
-                  src="/images/about.jpg"
-                  alt="NCHM campus operations"
+                  src="/images/2.jpeg"
+                  alt="Barista and beverage training at NCHM"
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                
-                {/* Rating Badge Overlay */}
-                <div className="absolute bottom-5 left-5 bg-background/90 backdrop-blur-md rounded-2xl p-4 border border-border/20 shadow-xl flex items-center gap-3">
-                  <div className="flex -space-x-2">
-                    {[1, 2, 3].map((num) => (
-                      <div key={num} className="w-8 h-8 rounded-full border-2 border-background relative overflow-hidden bg-[#1c1e3a]">
-                        <Image src="/placeholder-user.jpg" alt="" fill className="object-cover opacity-80" />
-                      </div>
-                    ))}
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-foreground">100+ Students</div>
-                    <div className="text-[10px] text-muted-foreground">Certified & Placed globally</div>
-                  </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-2.5">
+                  <span className="text-[11px] font-bold text-white leading-tight">
+                    Barista Lab
+                  </span>
                 </div>
               </div>
             </motion.div>
-
-          </div>
-
-          <SectionLink href="/about" label="Learn More About Us" />
-        </div>
-      </section>
-
-      {/* ========== HIGHLIGHTS SECTION ========== */}
-      <section className="relative py-24 bg-muted/40 border-y border-border/20">
-        <div className="mx-auto max-w-7xl px-6">
-          <SectionHeader 
-            label="Why NCHM" 
-            title="Our Key" 
-            highlight="Highlights"
-            description="A focused hospitality campus inside Bright College premises for students who want practical learning in Birgunj."
-          />
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { 
-                title: "Practical Training", 
-                desc: "Learn hospitality skills through hands-on classes designed around real hotel operations.",
-                icon: Building 
-              },
-              { 
-                title: "BHM Faculty Support", 
-                desc: "Study with dedicated BHM faculty members who guide students closely throughout the course.",
-                icon: Globe 
-              },
-              { 
-                title: "Birgunj Location", 
-                desc: "Conveniently located inside Bright College, Birgunj-09, Nepal.",
-                icon: Users 
-              },
-              { 
-                title: "Pioneer in the City", 
-                desc: "Recognized as the first hotel management college in Birgunj.",
-                icon: Award 
-              },
-            ].map((item, i) => {
-              const Icon = item.icon || Award
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="bg-card hover:bg-card/85 border border-border/30 rounded-3xl p-8 transition-all duration-300"
-                >
-                  <div className="w-12 h-12 rounded-2xl bg-[#dba328]/10 text-[#dba328] flex items-center justify-center mb-6">
-                    <Icon size={24} />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-3 font-sans">{item.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
-                </motion.div>
-              )
-            })}
           </div>
         </div>
       </section>
 
-      {/* ========== COURSES HIGHLIGHT ========== */}
-      <section className="relative py-24 bg-background">
+      {/* =========================================================================
+          SECTION C: About NCHM Introduction (Two-Column Balanced Whitespace)
+      ========================================================================= */}
+      <section className="py-24 bg-white border-b border-[#30345B]/8">
         <div className="mx-auto max-w-7xl px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-center mb-16"
-          >
-            <span className="border border-[#dba328]/35 bg-[#dba328]/5 text-[#dba328] px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase inline-block">
-              Programs
-            </span>
-            <h2 className="mt-4 font-sans text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground tracking-tight">
-              Our Hospitality <span className="text-[#dba328]">Courses</span>
-            </h2>
-            <p className="mt-4 text-muted-foreground max-w-xl mx-auto leading-relaxed">
-              Industry-aligned programs designed to equip you with the skills to excel in global hotel management.
-            </p>
-          </motion.div>
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            {/* Left Image Composition (5 Cols) */}
+            <div className="lg:col-span-5 relative">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-xl border border-[#30345B]/10">
+                <Image
+                  src="/images/10.jpeg"
+                  alt="Nepal College of Hotel Management students and faculty"
+                  fill
+                  className="object-cover"
+                />
+              </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {courses.map((course, i) => {
-              const Icon = course.icon
-              return (
-                <motion.div
-                  key={course.title}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.15 }}
-                  whileHover={{ y: -6 }}
-                  className="group bg-card border border-border/20 rounded-3xl overflow-hidden transition-all duration-300"
-                >
-                  <div className="relative h-56 overflow-hidden">
-                    <Image
-                      src={course.image}
-                      alt={course.title}
-                      fill
-                      className="object-cover transition-transform duration-750 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#13152d]/90 via-[#13152d]/30 to-transparent" />
-                    <div className="absolute bottom-4 left-4 flex items-center gap-2">
-                      <span className="px-3 py-1 rounded-full bg-[#dba328] text-[#13152d] text-xs font-bold flex items-center gap-1.5">
-                        <Clock size={12} />
-                        {course.duration}
-                      </span>
-                    </div>
+              {/* Complementary overlapping image */}
+              <div className="relative -mt-16 ml-auto w-3/4 aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-white">
+                <Image
+                  src="/images/about.jpg"
+                  alt="Hospitality training environment at NCHM"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Decorative Accent Pill */}
+              <div className="absolute -bottom-4 left-6 bg-[#30345B] text-white px-5 py-3 rounded-2xl shadow-lg border border-[#DFA526]/30 flex items-center gap-3">
+                <GraduationCap size={20} className="text-[#DFA526]" />
+                <div>
+                  <div className="font-heading font-bold text-xs uppercase tracking-wider text-[#DFA526]">
+                    Campus Location
                   </div>
-                  <div className="p-6 space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-[#dba328]/10 flex items-center justify-center flex-shrink-0 text-[#dba328]">
-                        <Icon size={18} />
-                      </div>
-                      <h3 className="font-sans text-lg font-bold text-foreground leading-snug">{course.title}</h3>
-                    </div>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{course.description}</p>
+                  <div className="text-xs text-white/90 font-medium">
+                    Inside Bright College, Birgunj-09
                   </div>
-                </motion.div>
-              )
-            })}
-          </div>
+                </div>
+              </div>
+            </div>
 
-          <SectionLink href="/courses" label="View All Courses" />
-        </div>
-      </section>
-
-      {/* ========== FAQ ACCORDION SECTION ========== */}
-      <section className="relative py-24 bg-muted/20 border-y border-border/10">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
-            
-            {/* Left side: Photo of student */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-5 relative aspect-square lg:aspect-[3/4] rounded-3xl overflow-hidden shadow-md border border-border/15"
-            >
-              <Image src="/images/6.jpeg" alt="Student sitting on campus" fill className="object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#13152d]/50 via-transparent to-transparent" />
-            </motion.div>
-
-            {/* Right side: Accordion list */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="lg:col-span-7 space-y-6"
-            >
-              <div>
-                <span className="border border-[#dba328]/30 bg-[#dba328]/5 text-[#dba328] px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase inline-block">
-                  FAQ & ANSWER
+            {/* Right Narrative Content (7 Cols) */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="space-y-3">
+                <span className="gold-badge">
+                  Institutional Overview
                 </span>
-                <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mt-4 leading-tight font-sans">
-                  Answers to your questions, every step of the way.
+                <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1E2340] tracking-tight leading-tight">
+                  Pioneering Professional Hospitality Education in Birgunj.
                 </h2>
               </div>
 
-              <div className="space-y-4">
-                {faqs.map((faq, idx) => {
-                  const isOpen = openFaq === idx
-                  return (
-                    <div
-                      key={idx}
-                      className="bg-card border border-border/40 rounded-2xl overflow-hidden transition-colors duration-300"
-                    >
-                      <button
-                        onClick={() => setOpenFaq(isOpen ? null : idx)}
-                        className="w-full flex items-center justify-between p-5 text-left font-sans font-bold text-foreground transition-colors hover:text-[#dba328]"
-                      >
-                        <span>{faq.question}</span>
-                        <div className="flex-shrink-0 w-8 h-8 rounded-full border border-border/40 flex items-center justify-center text-foreground hover:bg-[#dba328] hover:text-[#13152d] transition-all">
-                          {isOpen ? <Minus size={14} /> : <Plus size={14} />}
-                        </div>
-                      </button>
-                      
-                      <AnimatePresence initial={false}>
-                        {isOpen && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3, ease: "easeInOut" }}
-                            className="overflow-hidden"
-                          >
-                            <div className="px-5 pb-5 pt-1 text-sm text-muted-foreground leading-relaxed border-t border-border/10">
-                              {faq.answer}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+              <p className="text-base sm:text-lg text-[#555B6E] leading-relaxed">
+                Nepal College of Hotel Management (NCHM) was established with a singular mission: to provide world-class, accessible, and thoroughly practical hospitality education to the aspiring youth of Birgunj and the surrounding regions.
+              </p>
+
+              <div className="grid sm:grid-cols-2 gap-6 pt-2">
+                <div className="p-5 rounded-2xl bg-[#F8F7F3] border border-[#30345B]/8 space-y-2">
+                  <div className="flex items-center gap-2.5 text-[#30345B] font-heading font-bold text-base">
+                    <div className="w-8 h-8 rounded-lg bg-[#30345B] text-white flex items-center justify-center">
+                      <Award size={16} className="text-[#DFA526]" />
                     </div>
-                  )
-                })}
+                    Our Vision
+                  </div>
+                  <p className="text-xs text-[#555B6E] leading-relaxed">
+                    To be the most trusted, industry-respected hospitality institute in Nepal, renowned for producing disciplined, skilled, and work-ready hotel professionals.
+                  </p>
+                </div>
+
+                <div className="p-5 rounded-2xl bg-[#F8F7F3] border border-[#30345B]/8 space-y-2">
+                  <div className="flex items-center gap-2.5 text-[#30345B] font-heading font-bold text-base">
+                    <div className="w-8 h-8 rounded-lg bg-[#DFA526] text-[#20233E] flex items-center justify-center">
+                      <CheckCircle2 size={16} />
+                    </div>
+                    Our Mission
+                  </div>
+                  <p className="text-xs text-[#555B6E] leading-relaxed">
+                    Delivering 100% practical-based training in modern culinary kitchens and dining labs, supported by dedicated BHM faculty and lifelong career guidance.
+                  </p>
+                </div>
               </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
-      {/* ========== NEWS / ANNOUNCEMENTS LIST ========== */}
-      <section className="relative py-24 bg-muted/30 text-foreground border-y border-border/20 transition-colors duration-300">
-        <div className="mx-auto max-w-7xl px-6">
-          
-          {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
-            <div>
-              <span className="border border-foreground/20 bg-foreground/5 text-foreground px-4 py-1.5 rounded-full text-xs font-extrabold tracking-wider uppercase inline-block">
-                NEWS & INSIGHTS
-              </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground mt-4 leading-tight font-sans tracking-tight">
-                News about our NCHM university
-              </h2>
-            </div>
-            
-            <Link
-              href="/courses"
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-foreground/30 text-foreground font-bold text-xs tracking-wider uppercase transition-all duration-300 hover:bg-foreground hover:text-background"
-            >
-              MORE NEWS
-              <ArrowRight size={14} />
-            </Link>
-          </div>
-
-          {/* Vertical news list */}
-          <div className="border-t border-border/30">
-            {newsItems.map((news, idx) => (
-              <Link
-                key={idx}
-                href={news.link}
-                className="group flex flex-col md:flex-row md:items-center justify-between py-6 px-4 border-b border-border/30 transition-all duration-300 hover:bg-foreground/5 hover:text-foreground"
-              >
-                <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-12 flex-grow">
-                  <div className="text-xs font-bold tracking-wider text-muted-foreground group-hover:text-foreground/75 w-32 shrink-0">
-                    {news.date}
-                  </div>
-                  <div className="text-lg font-bold text-foreground group-hover:text-foreground transition-colors duration-200">
-                    {news.title}
-                  </div>
-                </div>
-
-                <div className="mt-4 md:mt-0 flex shrink-0 justify-end">
-                  <div className="w-10 h-10 rounded-full border border-border text-foreground group-hover:bg-[#dba328] group-hover:text-background group-hover:border-transparent transition-all flex items-center justify-center">
-                    <ArrowRight size={16} />
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ========== FACULTY HIGHLIGHT ========== */}
-      <section className="relative py-24 bg-background">
-        <div className="mx-auto max-w-7xl px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-center mb-16"
-          >
-            <span className="border border-[#dba328]/35 bg-[#dba328]/5 text-[#dba328] px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase inline-block">
-              Our Team
-            </span>
-            <h2 className="mt-4 font-sans text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground">
-              Distinguished <span className="text-[#dba328]">Faculty</span>
-            </h2>
-            <p className="mt-4 text-muted-foreground max-w-xl mx-auto leading-relaxed">
-              Meet the faculty members supporting our hospitality students with BHM-focused learning.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {faculty.map((member, i) => (
-              <motion.div
-                key={member.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group bg-card border border-border/20 rounded-3xl overflow-hidden transition-all duration-300 text-center"
-              >
-                <div className="relative w-full aspect-square overflow-hidden bg-muted">
-                  <Image
-                    src={member.image}
-                    alt={`Portrait of ${member.name}`}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-103"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#13152d]/60 to-transparent" />
-                </div>
-                <div className="p-5">
-                  <h3 className="font-sans text-base font-bold text-foreground">{member.name}</h3>
-                  <p className="text-[#dba328] text-xs font-semibold tracking-wider mt-1 uppercase">{member.designation}</p>
-                  <div className="mt-4 flex items-center justify-center gap-2">
-                    {[Linkedin, Twitter, Mail].map((Icon, idx) => (
-                      <span
-                        key={idx}
-                        className="w-7 h-7 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-[#dba328] hover:border-[#dba328]/45 transition-all cursor-pointer"
-                      >
-                        <Icon size={12} />
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <SectionLink href="/faculty" label="Meet All Faculty" />
-        </div>
-      </section>
-
-      {/* ========== GALLERY HIGHLIGHT ========== */}
-      <section className="relative py-24 bg-muted/20 border-y border-border/10">
-        <div className="mx-auto max-w-7xl px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-center mb-16"
-          >
-            <span className="border border-[#dba328]/35 bg-[#dba328]/5 text-[#dba328] px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase inline-block">
-              Campus Life
-            </span>
-            <h2 className="mt-4 font-sans text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground">
-              Photo <span className="text-[#dba328]">Gallery</span>
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {galleryImages.map((image, i) => (
-              <motion.div
-                key={image.src}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer border border-border/15"
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-[#13152d]/0 group-hover:bg-[#13152d]/70 transition-all duration-300 flex flex-col items-center justify-center">
-                  <span className="text-white text-sm font-bold tracking-wide opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-3 group-hover:translate-y-0">
-                    {image.category}
-                  </span>
-                </div>
-                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#dba328]/40 transition-colors duration-300" />
-              </motion.div>
-            ))}
-          </div>
-
-          <SectionLink href="/gallery" label="View Full Gallery" />
-        </div>
-      </section>
-
-      {/* ========== CONTACT HIGHLIGHT ========== */}
-      <section className="relative py-24 bg-background">
-        <div className="mx-auto max-w-7xl px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-center mb-16"
-          >
-            <span className="border border-[#dba328]/35 bg-[#dba328]/5 text-[#dba328] px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase inline-block">
-              Get in Touch
-            </span>
-            <h2 className="mt-4 font-sans text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground">
-              Contact <span className="text-[#dba328]">Us</span>
-            </h2>
-            <p className="mt-4 text-muted-foreground max-w-xl mx-auto leading-relaxed">
-              Have questions about our programs? Reach out and our admissions team will be happy to assist.
-            </p>
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: MapPin, ...contactCards[0] },
-              { icon: Phone, ...contactCards[1] },
-              { icon: Mail, ...contactCards[2] },
-              { icon: Clock, ...contactCards[3] },
-            ].map((item, i) => {
-              const Icon = item.icon
-              return (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, y: 25 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="bg-card border border-border/25 rounded-2xl p-6 transition-all duration-300 hover:border-[#dba328]/40"
+              <div className="pt-4 flex flex-wrap items-center gap-4">
+                <Link
+                  href="/about"
+                  className="btn-navy !py-3 !px-7 text-sm font-semibold"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[#dba328]/10 text-[#dba328] flex items-center justify-center mb-4">
-                    <Icon size={18} />
+                  Learn More About NCHM
+                  <ArrowRight size={15} />
+                </Link>
+                <Link
+                  href="/faculty"
+                  className="btn-outline-navy !py-3 !px-7 text-sm font-semibold"
+                >
+                  Meet Our Faculty
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION D: Academic Programs
+      ========================================================================= */}
+      <section className="py-24 bg-[#F8F7F3] border-b border-[#30345B]/8">
+        <div className="mx-auto max-w-7xl px-6">
+          {/* Header */}
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span className="gold-badge">
+              Academic Offerings
+            </span>
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1E2340] tracking-tight">
+              Hospitality Programs Designed for <span className="text-[#DFA526]">Career Success</span>
+            </h2>
+            <p className="text-base sm:text-lg text-[#555B6E] leading-relaxed">
+              Curriculum structured according to contemporary luxury hotel standards, balancing intensive culinary and front-of-house practicals with essential management theory.
+            </p>
+          </div>
+
+          {/* 3 Program Cards */}
+          <div className="grid md:grid-cols-3 gap-8">
+            {programs.map((prog, index) => {
+              const Icon = prog.icon
+              return (
+                <div
+                  key={prog.title}
+                  className="campus-card overflow-hidden flex flex-col justify-between group"
+                >
+                  <div>
+                    {/* Image Header with Duration Badge */}
+                    <div className="relative h-60 overflow-hidden bg-[#30345B]">
+                      <Image
+                        src={prog.image}
+                        alt={prog.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#20233E]/85 via-black/20 to-transparent" />
+                      
+                      <div className="absolute top-4 left-4">
+                        <span className="px-3 py-1 rounded-full bg-white/95 text-[#30345B] text-xs font-bold shadow-sm">
+                          {prog.type}
+                        </span>
+                      </div>
+
+                      <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#DFA526] text-[#20233E] text-xs font-extrabold shadow-md">
+                          <Clock size={13} />
+                          {prog.duration}
+                        </span>
+                        <div className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white">
+                          <Icon size={18} />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-7 space-y-4">
+                      <h3 className="font-heading font-extrabold text-xl text-[#1E2340] group-hover:text-[#30345B] transition-colors leading-snug">
+                        {prog.title}
+                      </h3>
+                      <p className="text-sm text-[#555B6E] leading-relaxed">
+                        {prog.description}
+                      </p>
+
+                      <div className="pt-2 border-t border-gray-100 space-y-2">
+                        <div className="text-xs font-bold uppercase tracking-wider text-[#30345B]">
+                          Core Curriculum Focus:
+                        </div>
+                        <ul className="space-y-1.5 text-xs text-[#555B6E]">
+                          {prog.features.map((feat) => (
+                            <li key={feat} className="flex items-center gap-2">
+                              <CheckCircle2 size={14} className="text-[#DFA526] flex-shrink-0" />
+                              <span>{feat}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
                   </div>
-                  <p className="text-[#dba328] text-xs font-bold tracking-wider uppercase mb-1">{item.label}</p>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{item.value}</p>
-                </motion.div>
+
+                  {/* Card Action */}
+                  <div className="p-7 pt-0">
+                    <Link
+                      href={prog.link}
+                      className="w-full btn-outline-navy !py-3 text-xs font-bold flex items-center justify-center gap-2 group-hover:bg-[#30345B] group-hover:text-white transition-all"
+                    >
+                      View Curriculum & Details
+                      <ArrowRight size={14} />
+                    </Link>
+                  </div>
+                </div>
               )
             })}
           </div>
 
-          <SectionLink href="/contact" label="Send Us a Message" />
+          <div className="mt-14 text-center">
+            <Link
+              href="/courses"
+              className="btn-navy !py-3.5 !px-8 text-sm font-bold shadow-md hover:shadow-lg inline-flex"
+            >
+              Explore Full Course Directory
+              <ChevronRight size={16} />
+            </Link>
+          </div>
         </div>
       </section>
-    </>
+
+      {/* =========================================================================
+          SECTION E: Why Choose NCHM / Institutional Strengths
+      ========================================================================= */}
+      <section className="py-24 bg-white border-b border-[#30345B]/8">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span className="gold-badge">
+              Why Choose NCHM
+            </span>
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1E2340] tracking-tight">
+              The NCHM Hospitality <span className="text-[#DFA526]">Advantage</span>
+            </h2>
+            <p className="text-base sm:text-lg text-[#555B6E] leading-relaxed">
+              We focus strictly on the competencies that hotel general managers look for: practical fluency, high service standards, and professional integrity.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {institutionalStrengths.map((item, idx) => {
+              const Icon = item.icon
+              return (
+                <div
+                  key={item.title}
+                  className="p-8 rounded-2xl bg-[#F8F7F3] border border-[#30345B]/8 hover:border-[#DFA526]/40 transition-all duration-300 space-y-4 hover:-translate-y-1 hover:shadow-lg group"
+                >
+                  <div className="w-13 h-13 rounded-2xl bg-white border border-[#30345B]/10 group-hover:bg-[#30345B] text-[#30345B] group-hover:text-[#DFA526] transition-all flex items-center justify-center shadow-sm">
+                    <Icon size={24} />
+                  </div>
+                  <h3 className="font-heading font-extrabold text-lg text-[#1E2340] leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-[#555B6E] leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION F: Facilities and Practical Learning (Interactive Visual Showcase)
+      ========================================================================= */}
+      <section className="py-24 bg-[#20233E] text-white border-b border-[#DFA526]/20">
+        <div className="mx-auto max-w-7xl px-6">
+          {/* Header */}
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span className="gold-badge-dark">
+              Practical Learning Spaces
+            </span>
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+              World-Class Hospitality <span className="text-[#DFA526]">Training Facilities</span>
+            </h2>
+            <p className="text-base sm:text-lg text-white/70 leading-relaxed">
+              Hospitality is an art mastered through repetitive practical experience. Step inside our purpose-built training laboratories.
+            </p>
+          </div>
+
+          {/* Tab Selector */}
+          <div className="flex flex-wrap justify-center gap-2 mb-12">
+            {facilities.map((fac, idx) => (
+              <button
+                key={fac.name}
+                onClick={() => setActiveFacility(idx)}
+                className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
+                  activeFacility === idx
+                    ? "bg-[#DFA526] text-[#20233E] shadow-lg scale-105"
+                    : "bg-white/10 text-white/80 hover:bg-white/15 hover:text-white"
+                }`}
+              >
+                {fac.name}
+              </button>
+            ))}
+          </div>
+
+          {/* Active Facility Presentation */}
+          <div className="bg-[#30345B] border border-white/10 rounded-3xl p-6 lg:p-10 shadow-2xl">
+            <div className="grid lg:grid-cols-12 gap-10 items-center">
+              {/* Image (7 cols) */}
+              <div className="lg:col-span-7 relative aspect-[16/10] rounded-2xl overflow-hidden shadow-inner border border-white/15">
+                <Image
+                  src={facilities[activeFacility].image}
+                  alt={facilities[activeFacility].name}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute top-4 left-4">
+                  <span className="px-3.5 py-1 rounded-full bg-[#DFA526] text-[#20233E] text-xs font-bold uppercase tracking-wider">
+                    {facilities[activeFacility].category}
+                  </span>
+                </div>
+              </div>
+
+              {/* Text Info (5 cols) */}
+              <div className="lg:col-span-5 space-y-6">
+                <div>
+                  <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white">
+                    {facilities[activeFacility].name}
+                  </h3>
+                  <p className="mt-3 text-white/80 text-sm leading-relaxed">
+                    {facilities[activeFacility].description}
+                  </p>
+                </div>
+
+                <div className="space-y-3 pt-3 border-t border-white/10">
+                  <div className="text-xs font-bold uppercase tracking-widest text-[#DFA526]">
+                    Laboratory Specifications:
+                  </div>
+                  <ul className="space-y-2 text-sm text-white/90">
+                    {facilities[activeFacility].specs.map((spec) => (
+                      <li key={spec} className="flex items-center gap-2.5">
+                        <CheckCircle2 size={16} className="text-[#DFA526] flex-shrink-0" />
+                        <span>{spec}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="pt-2">
+                  <Link
+                    href="/gallery"
+                    className="btn-gold !py-2.5 !px-6 text-xs font-bold inline-flex items-center gap-2"
+                  >
+                    View All Campus Photos
+                    <ArrowRight size={14} />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION G: Student Life / Campus Experience (Editorial Asymmetric Grid)
+      ========================================================================= */}
+      <section className="py-24 bg-[#F8F7F3] border-b border-[#30345B]/8">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
+            <div className="space-y-3 max-w-2xl">
+              <span className="gold-badge">
+                Student Life & Training
+              </span>
+              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1E2340] tracking-tight">
+                Authentic Moments from Our <span className="text-[#DFA526]">Campus</span>
+              </h2>
+              <p className="text-base sm:text-lg text-[#555B6E] leading-relaxed">
+                From morning kitchen preparation to customer service simulations and hospitality excursions, experience how students thrive at NCHM.
+              </p>
+            </div>
+
+            <Link
+              href="/gallery"
+              className="btn-navy !py-3 !px-7 text-xs font-bold uppercase tracking-wider shrink-0 self-start lg:self-auto"
+            >
+              Browse Photo Gallery
+              <ArrowRight size={15} />
+            </Link>
+          </div>
+
+          {/* Asymmetric Gallery Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md border border-[#30345B]/10">
+              <Image
+                src="/images/5.jpeg"
+                alt="Culinary presentation and student dish display"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#20233E]/80 via-transparent to-transparent flex items-end p-5">
+                <span className="text-white text-sm font-bold">Culinary Production & Food Display</span>
+              </div>
+            </div>
+
+            <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md border border-[#30345B]/10">
+              <Image
+                src="/images/9.jpeg"
+                alt="Culinary arts masterclass at NCHM"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#20233E]/80 via-transparent to-transparent flex items-end p-5">
+                <span className="text-white text-sm font-bold">Kitchen Practical Sessions</span>
+              </div>
+            </div>
+
+            <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md border border-[#30345B]/10">
+              <Image
+                src="/images/1.jpeg"
+                alt="Student industrial tour and study excursion"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#20233E]/80 via-transparent to-transparent flex items-end p-5">
+                <span className="text-white text-sm font-bold">Hospitality Industry Study Tour</span>
+              </div>
+            </div>
+
+            <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md border border-[#30345B]/10">
+              <Image
+                src="/images/4.jpeg"
+                alt="Commercial baking and pastry training"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#20233E]/80 via-transparent to-transparent flex items-end p-5">
+                <span className="text-white text-sm font-bold">Baking & Kitchen Operations</span>
+              </div>
+            </div>
+
+            <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md border border-[#30345B]/10">
+              <Image
+                src="/images/8.jpeg"
+                alt="Food and beverage service table setup"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#20233E]/80 via-transparent to-transparent flex items-end p-5">
+                <span className="text-white text-sm font-bold">F&B Fine Dining Operations</span>
+              </div>
+            </div>
+
+            <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md border border-[#30345B]/10">
+              <Image
+                src="/images/campus.jpg"
+                alt="Campus facility and learning environment"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#20233E]/80 via-transparent to-transparent flex items-end p-5">
+                <span className="text-white text-sm font-bold">Campus Environment in Birgunj</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION I: Testimonials & Alumni Success
+      ========================================================================= */}
+      <section className="py-24 bg-white border-b border-[#30345B]/8">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span className="gold-badge">
+              Alumni Success
+            </span>
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1E2340] tracking-tight">
+              From Our Classrooms to <span className="text-[#DFA526]">Leading Hotels</span>
+            </h2>
+            <p className="text-base sm:text-lg text-[#555B6E] leading-relaxed">
+              Read how NCHM graduates built rewarding careers in top hotels and resorts through dedicated practical training.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((t) => (
+              <div
+                key={t.name}
+                className="p-8 rounded-3xl bg-[#F8F7F3] border border-[#30345B]/8 flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative group"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center gap-1 text-[#DFA526]">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} size={16} fill="#DFA526" />
+                    ))}
+                  </div>
+
+                  <p className="text-sm text-[#555B6E] italic leading-relaxed">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+                </div>
+
+                <div className="pt-6 mt-6 border-t border-[#30345B]/10 flex items-center gap-3.5">
+                  <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#DFA526] bg-[#30345B] flex-shrink-0">
+                    <Image src={t.image} alt={t.name} fill className="object-cover" />
+                  </div>
+                  <div>
+                    <h4 className="font-heading font-extrabold text-sm text-[#1E2340]">
+                      {t.name}
+                    </h4>
+                    <div className="text-xs font-semibold text-[#DFA526]">
+                      {t.position}
+                    </div>
+                    <div className="text-[11px] text-[#555B6E]">
+                      {t.location}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-14 text-center">
+            <Link
+              href="/placements"
+              className="btn-navy !py-3.5 !px-8 text-sm font-semibold inline-flex"
+            >
+              Explore Career Pathways & Placements
+              <ArrowRight size={15} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION J: News & Campus Announcements
+      ========================================================================= */}
+      <section className="py-24 bg-[#F8F7F3] border-b border-[#30345B]/8">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
+            <div className="space-y-3">
+              <span className="gold-badge">
+                News & Announcements
+              </span>
+              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1E2340] tracking-tight">
+                Latest from <span className="text-[#30345B]">NCHM Campus</span>
+              </h2>
+            </div>
+            <Link
+              href="/contact"
+              className="btn-outline-navy !py-2.5 !px-6 text-xs font-bold uppercase tracking-wider self-start sm:self-auto"
+            >
+              Contact Admissions Office
+            </Link>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {announcements.map((news) => (
+              <div
+                key={news.title}
+                className="campus-card p-7 flex flex-col justify-between group"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between text-xs font-bold">
+                    <span className="text-[#DFA526] uppercase tracking-wider">
+                      {news.date}
+                    </span>
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#30345B]/8 text-[#30345B]">
+                      {news.tag}
+                    </span>
+                  </div>
+
+                  <h3 className="font-heading font-extrabold text-lg text-[#1E2340] group-hover:text-[#30345B] transition-colors leading-snug">
+                    {news.title}
+                  </h3>
+
+                  <p className="text-xs text-[#555B6E] leading-relaxed">
+                    {news.desc}
+                  </p>
+                </div>
+
+                <div className="pt-6 mt-6 border-t border-gray-100">
+                  <Link
+                    href={news.link}
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#30345B] hover:text-[#DFA526] transition-colors"
+                  >
+                    Read Details
+                    <ArrowRight size={13} />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION: FAQ Accordion
+      ========================================================================= */}
+      <section className="py-24 bg-white border-b border-[#30345B]/8">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
+            <span className="gold-badge">
+              Questions & Answers
+            </span>
+            <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-[#1E2340] tracking-tight">
+              Frequently Asked <span className="text-[#DFA526]">Questions</span>
+            </h2>
+            <p className="text-sm sm:text-base text-[#555B6E]">
+              Clear information to help students and parents make informed decisions about hospitality education in Birgunj.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, idx) => {
+              const isOpen = openFaq === idx
+              return (
+                <div
+                  key={idx}
+                  className="rounded-2xl border border-[#30345B]/10 overflow-hidden bg-[#F8F7F3] transition-colors"
+                >
+                  <button
+                    onClick={() => setOpenFaq(isOpen ? null : idx)}
+                    className="w-full flex items-center justify-between p-6 text-left font-heading font-bold text-base text-[#1E2340] hover:text-[#30345B] transition-colors"
+                  >
+                    <span>{faq.question}</span>
+                    <div className="w-8 h-8 rounded-full bg-white border border-[#30345B]/10 flex items-center justify-center text-[#30345B] shrink-0 ml-4">
+                      {isOpen ? <Minus size={15} /> : <Plus size={15} />}
+                    </div>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-6 pb-6 pt-1 text-sm text-[#555B6E] leading-relaxed border-t border-[#30345B]/6">
+                          {faq.answer}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION K: Admission Call To Action
+      ========================================================================= */}
+      <section className="py-24 bg-gradient-to-br from-[#30345B] via-[#20233E] to-[#16182C] text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#DFA526]/10 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#30345B]/40 rounded-full blur-[100px] pointer-events-none" />
+
+        <div className="relative z-10 mx-auto max-w-5xl px-6 text-center space-y-8">
+          <span className="gold-badge-dark">
+            Admissions Open 2026/2027
+          </span>
+
+          <h2 className="font-heading text-3xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight max-w-4xl mx-auto">
+            Your Journey into Hospitality <span className="text-[#DFA526]">Starts Here.</span>
+          </h2>
+
+          <p className="text-base sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+            Take the first step toward a global career in hotels, culinary arts, and barista management. Speak with an NCHM admission advisor today.
+          </p>
+
+          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/contact"
+              className="btn-gold !py-4 !px-9 text-base font-bold shadow-2xl hover:scale-105 transition-transform"
+            >
+              Apply Online Now
+              <ArrowRight size={18} />
+            </Link>
+            <a
+              href="tel:9845532370"
+              className="btn-navy !bg-white/10 !border !border-white/20 hover:!bg-white/20 !py-4 !px-8 text-base font-semibold text-white"
+            >
+              <Phone size={17} className="text-[#DFA526]" />
+              Call 9845532370 / 9829232426
+            </a>
+          </div>
+
+          <div className="pt-8 text-xs text-white/60 flex items-center justify-center gap-6 flex-wrap">
+            <span>✓ Campus: Inside Bright College, Birgunj-09</span>
+            <span>✓ 100% Practical-Based Curriculum</span>
+            <span>✓ Active Placement Network</span>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }

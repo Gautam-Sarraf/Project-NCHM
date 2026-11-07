@@ -1,144 +1,223 @@
 "use client"
 
 import Link from "next/link"
-import { MapPin, Phone, Mail, ExternalLink, ArrowRight } from "lucide-react"
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
-import { siteData } from "@/lib/site-data"
 import Image from "next/image"
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  ArrowRight,
+  ExternalLink,
+  Award,
+  Sparkles,
+  CheckCircle2,
+  Facebook,
+  Instagram,
+} from "lucide-react"
+import { siteData } from "@/lib/site-data"
 
 const quickLinks = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Courses", href: "/courses" },
-  { name: "Faculty", href: "/faculty" },
-  { name: "Gallery", href: "/gallery" },
-  { name: "Contact", href: "/contact" },
+  { name: "About NCHM", href: "/about" },
+  { name: "Academic Programs", href: "/courses" },
+  { name: "Faculty & Mentors", href: "/faculty" },
+  { name: "Campus Gallery", href: "/gallery" },
+  { name: "Placements & Careers", href: "/placements" },
+  { name: "Admissions & Contact", href: "/contact" },
+]
+
+const academicLinks = [
+  { name: "Diploma in Hotel Management (15 Months)", href: "/courses" },
+  { name: "Advanced Diploma in Hotel Management (21 Months)", href: "/courses" },
+  { name: "Professional Barista Certification (1 Month)", href: "/courses" },
+  { name: "Practical Kitchen & Culinary Labs", href: "/gallery" },
+  { name: "Food & Beverage Service Training", href: "/courses" },
 ]
 
 export default function Footer() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-50px" })
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-  }
-
   return (
-    <footer ref={ref} className="relative bg-[#FAF6F0] text-[#13152d] border-t border-border/10 py-20 font-sans">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-          
-          {/* Left Column - Newsletter, Quote, Founder */}
-          <div className="lg:col-span-7 space-y-12">
-            
-            {/* Newsletter Subscribe */}
-            <div className="space-y-4 max-w-xl">
-              <h3 className="text-xl font-bold uppercase tracking-wider font-sans">Join our newsletter</h3>
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-                <input
-                  type="email"
-                  placeholder="BUSINESS EMAIL..."
-                  className="flex-grow px-5 py-3.5 rounded-full border border-[#13152d]/20 bg-white/50 text-[#13152d] placeholder-[#13152d]/40 text-xs font-semibold focus:outline-none focus:border-[#dba328] transition-colors"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="px-8 py-3.5 rounded-full bg-[#13152d] text-white hover:bg-[#32365b] font-bold text-xs tracking-wider uppercase transition-colors"
-                >
-                  SUBSCRIBE
-                </button>
-              </form>
-            </div>
+    <footer className="relative bg-[#20233E] text-white pt-20 pb-12 border-t-2 border-[#DFA526]/30 overflow-hidden font-sans">
+      {/* Background Accent Gradients */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-[#DFA526]/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#30345B]/60 rounded-full blur-[100px] pointer-events-none" />
 
-            {/* Quote Block */}
-            <div className="space-y-6 max-w-2xl border-l-2 border-[#dba328] pl-6 py-1">
-              <p className="text-2xl font-bold leading-snug tracking-tight text-[#13152d]/90 font-sans">
-                "It's about shaping a perspective, fostering critical thinking, and preparing for a lifetime of learning, growth, and excellence in global hospitality."
-              </p>
-              
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#32365b] text-white flex items-center justify-center font-bold text-sm">
-                  BS
-                </div>
-                <div>
-                  <div className="font-bold text-sm text-[#13152d]">Brij Sarraf</div>
-                  <div className="text-[10px] uppercase font-bold text-muted-foreground">BHM Faculty & Director</div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          {/* Right Column - Campus Image */}
-          <div className="lg:col-span-5">
-            <div className="relative aspect-[16/10] rounded-3xl overflow-hidden shadow-lg border border-[#13152d]/10">
-              <Image
-                src="/images/campus.jpg"
-                alt="NCHM Campus building"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#13152d]/30 to-transparent" />
-            </div>
-          </div>
-
-        </div>
-
-        {/* Bottom divider */}
-        <div className="h-px bg-[#13152d]/10 my-16" />
-
-        {/* Bottom Section - Logo, Links, Copyright */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          
-          {/* Logo & Info */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <img src="/images/logo.jpeg" alt="NCHM Logo" className="w-10 h-10 rounded-full object-cover" />
-            <div>
-              <span className="font-sans font-bold text-base tracking-wide text-[#13152d] block leading-tight">
-                NCHM
-              </span>
-              <span className="text-[9px] tracking-wider text-[#dba328] font-bold uppercase">
-                Hotel Management
-              </span>
-            </div>
-          </Link>
-
-          {/* Center Links */}
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
-            {quickLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-xs font-bold tracking-wider uppercase text-[#13152d]/60 hover:text-[#13152d] transition-colors"
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
-
-          {/* Socials & Copyright */}
-          <div className="flex flex-col items-center md:items-end gap-2 text-center md:text-right">
-            <div className="flex items-center gap-4 text-xs font-bold text-[#13152d]/60">
-              <a href="https://www.facebook.com/search/top?q=Nepal%20College%20of%20Hotel%20Management" target="_blank" rel="noreferrer" className="hover:text-[#32365b]">
-                FACEBOOK
-              </a>
-              <span>•</span>
-              <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" className="hover:text-[#32365b]">
-                INSTAGRAM
-              </a>
-              <span>•</span>
-              <a href="https://www.tiktok.com/" target="_blank" rel="noreferrer" className="hover:text-[#32365b]">
-                TIKTOK
-              </a>
-            </div>
-            <p className="text-[10px] text-[#13152d]/40 font-semibold uppercase tracking-wider">
-              &copy; 2026 NCHM BIRGUNJ. ALL RIGHTS RESERVED.
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
+        {/* Top Pre-Footer Banner */}
+        <div className="bg-[#30345B] border border-[#DFA526]/25 rounded-3xl p-8 lg:p-10 mb-16 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div className="space-y-2 text-center lg:text-left">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DFA526]/15 text-[#DFA526] font-bold text-xs uppercase tracking-widest">
+              <Sparkles size={13} />
+              Birgunj's Pioneer Hospitality Campus
+            </span>
+            <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-white">
+              Ready to Build Your Career in Global Hospitality?
+            </h3>
+            <p className="text-white/70 text-sm max-w-2xl leading-relaxed">
+              Admissions are open for upcoming batches. Speak directly with our faculty advisors or visit our campus inside Bright College, Birgunj.
             </p>
           </div>
-
+          <div className="flex flex-col sm:flex-row gap-4 shrink-0 w-full sm:w-auto">
+            <Link
+              href="/contact"
+              className="btn-gold !py-3.5 !px-8 text-sm font-bold text-center justify-center"
+            >
+              Apply for Admission
+              <ArrowRight size={16} />
+            </Link>
+            <a
+              href="tel:9845532370"
+              className="btn-navy !bg-[#20233E] !border !border-white/20 hover:!border-[#DFA526] !py-3.5 !px-6 text-sm font-semibold text-center justify-center text-white"
+            >
+              <Phone size={15} className="text-[#DFA526]" />
+              Call Admissions
+            </a>
+          </div>
         </div>
 
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-10 pb-16 border-b border-white/10">
+          {/* Col 1: Brand Info (5 cols) */}
+          <div className="lg:col-span-5 space-y-6">
+            <Link href="/" className="flex items-center gap-3.5 group">
+              <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#DFA526] bg-white flex-shrink-0">
+                <Image
+                  src="/images/logo.jpeg"
+                  alt="NCHM Birgunj Crest Logo"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div>
+                <span className="font-heading font-extrabold text-lg tracking-tight text-white block leading-tight">
+                  Nepal College of Hotel Management
+                </span>
+                <span className="text-xs font-bold text-[#DFA526] tracking-widest uppercase block mt-0.5">
+                  Birgunj, Nepal
+                </span>
+              </div>
+            </Link>
+
+            <p className="text-white/75 text-sm leading-relaxed max-w-md">
+              Established as the 1st Hotel Management College in Birgunj. We provide 100% practical-based hospitality education, professional culinary kitchens, barista training, and dedicated placement pathways in premier hotels and resorts.
+            </p>
+
+            <div className="flex items-center gap-3 pt-2">
+              <span className="text-xs text-white/50 uppercase tracking-widest font-bold">Connect with us:</span>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-white/5 border border-white/10 hover:border-[#DFA526] hover:bg-[#DFA526] hover:text-[#20233E] text-white/80 transition-all flex items-center justify-center"
+                aria-label="Facebook"
+              >
+                <Facebook size={16} />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-white/5 border border-white/10 hover:border-[#DFA526] hover:bg-[#DFA526] hover:text-[#20233E] text-white/80 transition-all flex items-center justify-center"
+                aria-label="Instagram"
+              >
+                <Instagram size={16} />
+              </a>
+              <span className="text-xs text-white/60 font-medium">@NCHM Birgunj</span>
+            </div>
+          </div>
+
+          {/* Col 2: Quick Links (2 cols) */}
+          <div className="lg:col-span-2 space-y-4">
+            <h4 className="text-sm font-heading font-extrabold uppercase tracking-wider text-[#DFA526] pb-1 border-b border-white/10">
+              Quick Links
+            </h4>
+            <ul className="space-y-2.5 text-sm">
+              {quickLinks.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-white/70 hover:text-[#DFA526] transition-colors flex items-center gap-1.5"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#DFA526]/50" />
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 3: Academic Programs (2 cols) */}
+          <div className="lg:col-span-2 space-y-4">
+            <h4 className="text-sm font-heading font-extrabold uppercase tracking-wider text-[#DFA526] pb-1 border-b border-white/10">
+              Programs
+            </h4>
+            <ul className="space-y-2.5 text-sm">
+              {academicLinks.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-white/70 hover:text-[#DFA526] transition-colors block text-xs leading-snug"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 4: Contact Information (3 cols) */}
+          <div className="lg:col-span-3 space-y-4">
+            <h4 className="text-sm font-heading font-extrabold uppercase tracking-wider text-[#DFA526] pb-1 border-b border-white/10">
+              Campus Info
+            </h4>
+            <div className="space-y-3.5 text-xs text-white/80">
+              <div className="flex items-start gap-3">
+                <MapPin size={16} className="text-[#DFA526] shrink-0 mt-0.5" />
+                <span>{siteData.address}</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <Phone size={16} className="text-[#DFA526] shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <a href="tel:9845532370" className="block hover:text-[#DFA526] transition-colors">
+                    9845532370
+                  </a>
+                  <a href="tel:9829232426" className="block hover:text-[#DFA526] transition-colors">
+                    9829232426
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <Mail size={16} className="text-[#DFA526] shrink-0 mt-0.5" />
+                <a href="mailto:nchmbrj143@gmail.com" className="hover:text-[#DFA526] transition-colors">
+                  {siteData.email}
+                </a>
+              </div>
+              <div className="flex items-start gap-3">
+                <Clock size={16} className="text-[#DFA526] shrink-0 mt-0.5" />
+                <span>{siteData.hours}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Legal & Attribution */}
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/60">
+          <p>
+            &copy; {new Date().getFullYear()} Nepal College of Hotel Management (NCHM), Birgunj. All rights reserved.
+          </p>
+          <div className="flex items-center gap-6">
+            <span className="text-[#DFA526]/80 font-semibold">
+              1st Hotel Management College in Birgunj
+            </span>
+            <span>•</span>
+            <Link href="/contact" className="hover:text-[#DFA526] transition-colors">
+              Admissions
+            </Link>
+            <span>•</span>
+            <Link href="/courses" className="hover:text-[#DFA526] transition-colors">
+              Curriculum
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   )

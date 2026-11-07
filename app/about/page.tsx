@@ -1,167 +1,242 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
+import { motion } from "framer-motion"
 import Image from "next/image"
-import { Target, Eye, CheckCircle, Sparkles, MapPin, Users, BookOpen } from "lucide-react"
+import Link from "next/link"
+import {
+  Eye,
+  Target,
+  Award,
+  CheckCircle2,
+  GraduationCap,
+  Users,
+  Building,
+  Sparkles,
+  ArrowRight,
+  ShieldCheck,
+  BookOpen,
+} from "lucide-react"
+import PageHero from "../components/PageHero"
 import SectionHeader from "../components/SectionHeader"
 import { siteData } from "@/lib/site-data"
 
 const values = [
-  { title: "Practical Learning", desc: "Students build confidence through hands-on hospitality training." },
-  { title: "Student Support", desc: "Faculty stay approachable and involved throughout the learning journey." },
-  { title: "Professional Discipline", desc: "We promote responsibility, service standards, and workplace readiness." },
-  { title: "Local Leadership", desc: "We are proud to grow hotel management education in Birgunj." },
+  {
+    title: "100% Practical Learning",
+    desc: "Every core hospitality module is taught through hands-on practice in dedicated commercial kitchens, mock dining halls, and barista counters.",
+    icon: Building,
+  },
+  {
+    title: "Dedicated BHM Mentorship",
+    desc: "Our faculty members work closely with small student groups to ensure individualized attention, skill refinement, and consistent progress.",
+    icon: Users,
+  },
+  {
+    title: "Professional Discipline & Grooming",
+    desc: "Instilling world-class hospitality grooming standards, service ethics, guest communication, and situational leadership.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Birgunj's Pioneer Leadership",
+    desc: "Proudly serving as the city's first institution dedicated to hotel management education, nurturing local talent for global careers.",
+    icon: Award,
+  },
 ]
 
 const milestones = [
-  { year: "01", event: siteData.distinction },
-  { year: "02", event: `Campus located at ${siteData.address}` },
-  { year: "03", event: "BHM-focused faculty mentoring students in hospitality learning" },
-  { year: "04", event: "Programs designed around practical exposure and industry readiness" },
+  {
+    step: "01",
+    title: "Pioneer Establishment",
+    desc: "Founded as Birgunj's very first college dedicated exclusively to hotel management and hospitality vocational training.",
+  },
+  {
+    step: "02",
+    title: "Prime Campus Location",
+    desc: "Conveniently established inside Bright College premises, Birgunj-09, providing an accessible and disciplined academic environment.",
+  },
+  {
+    step: "03",
+    title: "BHM Faculty-Led Mentorship",
+    desc: "Curriculum designed and delivered by qualified BHM faculty members with real-world luxury hotel experience.",
+  },
+  {
+    step: "04",
+    title: "Comprehensive Placements",
+    desc: "Graduates actively placed across luxury hotels, resorts, and specialty cafe brands in Kathmandu, Pokhara, Chitwan, and overseas.",
+  },
 ]
 
 export default function AboutPage() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-80px" })
-  const timelineRef = useRef(null)
-  const timelineInView = useInView(timelineRef, { once: true, margin: "-80px" })
-
   return (
-    <main className="relative min-h-screen overflow-x-hidden pt-24">
-      {/* Page Hero Banner */}
-      <section className="relative py-16 md:py-24 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image src="/images/about.jpg" alt="" fill className="object-cover opacity-10" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
-        </div>
-        <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#dba328]/20 bg-[#dba328]/5 text-[#dba328] text-xs tracking-[0.2em] uppercase"
-          >
-            About Us
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-text-light text-balance"
-          >
-            A Legacy of{" "}
-            <span className="bg-gradient-to-r from-[#dba328] to-[#eebf56] bg-clip-text text-transparent">
-              Hotel Excellence
-            </span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-5 text-text-light/50 max-w-2xl mx-auto leading-relaxed"
-          >
-            {siteData.shortName} is building practical hospitality education in Birgunj with committed faculty, focused student support, and a learning environment grounded in hotel operations.
-          </motion.p>
-        </div>
-      </section>
+    <div className="bg-[#F8F7F3] text-[#555B6E]">
+      {/* Page Hero */}
+      <PageHero
+        label="About Our Institution"
+        title="A Tradition of"
+        highlight="Hospitality Excellence"
+        description="Nepal College of Hotel Management (NCHM) is dedicated to empowering students in Birgunj with practical hotel operations training, certified barista skills, and career readiness."
+        breadcrumb="About Us"
+      />
 
-      {/* Vision & Mission */}
-      <section ref={ref} className="py-20">
+      {/* Institutional Overview / Message */}
+      <section className="py-24 bg-white border-b border-[#30345B]/8">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="space-y-8"
-            >
-              <motion.div
-                whileHover={{ scale: 1.01 }}
-                className="glass-card-white rounded-2xl p-7 gold-glow-hover transition-all duration-500"
-              >
-                <div className="flex items-start gap-5">
-                  <div className="flex-shrink-0 w-13 h-13 rounded-xl bg-gradient-to-br from-[#dba328] to-[#eebf56] flex items-center justify-center">
-                    <Eye size={24} className="text-[#13152d]" />
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            {/* Left Content (7 Cols) */}
+            <div className="lg:col-span-7 space-y-6">
+              <span className="gold-badge">
+                Our Foundation
+              </span>
+
+              <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1E2340] tracking-tight leading-tight">
+                Empowering the Next Generation of <span className="text-[#DFA526]">Hoteliers</span> in Nepal.
+              </h2>
+
+              <p className="text-base sm:text-lg text-[#555B6E] leading-relaxed">
+                Situated inside Bright College premises in Birgunj-09, Nepal College of Hotel Management has grown into the leading hub for hospitality education in southern Nepal. We believe that true hospitality mastery cannot be learned solely from textbooks; it must be practiced, refined, and perfected in real culinary and hotel environments.
+              </p>
+
+              <p className="text-sm sm:text-base text-[#555B6E] leading-relaxed">
+                Under the direct stewardship of our experienced BHM faculty, students learn everything from culinary knife work and HACCP hygiene to fine dining table setting, front office guest relations, and specialized barista coffee brewing.
+              </p>
+
+              {/* Quote Block */}
+              <div className="p-6 rounded-2xl bg-[#F8F7F3] border-l-4 border-[#DFA526] space-y-3">
+                <p className="font-serif italic text-base sm:text-lg text-[#1E2340]">
+                  &ldquo;Hospitality is not merely a service; it is an attitude of warmth, attention to detail, and professional excellence. At NCHM, our objective is to instill these qualities in every student who walks through our doors.&rdquo;
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-[#30345B] text-white flex items-center justify-center font-bold text-sm">
+                    BS
                   </div>
                   <div>
-                    <h3 className="font-serif text-xl font-semibold text-text-light mb-3">Our Vision</h3>
-                    <p className="text-text-light/50 leading-relaxed">
-                      To be the most trusted place in Birgunj for students who want to begin a strong career in hotel management.
-                    </p>
+                    <div className="font-heading font-bold text-sm text-[#1E2340]">
+                      Brij Sarraf
+                    </div>
+                    <div className="text-xs text-[#DFA526] font-semibold">
+                      BHM Faculty & Director, NCHM
+                    </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
+            </div>
 
-              <motion.div
-                whileHover={{ scale: 1.01 }}
-                className="glass-card-white rounded-2xl p-7 gold-glow-hover transition-all duration-500"
-              >
-                <div className="flex items-start gap-5">
-                  <div className="flex-shrink-0 w-13 h-13 rounded-xl bg-gradient-to-br from-[#dba328] to-[#eebf56] flex items-center justify-center">
-                    <Target size={24} className="text-[#13152d]" />
-                  </div>
-                  <div>
-                    <h3 className="font-serif text-xl font-semibold text-text-light mb-3">Our Mission</h3>
-                    <p className="text-text-light/50 leading-relaxed">
-                      We provide practical hospitality learning, supportive guidance, and a disciplined environment that prepares students for professional service roles.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="relative"
-            >
-              <div className="relative glass-card rounded-2xl overflow-hidden gold-glow">
+            {/* Right Images (5 Cols) */}
+            <div className="lg:col-span-5 relative space-y-6">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-xl border border-[#30345B]/10">
                 <Image
                   src="/images/about.jpg"
-                  alt="NCHM campus"
-                  width={600}
-                  height={450}
-                  className="w-full h-auto object-cover"
+                  alt="NCHM Campus and practical hospitality learning"
+                  fill
+                  className="object-cover"
                 />
-                <div className="image-overlay-soft absolute inset-0" />
               </div>
-              <motion.div
-                animate={{ y: [-10, 10, -10] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-5 -left-5 glass-card-white rounded-xl p-4 gold-glow"
-              >
-                <div className="text-2xl font-bold text-[#dba328]">1st</div>
-                <div className="text-xs text-text-light/50">In Birgunj</div>
-              </motion.div>
-              <motion.div
-                animate={{ y: [10, -10, 10] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-4 -right-4 glass-card-white rounded-xl p-4 gold-glow"
-              >
-                <Sparkles size={20} className="text-[#dba328] mb-1" />
-                <div className="text-xs text-text-light/50">Practical Focus</div>
-              </motion.div>
-            </motion.div>
+
+              <div className="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-lg border border-[#30345B]/10">
+                <Image
+                  src="/images/campus.jpg"
+                  alt="Bright College premises in Birgunj"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#20233E]/70 via-transparent to-transparent flex items-end p-4">
+                  <span className="text-white text-xs font-bold">
+                    Campus Facilities • Birgunj-09, Nepal
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-8">
+      {/* Vision & Mission Cards */}
+      <section className="py-24 bg-[#F8F7F3] border-b border-[#30345B]/8">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid gap-6 md:grid-cols-3">
-            {[
-              { icon: MapPin, title: "Address", value: siteData.address },
-              { icon: Users, title: "Faculty Team", value: siteData.faculty.map((member) => member.name).join(", ") },
-              { icon: BookOpen, title: "Identity", value: siteData.distinction },
-            ].map((item) => {
-              const Icon = item.icon
+          <SectionHeader
+            label="Purpose & Principles"
+            title="Our Vision &"
+            highlight="Mission"
+            description="Guided by clear institutional principles that prioritize student capability and career placement."
+          />
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Vision */}
+            <div className="campus-card p-8 lg:p-10 space-y-4">
+              <div className="w-14 h-14 rounded-2xl bg-[#30345B] text-[#DFA526] flex items-center justify-center shadow-md">
+                <Eye size={28} />
+              </div>
+              <h3 className="font-heading text-2xl font-extrabold text-[#1E2340]">
+                Institutional Vision
+              </h3>
+              <p className="text-sm sm:text-base text-[#555B6E] leading-relaxed">
+                To be the most reputable and sought-after college of hotel management in Birgunj and Madhesh Province, recognized for producing graduates who excel in luxury hotels, culinary departments, and barista establishments worldwide.
+              </p>
+              <ul className="space-y-2 pt-2 text-xs text-[#555B6E]">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={15} className="text-[#DFA526]" />
+                  <span>Benchmark for hospitality training in the region</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={15} className="text-[#DFA526]" />
+                  <span>Strong international luxury hotel standard operating procedures</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Mission */}
+            <div className="campus-card p-8 lg:p-10 space-y-4">
+              <div className="w-14 h-14 rounded-2xl bg-[#DFA526] text-[#20233E] flex items-center justify-center shadow-md">
+                <Target size={28} />
+              </div>
+              <h3 className="font-heading text-2xl font-extrabold text-[#1E2340]">
+                Institutional Mission
+              </h3>
+              <p className="text-sm sm:text-base text-[#555B6E] leading-relaxed">
+                To deliver comprehensive, 100% practical-oriented curriculum in professional kitchens and mock hotel layouts. We mentor each student in ethical service values, effective communication, and culinary precision.
+              </p>
+              <ul className="space-y-2 pt-2 text-xs text-[#555B6E]">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={15} className="text-[#DFA526]" />
+                  <span>Hands-on culinary, F&B service, and barista labs</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={15} className="text-[#DFA526]" />
+                  <span>Continuous placement support and career advisory</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Core Institutional Values */}
+      <section className="py-24 bg-white border-b border-[#30345B]/8">
+        <div className="mx-auto max-w-7xl px-6">
+          <SectionHeader
+            label="Core Values"
+            title="The Values That"
+            highlight="Define Us"
+            description="Our training culture is built around four fundamental values that ensure every graduate enters the industry with confidence."
+          />
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {values.map((v) => {
+              const Icon = v.icon
               return (
-                <div key={item.title} className="glass-card-white rounded-2xl p-6 gold-glow-hover transition-all duration-500">
-                  <Icon size={18} className="text-[#dba328] mb-4" />
-                  <h3 className="font-serif text-lg font-semibold text-text-light">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-text-light/55">{item.value}</p>
+                <div
+                  key={v.title}
+                  className="p-7 rounded-2xl bg-[#F8F7F3] border border-[#30345B]/8 hover:border-[#DFA526]/40 transition-all duration-300 space-y-3"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-[#30345B] text-[#DFA526] flex items-center justify-center shadow-sm">
+                    <Icon size={22} />
+                  </div>
+                  <h4 className="font-heading font-extrabold text-lg text-[#1E2340]">
+                    {v.title}
+                  </h4>
+                  <p className="text-xs text-[#555B6E] leading-relaxed">
+                    {v.desc}
+                  </p>
                 </div>
               )
             })}
@@ -169,60 +244,47 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Core Values */}
-      <section className="py-20">
+      {/* Institutional Milestones Timeline */}
+      <section className="py-24 bg-[#20233E] text-white">
         <div className="mx-auto max-w-7xl px-6">
-          <SectionHeader label="What We Stand For" title="Our Core" highlight="Values" />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((val, i) => (
-              <motion.div
-                key={val.title}
-                initial={{ opacity: 0, y: 30, rotateX: 10 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                className="glass-card-white rounded-2xl p-7 gold-glow-hover transition-all duration-500"
+          <SectionHeader
+            label="Our Milestones"
+            title="A Journey of"
+            highlight="Continuous Growth"
+            description="Key institutional achievements since our inception as Birgunj's pioneer hotel management college."
+            dark
+          />
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {milestones.map((m) => (
+              <div
+                key={m.step}
+                className="p-7 rounded-2xl bg-[#30345B] border border-white/10 space-y-3 relative group hover:border-[#DFA526]/50 transition-colors"
               >
-                <CheckCircle size={20} className="text-[#dba328] mb-4" />
-                <h3 className="font-serif text-lg font-semibold text-text-light mb-2">{val.title}</h3>
-                <p className="text-text-light/40 text-sm leading-relaxed">{val.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <section ref={timelineRef} className="py-20">
-        <div className="mx-auto max-w-3xl px-6">
-          <SectionHeader label="Our Journey" title="Key" highlight="Milestones" />
-          <div className="relative">
-            {/* Line */}
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#dba328]/40 via-[#dba328]/20 to-transparent" />
-
-            {milestones.map((m, i) => (
-              <motion.div
-                key={m.year}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
-                animate={timelineInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.12 }}
-                className={`relative flex items-center gap-6 mb-10 md:mb-8 ${
-                  i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                }`}
-              >
-                {/* Dot */}
-                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#dba328] shadow-sm z-10" />
-
-                <div className={`ml-12 md:ml-0 md:w-1/2 ${i % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
-                  <span className="text-[#dba328] font-bold text-sm">{m.year}</span>
-                  <p className="text-text-light/60 text-sm mt-1">{m.event}</p>
+                <div className="font-heading font-extrabold text-3xl text-[#DFA526]">
+                  {m.step}
                 </div>
-              </motion.div>
+                <h4 className="font-heading font-bold text-lg text-white">
+                  {m.title}
+                </h4>
+                <p className="text-xs text-white/70 leading-relaxed">
+                  {m.desc}
+                </p>
+              </div>
             ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <Link
+              href="/contact"
+              className="btn-gold !py-3.5 !px-8 text-sm font-bold inline-flex"
+            >
+              Visit Our Birgunj Campus
+              <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

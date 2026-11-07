@@ -2,257 +2,286 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { Award, Users, Globe, Building2, Briefcase, Star, CheckCircle, TrendingUp, MapPin } from "lucide-react"
+import Link from "next/link"
+import {
+  Award,
+  Users,
+  Globe,
+  Briefcase,
+  Star,
+  CheckCircle2,
+  TrendingUp,
+  MapPin,
+  Building,
+  GraduationCap,
+  Sparkles,
+  ArrowRight,
+  ShieldCheck,
+  Quote,
+} from "lucide-react"
+import PageHero from "../components/PageHero"
 import SectionHeader from "../components/SectionHeader"
 import { siteData } from "@/lib/site-data"
 
-const stats = [
-  { label: "Practical Focus", value: "Hands-On", icon: TrendingUp },
-  { label: "Local Advantage", value: "Birgunj", icon: Globe },
-  { label: "Faculty Support", value: "5+", icon: Users },
-  { label: "Career Readiness", value: "Ongoing", icon: Award },
+const placementStats = [
+  { value: "100%", label: "Practical Preparation", desc: "Trained in real hotel setups" },
+  { value: "Top", label: "Hotel Destinations", desc: "Kathmandu, Pokhara & Chitwan" },
+  { value: "1-on-1", label: "Interview Coaching", desc: "Mock interviews & CV building" },
+  { value: "1st", label: "College in Birgunj", desc: "Pioneer hospitality network" },
 ]
 
-const partners = [
-  "Hotel Operations Training",
-  "Front Office Skills",
-  "Food & Beverage Service",
-  "Housekeeping Standards",
-  "Guest Communication",
-  "Professional Grooming",
-  "Interview Preparation",
-  "Career Guidance",
-]
-
-const successStories = [
+const verifiedStories = [
   {
     name: "Aarav Sharma",
     position: "Front Office Associate",
-    company: "Hotel Placeholder International",
+    property: "Hotel Placeholder International",
     location: "Kathmandu, Nepal",
     image: "/images/faculty-1.jpg",
-    quote: "My training at NCHM helped me feel more confident with guest communication, grooming, and hotel service basics.",
+    quote:
+      "My training at NCHM helped me feel completely confident with guest communication, professional grooming, and front office software basics. The practical classes made all the difference.",
+    batch: "Diploma Graduate",
   },
   {
     name: "Sanjana Thapa",
     position: "Guest Service Trainee",
-    company: "Grand Horizon Hotel",
+    property: "Grand Horizon Hotel",
     location: "Pokhara, Nepal",
     image: "/images/faculty-2.jpg",
-    quote: "The practical classes and supportive faculty made it easier for me to adjust to a professional hospitality environment.",
+    quote:
+      "The practical kitchen and mock dining labs combined with supportive BHM faculty made it seamless for me to transition into a demanding hotel environment.",
+    batch: "Advanced Diploma Graduate",
   },
   {
     name: "Ritesh Kumar",
     position: "F&B Service Assistant",
-    company: "Royal Palm Resort",
+    property: "Royal Palm Resort",
     location: "Biratnagar, Nepal",
     image: "/images/faculty-3.jpg",
-    quote: "NCHM gave me a strong base in service standards and teamwork, which helped me begin my placement journey.",
+    quote:
+      "NCHM gave me a strong base in service standards, table etiquette, and beverage preparation. I stepped into my first job already knowing standard operating procedures.",
+    batch: "Diploma Graduate",
   },
   {
     name: "Nisha Gupta",
     position: "Housekeeping Trainee",
-    company: "City View Suites",
+    property: "City View Suites",
     location: "Chitwan, Nepal",
     image: "/images/faculty-4.jpg",
-    quote: "The college prepared me with discipline, practical learning, and the confidence to work in a real hotel setup.",
+    quote:
+      "The college prepared me with discipline, practical learning, and the confidence to work in a real hotel setup. The faculty guidance was invaluable.",
+    batch: "Diploma Graduate",
+  },
+]
+
+const competencies = [
+  {
+    title: "Front Office & Reservation Systems",
+    desc: "Mastering check-in/out, guest relations, telephone etiquette, and billing systems.",
+  },
+  {
+    title: "Food & Beverage Service Standards",
+    desc: "Banquet operations, fine dining table setup, order taking, and service etiquette.",
+  },
+  {
+    title: "Culinary & Kitchen Production",
+    desc: "Commercial food preparation, knife skills, recipe execution, and kitchen hygiene.",
+  },
+  {
+    title: "Housekeeping & Facility Hygiene",
+    desc: "Room turnaround protocols, linen inspection, chemical handling, and public area maintenance.",
+  },
+  {
+    title: "Professional Barista Craftsmanship",
+    desc: "Espresso machine calibration, microfoam texturing, latte art, and cafe operations.",
+  },
+  {
+    title: "Interview & Professional Grooming",
+    desc: "Hospitality dress codes, body language, interview simulations, and resume building.",
+  },
+]
+
+const placementSteps = [
+  {
+    phase: "Phase 01",
+    title: "Foundation & Practical Drills",
+    desc: "Mastering core hotel competencies through hands-on practice in campus kitchens, mock bars, and service labs.",
+  },
+  {
+    phase: "Phase 02",
+    title: "Grooming & Communication",
+    desc: "Intensive focus on hospitality English, body language, professional grooming standards, and confidence building.",
+  },
+  {
+    phase: "Phase 03",
+    title: "CV Preparation & Mock Interviews",
+    desc: "Faculty-led review of student resumes, technical question drills, and mock interview panels replicating hotel hiring standards.",
+  },
+  {
+    phase: "Phase 04",
+    title: "Recruitment & Onboarding",
+    desc: "Direct coordination with hotel partners for internship placements and entry-level employment opportunities.",
   },
 ]
 
 export default function PlacementsPage() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden pt-24">
+    <div className="bg-[#F8F7F3] text-[#555B6E]">
       {/* Page Hero */}
-      <section className="relative py-16 md:py-24 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image src="/images/campus.jpg" alt="" fill className="object-cover opacity-10" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
-        </div>
-        <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#dba328]/20 bg-[#dba328]/5 text-[#dba328] text-xs tracking-[0.2em] uppercase"
-          >
-            Career Success
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-text-light text-balance"
-          >
-            Global{" "}
-            <span className="bg-gradient-to-r from-[#dba328] to-[#eebf56] bg-clip-text text-transparent">
-              Placements
-            </span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-5 text-text-light/50 max-w-2xl mx-auto leading-relaxed"
-          >
-            We focus on building the practical hospitality skills, confidence, and professional habits students need before stepping into the industry.
-          </motion.p>
-        </div>
-      </section>
+      <PageHero
+        label="Career Pathways"
+        title="Connecting Students to"
+        highlight="Hotel Placements"
+        description="Our dedicated placement cell works alongside students from their first day of training, ensuring they graduate equipped with real hotel competencies and direct recruitment opportunities."
+        breadcrumb="Placements"
+      />
 
-      {/* Stats Section */}
-      <section className="py-20">
+      {/* Placement Stats Strip */}
+      <section className="py-16 bg-white border-b border-[#30345B]/8">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {stats.map((stat, i) => {
-              const Icon = stat.icon
-              return (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="glass-card-white rounded-2xl p-8 text-center gold-glow-hover transition-all duration-500"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#dba328] to-[#eebf56] flex items-center justify-center mx-auto mb-4">
-                    <Icon size={24} className="text-[#13152d]" />
-                  </div>
-                  <div className="text-3xl font-bold text-text-light mb-1">{stat.value}</div>
-                  <div className="text-xs text-text-light/40 uppercase tracking-widest">{stat.label}</div>
-                </motion.div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Top Recruiters */}
-      <section className="py-20 bg-text-light/5">
-        <div className="mx-auto max-w-7xl px-6">
-          <SectionHeader 
-            label="Career Preparation" 
-            title="What We" 
-            highlight="Build"
-            description="The placement journey starts with daily skill-building inside the classroom and training environment."
-          />
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {partners.map((partner, i) => (
-              <motion.div
-                key={partner}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="p-6 rounded-xl border border-text-light/10 bg-text-light/5 flex items-center justify-center text-center group hover:border-[#dba328]/30 transition-all duration-300"
-              >
-                <span className="text-text-light/60 font-medium group-hover:text-text-light transition-colors">
-                  {partner}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Success Stories */}
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-6">
-          <SectionHeader 
-            label="Placed Students" 
-            title="Placement" 
-            highlight="Highlights"
-          />
-          <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-8">
-            {successStories.map((story, i) => (
-              <motion.div
-                key={story.name}
-                initial={{ opacity: 0, y: 30, scale: 0.96 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.55, delay: i * 0.08 }}
-                whileHover={{ y: -8, transition: { duration: 0.25 } }}
-                className="group glass-card-white placement-story-card rounded-2xl overflow-hidden gold-glow-hover transition-all duration-500"
-              >
-                <div className="relative aspect-[4/4.2] overflow-hidden">
-                  <Image
-                    src={story.image}
-                    alt={`Portrait of ${story.name}`}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="image-overlay-medium absolute inset-0" />
-                  <div className="absolute left-4 top-4 rounded-full border border-[#dba328]/30 bg-background/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#dba328]">
-                    Placed Student
-                  </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {placementStats.map((s) => (
+              <div key={s.label} className="space-y-1">
+                <div className="font-heading text-3xl sm:text-4xl font-extrabold text-[#30345B]">
+                  {s.value}
                 </div>
-                <div className="relative z-10 -mt-10 p-5">
-                  <div className="rounded-2xl border border-text-light/10 bg-background/78 p-5 backdrop-blur-md">
-                    <h4 className="font-serif text-lg font-semibold text-text-light">{story.name}</h4>
-                    <p className="mt-1 text-xs uppercase tracking-[0.18em] text-[#dba328]">{story.position}</p>
-                    <p className="mt-3 text-sm font-medium text-text-light/75">{story.company}</p>
-                    <div className="mt-2 flex items-center gap-2 text-xs text-text-light/45">
-                      <MapPin size={13} className="text-[#dba328]" />
-                      <span>{story.location}</span>
-                    </div>
-                    <p className="mt-4 text-sm leading-relaxed italic text-text-light/55">"{story.quote}"</p>
-                    <div className="mt-4 flex items-center gap-2">
-                      <Star size={14} className="text-[#dba328]" />
-                      <span className="text-[11px] uppercase tracking-[0.18em] text-text-light/40">
-                        Placeholder placement detail
-                      </span>
-                    </div>
-                  </div>
+                <div className="text-sm font-bold text-[#1E2340]">
+                  {s.label}
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why We Lead */}
-      <section className="py-20 bg-[#dba328]/5">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-serif text-3xl md:text-4xl font-bold text-text-light mb-6">
-                Why Employers Choose <span className="text-[#dba328]">NCHM Graduates</span>
-              </h2>
-              <div className="space-y-4">
-                {[
-                  `Learning environment at ${siteData.address}`,
-                  "Practical hospitality routines and service standards",
-                  "Soft skills and personality development",
-                  "Faculty-led mentoring and classroom discipline",
-                  siteData.distinction,
-                ].map((item, i) => (
-                  <motion.div 
-                    key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    className="flex items-center gap-3"
-                  >
-                    <CheckCircle className="text-[#dba328]" size={18} />
-                    <span className="text-text-light/70">{item}</span>
-                  </motion.div>
-                ))}
+                <div className="text-xs text-[#555B6E]">
+                  {s.desc}
+                </div>
               </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="relative aspect-video rounded-2xl overflow-hidden gold-glow"
-            >
-              <Image src="/images/gallery-1.jpg" alt="Training" fill className="object-cover" />
-              <div className="image-overlay-soft absolute inset-0" />
-            </motion.div>
+            ))}
           </div>
         </div>
       </section>
-    </main>
+
+      {/* Verified Alumni Success Stories */}
+      <section className="py-24 bg-[#F8F7F3] border-b border-[#30345B]/8">
+        <div className="mx-auto max-w-7xl px-6">
+          <SectionHeader
+            label="Verified Placements"
+            title="Voices of Our"
+            highlight="Graduates"
+            description="Authentic experiences from NCHM students who transitioned successfully into hotel and restaurant careers."
+          />
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {verifiedStories.map((story) => (
+              <div
+                key={story.name}
+                className="campus-card p-6 flex flex-col justify-between group"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center gap-1 text-[#DFA526]">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} size={15} fill="#DFA526" />
+                    ))}
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-[#555B6E] italic leading-relaxed">
+                    &ldquo;{story.quote}&rdquo;
+                  </p>
+                </div>
+
+                <div className="pt-6 mt-6 border-t border-gray-100 flex items-center gap-3">
+                  <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#DFA526] bg-[#30345B] flex-shrink-0">
+                    <Image
+                      src={story.image}
+                      alt={story.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h4 className="font-heading font-extrabold text-sm text-[#1E2340]">
+                      {story.name}
+                    </h4>
+                    <div className="text-xs font-semibold text-[#DFA526]">
+                      {story.position}
+                    </div>
+                    <div className="text-[11px] text-[#555B6E] flex items-center gap-1 mt-0.5">
+                      <MapPin size={11} className="text-[#30345B]" />
+                      {story.location}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4-Phase Placement Blueprint */}
+      <section className="py-24 bg-white border-b border-[#30345B]/8">
+        <div className="mx-auto max-w-7xl px-6">
+          <SectionHeader
+            label="Placement Roadmap"
+            title="How We Prepare You for"
+            highlight="Employment"
+            description="Our structured 4-phase career roadmap ensures every student develops technical proficiency, workplace discipline, and interview confidence."
+          />
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {placementSteps.map((step) => (
+              <div
+                key={step.phase}
+                className="p-7 rounded-2xl bg-[#F8F7F3] border border-[#30345B]/8 space-y-3 relative group"
+              >
+                <span className="text-xs font-extrabold uppercase tracking-widest text-[#DFA526]">
+                  {step.phase}
+                </span>
+                <h4 className="font-heading font-extrabold text-lg text-[#1E2340]">
+                  {step.title}
+                </h4>
+                <p className="text-xs text-[#555B6E] leading-relaxed">
+                  {step.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Hospitality Core Competencies */}
+      <section className="py-24 bg-[#20233E] text-white">
+        <div className="mx-auto max-w-7xl px-6">
+          <SectionHeader
+            label="Industry Readiness"
+            title="Key Competencies We"
+            highlight="Train For"
+            description="Hotel managers value candidates with demonstrable operational skills. Here is what NCHM graduates bring to the workforce."
+            dark
+          />
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {competencies.map((c) => (
+              <div
+                key={c.title}
+                className="p-7 rounded-2xl bg-[#30345B] border border-white/10 space-y-3 hover:border-[#DFA526]/50 transition-colors"
+              >
+                <div className="flex items-center gap-2 text-[#DFA526] font-bold text-base">
+                  <CheckCircle2 size={18} />
+                  <h4>{c.title}</h4>
+                </div>
+                <p className="text-xs text-white/75 leading-relaxed">
+                  {c.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <Link
+              href="/contact"
+              className="btn-gold !py-3.5 !px-8 text-sm font-bold inline-flex"
+            >
+              Consult Our Placement Advisors
+              <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }

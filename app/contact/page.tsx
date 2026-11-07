@@ -1,196 +1,357 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { useState, useCallback } from "react"
-import { Send, CheckCircle, MapPin, Phone, Mail, Clock, Search } from "lucide-react"
-import { contactCards, siteData } from "@/lib/site-data"
-
-const contactInfo = [
-  { icon: MapPin, ...contactCards[0] },
-  { icon: Phone, ...contactCards[1] },
-  { icon: Mail, ...contactCards[2] },
-  { icon: Clock, ...contactCards[3] },
-]
+import { motion, AnimatePresence } from "framer-motion"
+import Link from "next/link"
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  Send,
+  CheckCircle2,
+  Sparkles,
+  ArrowRight,
+  GraduationCap,
+  Building,
+  Calendar,
+  MessageSquare,
+} from "lucide-react"
+import PageHero from "../components/PageHero"
+import SectionHeader from "../components/SectionHeader"
+import { siteData } from "@/lib/site-data"
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" })
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    program: "Diploma in Hotel Management",
+    message: "",
+  })
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault()
-      setSubmitted(true)
-      setTimeout(() => setSubmitted(false), 3000)
+      setLoading(true)
+      setTimeout(() => {
+        setLoading(false)
+        setSubmitted(true)
+      }, 700)
     },
     []
   )
 
   const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
       setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     },
     []
   )
 
-  const inputClasses =
-    "w-full px-4 py-3.5 rounded-xl bg-background/70 border border-text-light/10 text-text-light text-sm placeholder:text-text-light/25 focus:outline-none focus:border-[#dba328]/40 focus:border border-[#dba328]/20 transition-all duration-300"
-
   return (
-    <main className="relative min-h-screen overflow-x-hidden pt-24">
+    <div className="bg-[#F8F7F3] text-[#555B6E]">
       {/* Page Hero */}
-      <section className="relative py-16 md:py-24">
-        <div className="mx-auto max-w-5xl px-6 text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#dba328]/20 bg-[#dba328]/5 text-[#dba328] text-xs tracking-[0.2em] uppercase"
-          >
-            Get in Touch
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-text-light text-balance"
-          >
-            Contact{" "}
-            <span className="bg-gradient-to-r from-[#dba328] to-[#eebf56] bg-clip-text text-transparent">Us</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-5 text-text-light/50 max-w-lg mx-auto leading-relaxed"
-          >
-            Reach out for admissions, course information, and campus visits at Nepal College of Hotel Management.
-          </motion.p>
-        </div>
-      </section>
+      <PageHero
+        label="Admissions & Inquiries"
+        title="Connect with Our"
+        highlight="Admissions Team"
+        description="We are ready to guide you on programs, eligibility, class schedules, and practical training facilities at Nepal College of Hotel Management."
+        breadcrumb="Contact Us"
+      />
 
-      {/* Contact content */}
-      <section className="py-10 pb-24">
+      {/* Main Contact Grid */}
+      <section className="py-24 bg-white border-b border-[#30345B]/8">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid lg:grid-cols-5 gap-12">
-            {/* Contact info sidebar */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="lg:col-span-2 space-y-6"
-            >
-              {contactInfo.map((item, i) => {
-                const Icon = item.icon
-                return (
-                  <motion.div
-                    key={item.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    whileHover={{ x: 4 }}
-                    className="glass-card-white rounded-xl p-5 flex items-start gap-4 gold-glow-hover transition-all duration-300"
-                  >
-                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-[#dba328] to-[#eebf56] flex items-center justify-center">
-                      <Icon size={18} className="text-[#13152d]" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-[#dba328] tracking-wider uppercase mb-1">{item.label}</p>
-                      <p className="text-text-light/60 text-sm leading-relaxed">{item.value}</p>
-                    </div>
-                  </motion.div>
-                )
-              })}
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            {/* Left Column: Direct Info Cards (5 Cols) */}
+            <div className="lg:col-span-5 space-y-8">
+              <div className="space-y-3">
+                <span className="gold-badge">
+                  Campus Location & Office
+                </span>
+                <h2 className="font-heading text-3xl font-extrabold text-[#1E2340] leading-tight">
+                  Visit Our Campus in <span className="text-[#30345B]">Birgunj</span>
+                </h2>
+                <p className="text-sm text-[#555B6E] leading-relaxed">
+                  Our admissions counseling office is open Sunday through Friday. Walk-ins are always welcome for campus walkthroughs and counseling.
+                </p>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
-                className="glass-card-white rounded-xl p-6 gold-glow-hover transition-all duration-300"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#dba328] to-[#eebf56]">
-                    <Search size={18} className="text-[#13152d]" />
+              {/* Cards */}
+              <div className="space-y-4">
+                {/* Address */}
+                <div className="p-6 rounded-2xl bg-[#F8F7F3] border border-[#30345B]/8 flex items-start gap-4 hover:border-[#DFA526]/40 transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-[#30345B] text-[#DFA526] flex items-center justify-center flex-shrink-0 shadow-sm">
+                    <MapPin size={22} />
                   </div>
                   <div>
-                    <p className="text-xs text-[#dba328] tracking-wider uppercase">Search Us On</p>
-                    <p className="text-sm text-text-light/55">Official social presence</p>
+                    <h3 className="font-heading font-extrabold text-sm text-[#1E2340]">
+                      Campus Address
+                    </h3>
+                    <p className="text-xs text-[#555B6E] mt-1 leading-relaxed">
+                      {siteData.address}
+                    </p>
+                    <span className="inline-block mt-2 text-[11px] font-bold text-[#DFA526] uppercase tracking-wider">
+                      Inside Bright College Premises
+                    </span>
                   </div>
                 </div>
-                <div className="space-y-3">
-                  {siteData.socialSearches.map((item) => (
-                    <div key={item.platform} className="rounded-xl border border-text-light/10 bg-background/50 px-4 py-3">
-                      <p className="text-xs uppercase tracking-[0.18em] text-[#dba328]">{item.platform}</p>
-                      <p className="mt-1 text-sm text-text-light/60">{item.handle}</p>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </motion.div>
 
-            {/* Contact form */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="lg:col-span-3"
-            >
-              <div className="glass-card-white rounded-2xl p-8 md:p-10 gold-glow">
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="rounded-2xl border border-[#dba328]/15 bg-[#dba328]/6 px-5 py-4">
-                    <p className="text-xs uppercase tracking-[0.18em] text-[#dba328]">Admissions Desk</p>
-                    <p className="mt-2 text-sm leading-relaxed text-text-light/60">
-                      Share your details and we will get back to you through {siteData.email} or {siteData.phones.join(", ")}.
+                {/* Phone */}
+                <div className="p-6 rounded-2xl bg-[#F8F7F3] border border-[#30345B]/8 flex items-start gap-4 hover:border-[#DFA526]/40 transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-[#30345B] text-[#DFA526] flex items-center justify-center flex-shrink-0 shadow-sm">
+                    <Phone size={22} />
+                  </div>
+                  <div>
+                    <h3 className="font-heading font-extrabold text-sm text-[#1E2340]">
+                      Admissions Direct Hotlines
+                    </h3>
+                    <div className="mt-1 space-y-0.5 text-xs text-[#555B6E]">
+                      <a href="tel:9845532370" className="block hover:text-[#30345B] font-medium">
+                        +977 9845532370
+                      </a>
+                      <a href="tel:9829232426" className="block hover:text-[#30345B] font-medium">
+                        +977 9829232426
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Email */}
+                <div className="p-6 rounded-2xl bg-[#F8F7F3] border border-[#30345B]/8 flex items-start gap-4 hover:border-[#DFA526]/40 transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-[#30345B] text-[#DFA526] flex items-center justify-center flex-shrink-0 shadow-sm">
+                    <Mail size={22} />
+                  </div>
+                  <div>
+                    <h3 className="font-heading font-extrabold text-sm text-[#1E2340]">
+                      Official Admissions Email
+                    </h3>
+                    <a
+                      href="mailto:nchmbrj143@gmail.com"
+                      className="text-xs text-[#555B6E] mt-1 block hover:underline hover:text-[#30345B]"
+                    >
+                      {siteData.email}
+                    </a>
+                  </div>
+                </div>
+
+                {/* Office Hours */}
+                <div className="p-6 rounded-2xl bg-[#F8F7F3] border border-[#30345B]/8 flex items-start gap-4 hover:border-[#DFA526]/40 transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-[#30345B] text-[#DFA526] flex items-center justify-center flex-shrink-0 shadow-sm">
+                    <Clock size={22} />
+                  </div>
+                  <div>
+                    <h3 className="font-heading font-extrabold text-sm text-[#1E2340]">
+                      Office & Counseling Hours
+                    </h3>
+                    <p className="text-xs text-[#555B6E] mt-1 leading-relaxed">
+                      {siteData.hours}
                     </p>
+                    <span className="text-[11px] text-[#555B6E]/70 block mt-0.5">
+                      Saturday Closed
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Inquiry & Admission Form (7 Cols) */}
+            <div className="lg:col-span-7 bg-[#F8F7F3] border border-[#30345B]/10 rounded-3xl p-8 sm:p-10 shadow-lg">
+              <div className="space-y-3 mb-8">
+                <span className="gold-badge">
+                  Admission Form
+                </span>
+                <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-[#1E2340]">
+                  Submit Your Admission Inquiry
+                </h3>
+                <p className="text-xs sm:text-sm text-[#555B6E]">
+                  Complete the short form below and our counseling department will respond within 24 hours.
+                </p>
+              </div>
+
+              {submitted ? (
+                <div className="p-8 rounded-2xl bg-white border border-[#DFA526]/40 text-center space-y-4 shadow-sm">
+                  <div className="w-14 h-14 rounded-full bg-[#DFA526]/20 text-[#30345B] mx-auto flex items-center justify-center">
+                    <CheckCircle2 size={32} />
+                  </div>
+                  <h4 className="font-heading font-extrabold text-xl text-[#1E2340]">
+                    Inquiry Received Successfully!
+                  </h4>
+                  <p className="text-xs sm:text-sm text-[#555B6E] max-w-md mx-auto leading-relaxed">
+                    Thank you, {form.name || "Student"}! An NCHM admissions advisor will review your details and contact you via phone or email shortly.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setSubmitted(false)
+                      setForm({
+                        name: "",
+                        email: "",
+                        phone: "",
+                        program: "Diploma in Hotel Management",
+                        message: "",
+                      })
+                    }}
+                    className="btn-navy !py-2.5 !px-6 text-xs font-bold mt-2"
+                  >
+                    Submit Another Inquiry
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    {/* Full Name */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-[#1E2340] uppercase tracking-wider">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={form.name}
+                        onChange={handleChange}
+                        required
+                        placeholder="e.g. Aarav Sharma"
+                        className="w-full px-4 py-3 rounded-xl bg-white border border-[#30345B]/15 text-[#1E2340] text-sm placeholder:text-gray-400 focus:outline-none focus:border-[#DFA526] focus:ring-1 focus:ring-[#DFA526] transition-colors"
+                      />
+                    </div>
+
+                    {/* Phone Number */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-[#1E2340] uppercase tracking-wider">
+                        Phone / WhatsApp *
+                      </label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={form.phone}
+                        onChange={handleChange}
+                        required
+                        placeholder="e.g. 9845532370"
+                        className="w-full px-4 py-3 rounded-xl bg-white border border-[#30345B]/15 text-[#1E2340] text-sm placeholder:text-gray-400 focus:outline-none focus:border-[#DFA526] focus:ring-1 focus:ring-[#DFA526] transition-colors"
+                      />
+                    </div>
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-5">
-                    <div>
-                      <label htmlFor="name" className="block text-xs text-text-light/50 mb-2 uppercase tracking-wider">Full Name</label>
-                      <input type="text" id="name" name="name" value={form.name} onChange={handleChange} required className={inputClasses} placeholder="John Doe" />
+                    {/* Email */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-[#1E2340] uppercase tracking-wider">
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={form.email}
+                        onChange={handleChange}
+                        required
+                        placeholder="e.g. student@gmail.com"
+                        className="w-full px-4 py-3 rounded-xl bg-white border border-[#30345B]/15 text-[#1E2340] text-sm placeholder:text-gray-400 focus:outline-none focus:border-[#DFA526] focus:ring-1 focus:ring-[#DFA526] transition-colors"
+                      />
                     </div>
-                    <div>
-                      <label htmlFor="email" className="block text-xs text-text-light/50 mb-2 uppercase tracking-wider">Email</label>
-                      <input type="email" id="email" name="email" value={form.email} onChange={handleChange} required className={inputClasses} placeholder="john@example.com" />
+
+                    {/* Program Selection */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-[#1E2340] uppercase tracking-wider">
+                        Program of Interest *
+                      </label>
+                      <select
+                        name="program"
+                        value={form.program}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 rounded-xl bg-white border border-[#30345B]/15 text-[#1E2340] text-sm focus:outline-none focus:border-[#DFA526] focus:ring-1 focus:ring-[#DFA526] transition-colors"
+                      >
+                        <option value="Diploma in Hotel Management">
+                          Diploma in Hotel Management (15 Mos)
+                        </option>
+                        <option value="Advanced Diploma in Hotel Management">
+                          Advanced Diploma in Hotel Management (21 Mos)
+                        </option>
+                        <option value="Professional Barista Certification">
+                          Professional Barista Certification (1 Mo)
+                        </option>
+                        <option value="General Campus Inquiry">General Inquiry / Campus Tour</option>
+                      </select>
                     </div>
                   </div>
 
-                  <div>
-                    <label htmlFor="phone" className="block text-xs text-text-light/50 mb-2 uppercase tracking-wider">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" value={form.phone} onChange={handleChange} className={inputClasses} placeholder="98XXXXXXXX" />
+                  {/* Message */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-[#1E2340] uppercase tracking-wider">
+                      Your Questions or Notes (Optional)
+                    </label>
+                    <textarea
+                      name="message"
+                      rows={4}
+                      value={form.message}
+                      onChange={handleChange}
+                      placeholder="Ask about batch start dates, practical kitchens, fees, or accommodation in Birgunj..."
+                      className="w-full px-4 py-3 rounded-xl bg-white border border-[#30345B]/15 text-[#1E2340] text-sm placeholder:text-gray-400 focus:outline-none focus:border-[#DFA526] focus:ring-1 focus:ring-[#DFA526] transition-colors resize-none"
+                    />
                   </div>
 
-                  <div>
-                    <label htmlFor="message" className="block text-xs text-text-light/50 mb-2 uppercase tracking-wider">Message</label>
-                    <textarea id="message" name="message" value={form.message} onChange={handleChange} required rows={5} className={`${inputClasses} resize-none`} placeholder="Tell us about your inquiry..." />
-                  </div>
-
-                  <motion.button
-                    whileHover={{ scale: 1.01, boxShadow: "0 0 35px rgba(212, 165, 51, 0.3)" }}
-                    whileTap={{ scale: 0.99 }}
+                  {/* Submit Button */}
+                  <button
                     type="submit"
-                    className="group w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-gradient-to-r from-[#dba328] to-[#eebf56] text-[#13152d] font-semibold text-sm tracking-wide transition-all duration-300"
+                    disabled={loading}
+                    className="w-full btn-gold !py-4 text-sm font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                   >
-                    {submitted ? (
-                      <>
-                        <CheckCircle size={18} />
-                        Message Sent Successfully
-                      </>
+                    {loading ? (
+                      <span>Sending inquiry...</span>
                     ) : (
                       <>
-                        <Send size={18} />
-                        Send Message
+                        <Send size={16} />
+                        Submit Admission Inquiry
                       </>
                     )}
-                  </motion.button>
+                  </button>
+
+                  <div className="text-[11px] text-center text-[#555B6E]">
+                    Your information is kept confidential and used solely for academic counseling.
+                  </div>
                 </form>
-              </div>
-            </motion.div>
+              )}
+            </div>
           </div>
         </div>
       </section>
-    </main>
+
+      {/* Campus Map & Directions Guide */}
+      <section className="py-20 bg-[#F8F7F3]">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="p-8 sm:p-12 rounded-3xl bg-[#30345B] text-white flex flex-col lg:flex-row items-center justify-between gap-8 shadow-xl">
+            <div className="space-y-3 text-center lg:text-left">
+              <span className="text-xs font-bold text-[#DFA526] uppercase tracking-widest">
+                Location Landmark
+              </span>
+              <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white">
+                How to Reach Our Campus in Birgunj
+              </h3>
+              <p className="text-sm text-white/80 max-w-xl leading-relaxed">
+                NCHM is situated inside the Bright College complex in Birgunj-09, easily accessible via public and private transport with secure campus facilities and modern training labs.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 shrink-0 w-full sm:w-auto">
+              <a
+                href="tel:9845532370"
+                className="btn-gold !py-3.5 !px-8 text-sm font-bold text-center justify-center"
+              >
+                Call for Directions
+                <Phone size={15} />
+              </a>
+              <Link
+                href="/about"
+                className="btn-navy !bg-[#20233E] !border !border-white/20 !py-3.5 !px-8 text-sm font-semibold text-center justify-center text-white"
+              >
+                About Campus
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }

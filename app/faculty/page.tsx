@@ -2,124 +2,222 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { Linkedin, Twitter, Mail } from "lucide-react"
+import Link from "next/link"
+import {
+  GraduationCap,
+  Award,
+  BookOpen,
+  Mail,
+  Linkedin,
+  Sparkles,
+  CheckCircle2,
+  Phone,
+  ArrowRight,
+  ShieldCheck,
+  Coffee,
+  Utensils,
+} from "lucide-react"
+import PageHero from "../components/PageHero"
+import SectionHeader from "../components/SectionHeader"
 import { siteData } from "@/lib/site-data"
 
-const faculty = siteData.faculty.map((member) => ({
-  ...member,
-  bio: `${member.name} supports students at ${siteData.shortName} with a focus on practical hospitality learning and steady classroom guidance.`,
-  specialties: ["Hotel Management", "Student Mentoring", "Practical Learning"],
-}))
-
-const staggerContainer = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-}
-
-const cardVariant = {
-  hidden: { opacity: 0, y: 40, rotateX: 5 },
-  visible: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
-}
+const facultyMembers = [
+  {
+    name: "Brij Sarraf",
+    designation: "BHM Faculty & Director",
+    department: "Hospitality Management & Operations",
+    image: "/images/fac.jpeg",
+    bio: "Pioneering hospitality educator in Birgunj with extensive leadership in hotel operations. Mentors students in strategic hotel management, professionalism, and industry placement readiness.",
+    expertise: ["Hotel Operations", "Strategic Planning", "Student Mentoring"],
+  },
+  {
+    name: "Urusha Thapa",
+    designation: "BHM Faculty",
+    department: "Food & Beverage Service & Etiquette",
+    image: "/images/faculty-2.jpg",
+    bio: "Specialist in fine dining restaurant service, banquet operations, and guest relations. Guides students through mock restaurant table setups and international hospitality standards.",
+    expertise: ["F&B Service", "Guest Relations", "Service Standards"],
+  },
+  {
+    name: "Rohan Singh",
+    designation: "BHM Faculty",
+    department: "Food Production & Culinary Arts",
+    image: "/images/faculty-3.jpg",
+    bio: "Passionate culinary trainer with deep expertise in commercial kitchen workflow, continental cuisine, hygiene standards, and food presentation in campus training kitchens.",
+    expertise: ["Culinary Arts", "Kitchen Operations", "HACCP Hygiene"],
+  },
+  {
+    name: "Sibanshu Barnawal",
+    designation: "BHM Faculty",
+    department: "Front Office & Accommodation Operations",
+    image: "/images/faculty-1.jpg",
+    bio: "Experienced instructor specializing in front office management systems, guest communication, telephone etiquette, and luxury accommodation housekeeping protocols.",
+    expertise: ["Front Office Systems", "Guest Communication", "Housekeeping"],
+  },
+  {
+    name: "Marorama Mallick",
+    designation: "Faculty & Barista Specialist",
+    department: "Specialty Beverages & Cafe Management",
+    image: "/images/faculty-4.jpg",
+    bio: "Dedicated instructor leading practical barista certification modules, espresso calibration, milk texturing, latte art, and cafe hospitality customer service.",
+    expertise: ["Barista Training", "Latte Art", "Beverage Service"],
+  },
+]
 
 export default function FacultyPage() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden pt-24">
+    <div className="bg-[#F8F7F3] text-[#555B6E]">
       {/* Page Hero */}
-      <section className="relative py-16 md:py-24">
-        <div className="mx-auto max-w-5xl px-6 text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#dba328]/20 bg-[#dba328]/5 text-[#dba328] text-xs tracking-[0.2em] uppercase"
-          >
-            Our Team
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-text-light text-balance"
-          >
-            Distinguished{" "}
-            <span className="bg-gradient-to-r from-[#dba328] to-[#eebf56] bg-clip-text text-transparent">Faculty</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-5 text-text-light/50 max-w-2xl mx-auto leading-relaxed"
-          >
-            Meet the faculty team guiding students at Nepal College of Hotel Management in Birgunj.
-          </motion.p>
+      <PageHero
+        label="Our Academic Team"
+        title="Distinguished BHM"
+        highlight="Faculty & Mentors"
+        description="Meet the experienced hospitality educators who personally guide, mentor, and train every student at Nepal College of Hotel Management, Birgunj."
+        breadcrumb="Faculty"
+      />
+
+      {/* Faculty Mentorship Philosophy */}
+      <section className="py-20 bg-white border-b border-[#30345B]/8">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid lg:grid-cols-12 gap-10 items-center">
+            <div className="lg:col-span-8 space-y-4">
+              <span className="gold-badge">
+                Teaching Philosophy
+              </span>
+              <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-[#1E2340] tracking-tight">
+                Mentorship Grounded in <span className="text-[#DFA526]">Real Hotel Realities</span>
+              </h2>
+              <p className="text-base sm:text-lg text-[#555B6E] leading-relaxed">
+                At NCHM, our faculty members are not just lecturers—they are hospitality practitioners who guide students side-by-side in our practical kitchens, dining suites, and barista bars. Small class sizes ensure that every student receives dedicated one-on-one feedback on technique, grooming, and professional conduct.
+              </p>
+            </div>
+
+            <div className="lg:col-span-4 p-6 rounded-2xl bg-[#F8F7F3] border border-[#30345B]/10 space-y-3">
+              <div className="text-xs font-bold uppercase tracking-wider text-[#30345B]">
+                Faculty Hallmarks
+              </div>
+              <ul className="space-y-2 text-xs text-[#555B6E]">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={15} className="text-[#DFA526]" />
+                  <span>100% BHM qualified educators</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={15} className="text-[#DFA526]" />
+                  <span>Hands-on kitchen & bar training</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={15} className="text-[#DFA526]" />
+                  <span>Personalized placement counseling</span>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Faculty Grid */}
-      <section className="py-20">
+      {/* Faculty Cards Grid */}
+      <section className="py-24 bg-[#F8F7F3] border-b border-[#30345B]/8">
         <div className="mx-auto max-w-7xl px-6">
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            className="grid sm:grid-cols-2 gap-8"
-          >
-            {faculty.map((member) => (
-              <motion.div
+          <SectionHeader
+            label="Faculty Directory"
+            title="Our Dedicated"
+            highlight="Educators"
+            description="Committed professionals providing qualitative, affordable, and practical study systems for ambitious hospitality careers."
+          />
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {facultyMembers.map((member) => (
+              <div
                 key={member.name}
-                variants={cardVariant}
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className="group glass-card-white rounded-2xl overflow-hidden gold-glow-hover transition-all duration-500"
+                className="campus-card overflow-hidden flex flex-col justify-between group"
               >
-                <div className="flex flex-col md:flex-row">
-                  {/* Photo */}
-                  <div className="relative w-full md:w-48 h-56 md:h-auto flex-shrink-0 overflow-hidden">
+                <div>
+                  {/* Portrait with Badge */}
+                  <div className="relative aspect-[4/3] bg-[#30345B] overflow-hidden">
                     <Image
                       src={member.image}
                       alt={`Portrait of ${member.name}`}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="image-overlay-side absolute inset-0 md:block hidden" />
-                    <div className="image-overlay-soft absolute inset-0 md:hidden" />
-                  </div>
-
-                  {/* Info */}
-                  <div className="p-6 flex-1">
-                    <h3 className="font-serif text-xl font-semibold text-text-light">{member.name}</h3>
-                    <p className="text-[#dba328] text-xs tracking-wider mt-1 uppercase">{member.designation}</p>
-                    <p className="mt-3 text-text-light/45 text-sm leading-relaxed">{member.bio}</p>
-
-                    {/* Specialties */}
-                    <div className="mt-4 flex flex-wrap gap-1.5">
-                      {member.specialties.map((s) => (
-                        <span key={s} className="px-2.5 py-1 rounded-md bg-[#dba328]/8 border border-[#dba328]/15 text-[#dba328] text-[10px] tracking-wide uppercase">
-                          {s}
-                        </span>
-                      ))}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#20233E]/80 via-transparent to-transparent" />
+                    
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 rounded-full bg-white/95 text-[#30345B] text-xs font-bold shadow-sm">
+                        {member.designation}
+                      </span>
                     </div>
 
-                    {/* Social icons */}
-                    <div className="mt-4 flex items-center gap-2">
-                      {[Linkedin, Twitter, Mail].map((Icon, i) => (
-                        <motion.button
-                          key={i}
-                          whileHover={{ scale: 1.15, y: -2 }}
-                          whileTap={{ scale: 0.9 }}
-                          className="w-8 h-8 rounded-full border border-text-light/10 flex items-center justify-center text-text-light/30 hover:text-[#dba328] hover:border-[#dba328]/30 transition-all duration-300"
-                          aria-label={`${member.name} social link`}
-                        >
-                          <Icon size={14} />
-                        </motion.button>
-                      ))}
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <div className="font-heading font-extrabold text-xl text-white">
+                        {member.name}
+                      </div>
+                      <div className="text-xs text-[#DFA526] font-semibold">
+                        {member.department}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Body Content */}
+                  <div className="p-6 space-y-4">
+                    <p className="text-xs sm:text-sm text-[#555B6E] leading-relaxed">
+                      {member.bio}
+                    </p>
+
+                    <div className="pt-2 border-t border-gray-100 space-y-2">
+                      <div className="text-[11px] font-bold uppercase tracking-wider text-[#30345B]">
+                        Areas of Expertise:
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {member.expertise.map((exp) => (
+                          <span
+                            key={exp}
+                            className="px-2.5 py-0.5 rounded-full bg-[#30345B]/6 text-[#30345B] text-[11px] font-semibold"
+                          >
+                            {exp}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </motion.div>
+
+                {/* Footer Action */}
+                <div className="p-6 pt-0">
+                  <Link
+                    href="/contact"
+                    className="w-full btn-outline-navy !py-2.5 text-xs font-bold text-center justify-center inline-flex items-center gap-1.5"
+                  >
+                    Connect with Admissions
+                    <ArrowRight size={13} />
+                  </Link>
+                </div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
-    </main>
+
+      {/* Join the Academic Community CTA */}
+      <section className="py-20 bg-white">
+        <div className="mx-auto max-w-5xl px-6 text-center space-y-6">
+          <span className="gold-badge">
+            Meet Our Instructors
+          </span>
+          <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-[#1E2340]">
+            Experience a Classroom Guided by Real Hotel Professionals
+          </h2>
+          <p className="text-base text-[#555B6E] max-w-2xl mx-auto leading-relaxed">
+            Visit our campus inside Bright College, Birgunj-09. Sit down with our faculty members, tour our kitchens and barista labs, and plan your hospitality career.
+          </p>
+          <div className="pt-2 flex flex-wrap justify-center gap-4">
+            <Link href="/contact" className="btn-gold !py-3.5 !px-8 text-sm font-bold">
+              Schedule a Campus Consultation
+              <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }

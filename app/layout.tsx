@@ -1,25 +1,21 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import BubbleBackground from './components/BubbleBackground'
 import ScrollProgress from './components/ScrollProgress'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
-const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' })
-
 export const metadata: Metadata = {
-  title: 'Nepal College of Hotel Management (NCHM)',
+  title: 'Nepal College of Hotel Management (NCHM) | Birgunj, Nepal',
   description:
-    'Shaping Future Hotel Industry Leaders - Nepal College of Hotel Management offers premier hospitality education, diploma programs, and professional certifications.',
+    'Nepal College of Hotel Management (NCHM), Birgunj. Premier hospitality education, practical training kitchens, barista certification, and industry-focused diploma programs.',
   keywords: [
     'hotel management',
     'hospitality management',
     'NCHM',
-    'Nepal college',
-    'diploma',
-    'barista certification',
+    'Birgunj hotel college',
+    'diploma in hotel management',
+    'barista certification Nepal',
+    'hospitality training',
   ],
   icons: {
     icon: '/images/logo.jpeg',
@@ -28,7 +24,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#13152d',
+  themeColor: '#30345B',
   width: 'device-width',
   initialScale: 1,
 }
@@ -39,23 +35,17 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en">
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                if (localStorage.theme === 'light') {
-                  document.documentElement.classList.add('light-mode');
-                }
-              } catch (_) {}
-            `,
-          }}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet"
         />
       </head>
-      <body className="font-sans antialiased bg-background text-foreground transition-colors duration-300">
+      <body className="font-sans antialiased bg-[#F8F7F3] text-[#555B6E] selection:bg-[#DFA526]/20 selection:text-[#30345B]">
         <ScrollProgress />
-        <BubbleBackground />
         <Navbar />
         <main className="relative min-h-screen overflow-x-hidden">
           {children}
